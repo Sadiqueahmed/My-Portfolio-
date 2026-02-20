@@ -240,90 +240,50 @@
             50% { opacity: 0.5; }
         }
         
-        /* New Experience Styles */
-        .experience-timeline {
+        /* 3D Carousel Styles */
+        .carousel-container {
+            perspective: 1000px;
+            height: 500px;
             position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
+            overflow: visible;
         }
 
-        .experience-item {
+        .carousel-track {
             position: relative;
-            padding: 20px 0;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        .experience-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .experience-connector {
+        .carousel-card {
             position: absolute;
+            width: 100%;
+            max-width: 600px;
             left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #FF4D00, #00F0FF, #8B5CF6, #10B981);
-            transform: translateX(-50%);
+            top: 50%;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        .experience-node {
-            position: absolute;
-            left: 50%;
-            width: 24px;
-            height: 24px;
-            background: var(--dark);
-            border: 3px solid;
-            border-radius: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        html.light .experience-node {
-            background: var(--light);
-        }
-
-        .experience-node:hover {
-            transform: translateX(-50%) scale(1.3);
-            box-shadow: 0 0 20px currentColor;
-        }
-
-        .experience-content {
-            width: 45%;
-            position: relative;
-        }
-
-        .experience-item:nth-child(odd) .experience-content {
-            margin-left: auto;
-            margin-right: 55%;
-            text-align: right;
-        }
-
-        .experience-item:nth-child(even) .experience-content {
-            margin-left: 55%;
-        }
-
-        .experience-card-new {
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 30px;
+        .carousel-card-inner {
+            background: linear-gradient(135deg, rgba(20,20,20,0.95) 0%, rgba(10,10,10,0.98) 100%);
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
             position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        html.light .experience-card-new {
-            background: linear-gradient(135deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.01) 100%);
-            border-color: rgba(0,0,0,0.1);
+        html.light .carousel-card-inner {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,240,240,0.98) 100%);
+            border-color: rgba(0,0,0,0.15);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
         }
 
-        .experience-card-new::before {
+        .carousel-card-inner::before {
             content: '';
             position: absolute;
             top: 0;
@@ -331,72 +291,128 @@
             right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--card-color), transparent);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-            transform-origin: left;
         }
 
-        .experience-card-new:hover::before {
-            transform: scaleX(1);
+        .carousel-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.2);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
-        .experience-card-new:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            border-color: var(--card-color);
+        html.light .carousel-nav-btn {
+            background: rgba(0,0,0,0.1);
+            border-color: rgba(0,0,0,0.2);
+            color: black;
         }
 
-        .company-logo-new {
+        .carousel-nav-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav-btn.prev { left: 20px; }
+        .carousel-nav-btn.next { right: 20px; }
+
+        .carousel-dots {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        html.light .carousel-dot {
+            background: rgba(0,0,0,0.2);
+        }
+
+        .carousel-dot.active {
+            background: var(--primary);
+            transform: scale(1.3);
+            border-color: white;
+        }
+
+        .achievement-pill {
+            position: absolute;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: float 3s ease-in-out infinite;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        html.light .achievement-pill {
+            background: rgba(0,0,0,0.1);
+            border-color: rgba(0,0,0,0.15);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        .company-logo-3d {
             width: 70px;
             height: 70px;
             object-fit: contain;
             border-radius: 16px;
             background: white;
             padding: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
         }
 
-        .experience-card-new:hover .company-logo-new {
+        .carousel-card:hover .company-logo-3d {
             transform: scale(1.1) rotate(5deg);
         }
 
-        .achievement-float {
-            position: absolute;
-            padding: 8px 16px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .tech-stack-bubble {
+        .tech-bubble {
             display: inline-flex;
             align-items: center;
             gap: 6px;
             padding: 6px 14px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
             border-radius: 20px;
             font-size: 0.8rem;
             margin: 4px;
             transition: all 0.3s ease;
+            font-weight: 500;
         }
 
-        html.light .tech-stack-bubble {
+        html.light .tech-bubble {
             background: rgba(0,0,0,0.05);
             border-color: rgba(0,0,0,0.1);
         }
 
-        .tech-stack-bubble:hover {
+        .tech-bubble:hover {
             background: var(--bubble-color);
             color: white;
             transform: translateY(-2px);
@@ -404,18 +420,18 @@
         }
 
         @media (max-width: 768px) {
-            .experience-connector {
-                left: 30px;
+            .carousel-container {
+                height: 550px;
             }
-            .experience-node {
-                left: 30px;
+            .carousel-card {
+                max-width: 90%;
             }
-            .experience-content {
-                width: calc(100% - 80px);
-                margin-left: 80px !important;
-                margin-right: 0 !important;
-                text-align: left !important;
+            .carousel-nav-btn {
+                width: 40px;
+                height: 40px;
             }
+            .carousel-nav-btn.prev { left: 10px; }
+            .carousel-nav-btn.next { right: 10px; }
         }
 
         /* FAQ Styles */
@@ -1165,35 +1181,35 @@
         </div>
     </section>
 
-    <!-- Experience Section - NEW UNIQUE DESIGN -->
+    <!-- Experience Section - 3D CAROUSEL -->
     <section id="experience" class="py-32 px-6 relative overflow-hidden">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-20">
+            <div class="text-center mb-16">
                 <div class="inline-block px-4 py-2 border border-cyan-500/30 rounded-full text-cyan-400 text-sm tracking-widest mb-4">
                     PROFESSIONAL JOURNEY
                 </div>
                 <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Experience & Education</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">A timeline of my professional growth and academic journey</p>
+                <p class="text-gray-400 max-w-2xl mx-auto">A 3D journey through my professional growth and academic milestones</p>
             </div>
 
-            <div class="experience-timeline">
-                <div class="experience-connector"></div>
-
-                <!-- Experience 1: NIELIT Summer Intern 2025 -->
-                <div class="experience-item" data-color="#FF4D00">
-                    <div class="experience-node" style="border-color: #FF4D00; top: 40px;"></div>
-                    <div class="experience-content">
-                        <div class="experience-card-new" style="--card-color: #FF4D00;">
-                            <div class="achievement-float" style="top: -15px; right: 20px; color: #FF4D00; animation-delay: 0s;">89% Accuracy</div>
-                            <div class="flex items-start gap-4 mb-4">
-                                <img src="https://kimi-web-img.moonshot.cn/img/api.itcentre.org/977e16f3d45f1b369eea2652c9dc7844f8a26d76.jpeg" alt="NIELIT" class="company-logo-new">
+            <!-- 3D Carousel Container -->
+            <div class="carousel-container" id="experienceCarousel">
+                <div class="carousel-track" id="carouselTrack">
+                    
+                    <!-- Experience 1: NIELIT Summer Intern 2025 - ORANGE -->
+                    <div class="carousel-card" data-index="0" data-color="#FF4D00">
+                        <div class="carousel-card-inner" style="--card-color: #FF4D00;">
+                            <div class="achievement-pill" style="top: 20px; right: 20px; color: #FF4D00; animation-delay: 0s;">89% Accuracy</div>
+                            
+                            <div class="flex items-start gap-4 mb-6">
+                                <img src="https://kimi-web-img.moonshot.cn/img/api.itcentre.org/977e16f3d45f1b369eea2652c9dc7844f8a26d76.jpeg" alt="NIELIT" class="company-logo-3d">
                                 <div class="flex-1">
                                     <div class="flex items-center gap-2 mb-1">
-                                        <h3 class="font-display text-xl font-bold">Machine Learning Intern</h3>
-                                        <span class="px-2 py-1 bg-orange-500/10 text-orange-400 text-xs rounded-full border border-orange-500/20">Latest</span>
+                                        <h3 class="font-display text-2xl font-bold">Machine Learning Intern</h3>
+                                        <span class="px-2 py-1 bg-orange-500/20 text-orange-400 text-xs rounded-full border border-orange-500/20">Latest</span>
                                     </div>
-                                    <p class="text-gray-400 text-sm">National Institute of Electronics and IT (NIELIT)</p>
-                                    <p class="text-gray-500 text-xs mt-1">Guwahati, Assam, India</p>
+                                    <p class="text-gray-400">National Institute of Electronics and IT (NIELIT)</p>
+                                    <p class="text-gray-500 text-sm mt-1">Guwahati, Assam, India</p>
                                 </div>
                             </div>
                             
@@ -1202,41 +1218,39 @@
                                     <i data-lucide="calendar" class="w-4 h-4"></i>
                                     <span>Jun 2025 – Jul 2025</span>
                                 </div>
-                                <p class="text-gray-300 text-sm leading-relaxed mb-3">
-                                    Developed machine learning models for <strong>heart disease detection</strong> using Logistic Regression, Random Forest, and Neural Networks.
+                                <p class="text-gray-300 leading-relaxed mb-4">
+                                    Developed machine learning models for <strong class="text-white">heart disease detection</strong> using Logistic Regression, Random Forest, and Neural Networks. Achieved 89% accuracy on test dataset.
                                 </p>
                             </div>
 
                             <div class="flex flex-wrap gap-2">
-                                <span class="tech-stack-bubble" style="--bubble-color: #FF4D00;">
+                                <span class="tech-bubble" style="--bubble-color: #FF4D00;">
                                     <i data-lucide="code-2" class="w-3 h-3"></i> Python
                                 </span>
-                                <span class="tech-stack-bubble" style="--bubble-color: #FF4D00;">
+                                <span class="tech-bubble" style="--bubble-color: #FF4D00;">
                                     <i data-lucide="brain" class="w-3 h-3"></i> Scikit-learn
                                 </span>
-                                <span class="tech-stack-bubble" style="--bubble-color: #FF4D00;">
+                                <span class="tech-bubble" style="--bubble-color: #FF4D00;">
                                     <i data-lucide="table" class="w-3 h-3"></i> Pandas
                                 </span>
-                                <span class="tech-stack-bubble" style="--bubble-color: #FF4D00;">
+                                <span class="tech-bubble" style="--bubble-color: #FF4D00;">
                                     <i data-lucide="activity" class="w-3 h-3"></i> Neural Networks
                                 </span>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Experience 2: NIT Silchar -->
-                <div class="experience-item" data-color="#00F0FF">
-                    <div class="experience-node" style="border-color: #00F0FF; top: 40px;"></div>
-                    <div class="experience-content">
-                        <div class="experience-card-new" style="--card-color: #00F0FF;">
-                            <div class="achievement-float" style="top: -15px; left: 20px; color: #00F0FF; animation-delay: 0.5s;">40% Faster</div>
-                            <div class="flex items-start gap-4 mb-4">
-                                <img src="https://kimi-web-img.moonshot.cn/img/static.wikia.nocookie.net/782c3f2dd63743669ad0d48ba1c6e9a3e30bde19" alt="NIT Silchar" class="company-logo-new">
+                    <!-- Experience 2: NIT Silchar - CYAN -->
+                    <div class="carousel-card" data-index="1" data-color="#00F0FF">
+                        <div class="carousel-card-inner" style="--card-color: #00F0FF;">
+                            <div class="achievement-pill" style="top: 20px; left: 20px; color: #00F0FF; animation-delay: 0.5s;">40% Faster</div>
+                            
+                            <div class="flex items-start gap-4 mb-6">
+                                <img src="https://kimi-web-img.moonshot.cn/img/static.wikia.nocookie.net/782c3f2dd63743669ad0d48ba1c6e9a3e30bde19" alt="NIT Silchar" class="company-logo-3d">
                                 <div class="flex-1">
-                                    <h3 class="font-display text-xl font-bold">Sole Web Developer</h3>
-                                    <p class="text-gray-400 text-sm">National Institute of Technology Silchar</p>
-                                    <p class="text-gray-500 text-xs mt-1">Silchar, India</p>
+                                    <h3 class="font-display text-2xl font-bold">Sole Web Developer</h3>
+                                    <p class="text-gray-400">National Institute of Technology Silchar</p>
+                                    <p class="text-gray-500 text-sm mt-1">Silchar, India</p>
                                 </div>
                             </div>
                             
@@ -1245,41 +1259,39 @@
                                     <i data-lucide="calendar" class="w-4 h-4"></i>
                                     <span>Jun 2024 – Jul 2024</span>
                                 </div>
-                                <p class="text-gray-300 text-sm leading-relaxed mb-3">
-                                    Built <strong>Excursa tourism platform</strong> with 3+ API integrations and optimized assets to reduce page load times by 40%.
+                                <p class="text-gray-300 leading-relaxed mb-4">
+                                    Built <strong class="text-white">Excursa tourism platform</strong> with 3+ API integrations and optimized assets to reduce page load times by 40%. Implemented responsive design and SEO best practices.
                                 </p>
                             </div>
 
                             <div class="flex flex-wrap gap-2">
-                                <span class="tech-stack-bubble" style="--bubble-color: #00F0FF;">
+                                <span class="tech-bubble" style="--bubble-color: #00F0FF;">
                                     <i data-lucide="code" class="w-3 h-3"></i> HTML/CSS/JS
                                 </span>
-                                <span class="tech-stack-bubble" style="--bubble-color: #00F0FF;">
+                                <span class="tech-bubble" style="--bubble-color: #00F0FF;">
                                     <i data-lucide="map" class="w-3 h-3"></i> Mapbox
                                 </span>
-                                <span class="tech-stack-bubble" style="--bubble-color: #00F0FF;">
+                                <span class="tech-bubble" style="--bubble-color: #00F0FF;">
                                     <i data-lucide="server" class="w-3 h-3"></i> Netlify
                                 </span>
-                                <span class="tech-stack-bubble" style="--bubble-color: #00F0FF;">
+                                <span class="tech-bubble" style="--bubble-color: #00F0FF;">
                                     <i data-lucide="zap" class="w-3 h-3"></i> Performance
                                 </span>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Experience 3: SH1ELD Tech -->
-                <div class="experience-item" data-color="#8B5CF6">
-                    <div class="experience-node" style="border-color: #8B5CF6; top: 40px;"></div>
-                    <div class="experience-content">
-                        <div class="experience-card-new" style="--card-color: #8B5CF6;">
-                            <div class="achievement-float" style="top: -15px; right: 20px; color: #8B5CF6; animation-delay: 1s;">35% Less Bugs</div>
-                            <div class="flex items-start gap-4 mb-4">
-                                <img src="https://kimi-web-img.moonshot.cn/img/sh1eldtech.com/b8b2f41ee8dc0cdad0a41ff4296ca5af33ddd392.jpg" alt="SH1ELD Tech" class="company-logo-new">
+                    <!-- Experience 3: SH1ELD Tech - PURPLE -->
+                    <div class="carousel-card" data-index="2" data-color="#8B5CF6">
+                        <div class="carousel-card-inner" style="--card-color: #8B5CF6;">
+                            <div class="achievement-pill" style="top: 20px; right: 20px; color: #8B5CF6; animation-delay: 1s;">35% Less Bugs</div>
+                            
+                            <div class="flex items-start gap-4 mb-6">
+                                <img src="https://kimi-web-img.moonshot.cn/img/sh1eldtech.com/b8b2f41ee8dc0cdad0a41ff4296ca5af33ddd392.jpg" alt="SH1ELD Tech" class="company-logo-3d">
                                 <div class="flex-1">
-                                    <h3 class="font-display text-xl font-bold">Web Development Team</h3>
-                                    <p class="text-gray-400 text-sm">SH1ELD Tech InfoSec Solutions</p>
-                                    <p class="text-gray-500 text-xs mt-1">Gangtok, Sikkim, India</p>
+                                    <h3 class="font-display text-2xl font-bold">Web Development Team</h3>
+                                    <p class="text-gray-400">SH1ELD Tech InfoSec Solutions</p>
+                                    <p class="text-gray-500 text-sm mt-1">Gangtok, Sikkim, India</p>
                                 </div>
                             </div>
                             
@@ -1288,41 +1300,39 @@
                                     <i data-lucide="calendar" class="w-4 h-4"></i>
                                     <span>Jul 2024 – Sep 2024</span>
                                 </div>
-                                <p class="text-gray-300 text-sm leading-relaxed mb-3">
-                                    Contributed to <strong>4+ client websites</strong> in a 5-member team; improved responsiveness and reduced bug reports by 35% via peer reviews.
+                                <p class="text-gray-300 leading-relaxed mb-4">
+                                    Contributed to <strong class="text-white">4+ client websites</strong> in a 5-member team; improved responsiveness and reduced bug reports by 35% via peer reviews and code quality standards.
                                 </p>
                             </div>
 
                             <div class="flex flex-wrap gap-2">
-                                <span class="tech-stack-bubble" style="--bubble-color: #8B5CF6;">
+                                <span class="tech-bubble" style="--bubble-color: #8B5CF6;">
                                     <i data-lucide="layout" class="w-3 h-3"></i> Bootstrap
                                 </span>
-                                <span class="tech-stack-bubble" style="--bubble-color: #8B5CF6;">
+                                <span class="tech-bubble" style="--bubble-color: #8B5CF6;">
                                     <i data-lucide="git-branch" class="w-3 h-3"></i> GitHub
                                 </span>
-                                <span class="tech-stack-bubble" style="--bubble-color: #8B5CF6;">
+                                <span class="tech-bubble" style="--bubble-color: #8B5CF6;">
                                     <i data-lucide="ticket" class="w-3 h-3"></i> Jira
                                 </span>
-                                <span class="tech-stack-bubble" style="--bubble-color: #8B5CF6;">
+                                <span class="tech-bubble" style="--bubble-color: #8B5CF6;">
                                     <i data-lucide="users" class="w-3 h-3"></i> Team Collaboration
                                 </span>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Experience 4: NIELIT ML Intern -->
-                <div class="experience-item" data-color="#10B981">
-                    <div class="experience-node" style="border-color: #10B981; top: 40px;"></div>
-                    <div class="experience-content">
-                        <div class="experience-card-new" style="--card-color: #10B981;">
-                            <div class="achievement-float" style="top: -15px; left: 20px; color: #10B981; animation-delay: 1.5s;">92% Accuracy</div>
-                            <div class="flex items-start gap-4 mb-4">
-                                <img src="https://kimi-web-img.moonshot.cn/img/images.crunchbase.com/45149c42678c3d993a1acc74f197f6a40f951e07" alt="NIELIT" class="company-logo-new">
+                    <!-- Experience 4: NIELIT ML Intern - GREEN -->
+                    <div class="carousel-card" data-index="3" data-color="#10B981">
+                        <div class="carousel-card-inner" style="--card-color: #10B981;">
+                            <div class="achievement-pill" style="top: 20px; left: 20px; color: #10B981; animation-delay: 1.5s;">92% Accuracy</div>
+                            
+                            <div class="flex items-start gap-4 mb-6">
+                                <img src="https://kimi-web-img.moonshot.cn/img/images.crunchbase.com/45149c42678c3d993a1acc74f197f6a40f951e07" alt="NIELIT" class="company-logo-3d">
                                 <div class="flex-1">
-                                    <h3 class="font-display text-xl font-bold">Machine Learning Intern</h3>
-                                    <p class="text-gray-400 text-sm">National Institute of Electronics and IT (NIELIT)</p>
-                                    <p class="text-gray-500 text-xs mt-1">Guwahati, Assam, India</p>
+                                    <h3 class="font-display text-2xl font-bold">Machine Learning Intern</h3>
+                                    <p class="text-gray-400">National Institute of Electronics and IT (NIELIT)</p>
+                                    <p class="text-gray-500 text-sm mt-1">Guwahati, Assam, India</p>
                                 </div>
                             </div>
                             
@@ -1331,43 +1341,41 @@
                                     <i data-lucide="calendar" class="w-4 h-4"></i>
                                     <span>Aug 2024</span>
                                 </div>
-                                <p class="text-gray-300 text-sm leading-relaxed mb-3">
-                                    Developed a <strong>CNN-based animal classifier</strong> on a 10K+ image dataset; achieved 92% test accuracy with data augmentation.
+                                <p class="text-gray-300 leading-relaxed mb-4">
+                                    Developed a <strong class="text-white">CNN-based animal classifier</strong> on a 10K+ image dataset; achieved 92% test accuracy with data augmentation and transfer learning techniques.
                                 </p>
                             </div>
 
                             <div class="flex flex-wrap gap-2">
-                                <span class="tech-stack-bubble" style="--bubble-color: #10B981;">
+                                <span class="tech-bubble" style="--bubble-color: #10B981;">
                                     <i data-lucide="code-2" class="w-3 h-3"></i> Python
                                 </span>
-                                <span class="tech-stack-bubble" style="--bubble-color: #10B981;">
+                                <span class="tech-bubble" style="--bubble-color: #10B981;">
                                     <i data-lucide="brain-circuit" class="w-3 h-3"></i> TensorFlow
                                 </span>
-                                <span class="tech-stack-bubble" style="--bubble-color: #10B981;">
+                                <span class="tech-bubble" style="--bubble-color: #10B981;">
                                     <i data-lucide="eye" class="w-3 h-3"></i> OpenCV
                                 </span>
-                                <span class="tech-stack-bubble" style="--bubble-color: #10B981;">
+                                <span class="tech-bubble" style="--bubble-color: #10B981;">
                                     <i data-lucide="network" class="w-3 h-3"></i> CNN
                                 </span>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Education -->
-                <div class="experience-item" data-color="#F59E0B">
-                    <div class="experience-node" style="border-color: #F59E0B; top: 40px;"></div>
-                    <div class="experience-content">
-                        <div class="experience-card-new" style="--card-color: #F59E0B;">
-                            <div class="achievement-float" style="top: -15px; right: 20px; color: #F59E0B; animation-delay: 2s;">GPA: 8.5/10</div>
-                            <div class="flex items-start gap-4 mb-4">
-                                <div class="company-logo-new bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center text-3xl">
+                    <!-- Education - YELLOW -->
+                    <div class="carousel-card" data-index="4" data-color="#F59E0B">
+                        <div class="carousel-card-inner" style="--card-color: #F59E0B;">
+                            <div class="achievement-pill" style="top: 20px; right: 20px; color: #F59E0B; animation-delay: 2s;">GPA: 8.5/10</div>
+                            
+                            <div class="flex items-start gap-4 mb-6">
+                                <div class="company-logo-3d bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center text-3xl">
                                     🎓
                                 </div>
                                 <div class="flex-1">
-                                    <h3 class="font-display text-xl font-bold">B.Tech Computer Science</h3>
-                                    <p class="text-gray-400 text-sm">University</p>
-                                    <p class="text-gray-500 text-xs mt-1">India</p>
+                                    <h3 class="font-display text-2xl font-bold">B.Tech Computer Science</h3>
+                                    <p class="text-gray-400">University</p>
+                                    <p class="text-gray-500 text-sm mt-1">India</p>
                                 </div>
                             </div>
                             
@@ -1376,28 +1384,46 @@
                                     <i data-lucide="calendar" class="w-4 h-4"></i>
                                     <span>2022 - 2026 (Expected)</span>
                                 </div>
-                                <p class="text-gray-300 text-sm leading-relaxed mb-3">
-                                    Focusing on <strong>Data Structures, Algorithms, Software Engineering, and AI</strong>. Active member of coding clubs and hackathon participant.
+                                <p class="text-gray-300 leading-relaxed mb-4">
+                                    Focusing on <strong class="text-white">Data Structures, Algorithms, Software Engineering, and AI</strong>. Active member of coding clubs and hackathon participant with multiple wins.
                                 </p>
                             </div>
 
                             <div class="flex flex-wrap gap-2">
-                                <span class="tech-stack-bubble" style="--bubble-color: #F59E0B;">
+                                <span class="tech-bubble" style="--bubble-color: #F59E0B;">
                                     <i data-lucide="trophy" class="w-3 h-3"></i> Hackathon Winner
                                 </span>
-                                <span class="tech-stack-bubble" style="--bubble-color: #F59E0B;">
+                                <span class="tech-bubble" style="--bubble-color: #F59E0B;">
                                     <i data-lucide="pen-tool" class="w-3 h-3"></i> Technical Writer
                                 </span>
-                                <span class="tech-stack-bubble" style="--bubble-color: #F59E0B;">
+                                <span class="tech-bubble" style="--bubble-color: #F59E0B;">
                                     <i data-lucide="code" class="w-3 h-3"></i> DSA
                                 </span>
-                                <span class="tech-stack-bubble" style="--bubble-color: #F59E0B;">
+                                <span class="tech-bubble" style="--bubble-color: #F59E0B;">
                                     <i data-lucide="database" class="w-3 h-3"></i> DBMS
                                 </span>
                             </div>
                         </div>
                     </div>
+
                 </div>
+
+                <!-- Navigation Buttons -->
+                <button class="carousel-nav-btn prev" onclick="moveCarousel(-1)">
+                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                </button>
+                <button class="carousel-nav-btn next" onclick="moveCarousel(1)">
+                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Dots Navigation -->
+            <div class="carousel-dots" id="carouselDots">
+                <div class="carousel-dot active" onclick="goToSlide(0)" style="background: #FF4D00;"></div>
+                <div class="carousel-dot" onclick="goToSlide(1)" style="background: #00F0FF;"></div>
+                <div class="carousel-dot" onclick="goToSlide(2)" style="background: #8B5CF6;"></div>
+                <div class="carousel-dot" onclick="goToSlide(3)" style="background: #10B981;"></div>
+                <div class="carousel-dot" onclick="goToSlide(4)" style="background: #F59E0B;"></div>
             </div>
         </div>
     </section>
@@ -2243,22 +2269,26 @@
                 </a>
             </div>
 
-            <!-- Quick Contact Form -->
-            <form class="max-w-lg mx-auto mb-16 text-left bg-white/5 p-8 rounded-2xl border border-white/10" onsubmit="handleSubmit(event)">
+            <!-- Quick Contact Form with Formspree -->
+            <form class="max-w-lg mx-auto mb-16 text-left bg-white/5 p-8 rounded-2xl border border-white/10" action="https://formspree.io/f/mlgwwkyq" method="POST">
                 <h3 class="font-display text-xl font-bold mb-6 text-center">Send me a message</h3>
                 <div class="grid md:grid-cols-2 gap-4 mb-4">
                     <div>
                         <label class="block text-sm text-gray-400 mb-2">Name</label>
-                        <input type="text" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-orange-500 focus:outline-none transition-colors text-white" placeholder="Your name">
+                        <input type="text" name="name" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-orange-500 focus:outline-none transition-colors text-white" placeholder="Your name">
                     </div>
                     <div>
                         <label class="block text-sm text-gray-400 mb-2">Email</label>
-                        <input type="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-orange-500 focus:outline-none transition-colors text-white" placeholder="your@email.com">
+                        <input type="email" name="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-orange-500 focus:outline-none transition-colors text-white" placeholder="your@email.com">
                     </div>
                 </div>
                 <div class="mb-4">
+                    <label class="block text-sm text-gray-400 mb-2">Subject</label>
+                    <input type="text" name="subject" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-orange-500 focus:outline-none transition-colors text-white" placeholder="Job Opportunity / Collaboration">
+                </div>
+                <div class="mb-4">
                     <label class="block text-sm text-gray-400 mb-2">Message</label>
-                    <textarea rows="4" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-orange-500 focus:outline-none transition-colors text-white resize-none" placeholder="Tell me about the opportunity..."></textarea>
+                    <textarea name="message" rows="4" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-orange-500 focus:outline-none transition-colors text-white resize-none" placeholder="Tell me about the opportunity..."></textarea>
                 </div>
                 <button type="submit" class="w-full py-4 bg-orange-500 text-white rounded-lg font-medium hover:bg-orange-600 transition-all flex items-center justify-center gap-2 group">
                     Send Message
@@ -2329,7 +2359,7 @@
             }, { duration: 500, fill: "forwards" });
         });
 
-        const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-tag, input, textarea, .medium-card, .publication-card, .testimonial-card, .experience-card-new, .faq-question');
+        const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-tag, input, textarea, .medium-card, .publication-card, .testimonial-card, .carousel-card, .faq-question');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
@@ -2368,23 +2398,112 @@
             delay: 1.3
         });
 
-        // Experience Section Animations
-        const experienceItems = document.querySelectorAll('.experience-item');
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // 3D Carousel Logic
+        let currentSlide = 0;
+        const totalSlides = 5;
+        let autoRotateInterval;
+        const carouselTrack = document.getElementById('carouselTrack');
+        const carouselDots = document.getElementById('carouselDots').children;
 
-        const experienceObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        function updateCarousel() {
+            const cards = document.querySelectorAll('.carousel-card');
+            
+            cards.forEach((card, index) => {
+                const offset = index - currentSlide;
+                const absOffset = Math.abs(offset);
+                
+                // Calculate 3D position
+                let translateX = offset * 60;
+                let translateZ = -absOffset * 150;
+                let rotateY = offset * -15;
+                let opacity = 1 - (absOffset * 0.3);
+                let scale = 1 - (absOffset * 0.15);
+                
+                // Hide cards that are too far
+                if (absOffset > 2) {
+                    opacity = 0;
+                    scale = 0.5;
+                }
+                
+                card.style.transform = `translateX(calc(-50% + ${translateX}%)) translateY(-50%) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`;
+                card.style.opacity = opacity;
+                card.style.zIndex = totalSlides - absOffset;
+                
+                // Add active class to center card
+                if (offset === 0) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
                 }
             });
-        }, observerOptions);
+            
+            // Update dots
+            Array.from(carouselDots).forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
 
-        experienceItems.forEach(item => {
-            experienceObserver.observe(item);
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+            resetAutoRotate();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+            resetAutoRotate();
+        }
+
+        function resetAutoRotate() {
+            clearInterval(autoRotateInterval);
+            autoRotateInterval = setInterval(() => {
+                moveCarousel(1);
+            }, 5000);
+        }
+
+        // Initialize carousel
+        updateCarousel();
+        resetAutoRotate();
+
+        // Touch/Swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const carouselContainer = document.getElementById('experienceCarousel');
+
+        carouselContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        carouselContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    moveCarousel(1); // Swipe left - next
+                } else {
+                    moveCarousel(-1); // Swipe right - prev
+                }
+            }
+        }
+
+        // Pause auto-rotate on hover
+        carouselContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoRotateInterval);
+        });
+
+        carouselContainer.addEventListener('mouseleave', () => {
+            resetAutoRotate();
         });
 
         // Scroll Animations
@@ -2476,13 +2595,6 @@
             });
         });
 
-        // Contact Form Handler
-        function handleSubmit(e) {
-            e.preventDefault();
-            showToast('Message sent! I\'ll get back to you within 24 hours.');
-            e.target.reset();
-        }
-
         // Toast Notification
         function showToast(message) {
             const toast = document.getElementById('toast');
@@ -2562,6 +2674,30 @@
                 faqItem.classList.add('active');
             }
         }
+
+        // Handle Formspree form submission
+        document.querySelector('form[action*="formspree"]').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            const data = new FormData(form);
+            
+            fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    showToast('Message sent successfully! I\'ll get back to you soon.');
+                    form.reset();
+                } else {
+                    showToast('Something went wrong. Please try again.');
+                }
+            }).catch(error => {
+                showToast('Something went wrong. Please try again.');
+            });
+        });
     </script>
 </body>
 </html>
