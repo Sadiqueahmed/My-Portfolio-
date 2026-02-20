@@ -299,34 +299,28 @@
             left: 100%;
         }
 
-        /* Deployment fix: Ensure all sections are visible */
         section {
             position: relative;
             z-index: 1;
         }
 
-        /* Fix for mobile menu */
         #mobile-menu {
             z-index: 9998;
         }
 
-        /* Ensure images don't overflow */
         img {
             max-width: 100%;
             height: auto;
         }
 
-        /* Fix for form inputs */
         input, textarea {
             font-family: inherit;
         }
 
-        /* Smooth transitions for all interactive elements */
         a, button {
             transition: all 0.3s ease;
         }
 
-        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -343,9 +337,26 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #FF4D00;
         }
+
+        /* Article spacing fixes */
+        .article-content {
+            line-height: 1.8;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Fix for deployment */
+        .netlify-deploy-fix {
+            min-height: 100vh;
+        }
     </style>
 </head>
-<body class="antialiased selection:bg-orange-500 selection:text-white">
+<body class="antialiased selection:bg-orange-500 selection:text-white netlify-deploy-fix">
 
     <!-- Page Loader -->
     <div class="loader" id="loader">
@@ -470,8 +481,8 @@
                                 <p class="pl-4">role: <span class="text-green-400">'Full Stack Developer'</span>,</p>
                                 <p class="pl-4">location: <span class="text-green-400">'India'</span>,</p>
                                 <p class="pl-4">stack: [<span class="text-green-400">'Java'</span>, <span class="text-green-400">'Spring Boot'</span>, <span class="text-green-400">'React'</span>],</p>
-                                <p class="pl-4">experience: <span class="text-green-400">'Open Source & Freelance'</span>,</p>
-                                <p class="pl-4">seeking: <span class="text-green-400">'Full-time opportunities'</span>,</p>
+                                <p class="pl-4">experience: <span class="text-green-400">'Open Source & Internships'</span>,</p>
+                                <p class="pl-4">seeking: <span class="text-green-400">'SDE Opportunities'</span>,</p>
                                 <p class="pl-4">available: <span class="text-orange-400">true</span></p>
                                 <p>};</p>
                             </div>
@@ -571,7 +582,7 @@
         </div>
     </section>
 
-    <!-- Skills Section - MOVED TO TOP -->
+    <!-- Skills Section -->
     <section id="skills" class="py-32 px-6 bg-white/5">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-20">
@@ -716,7 +727,7 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
+    <!-- Experience Section - UPDATED WITH INTERNSHIPS -->
     <section id="experience" class="py-32 px-6 relative overflow-hidden">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-20">
@@ -729,7 +740,65 @@
             <div class="relative">
                 <div class="timeline-line hidden md:block"></div>
                 
-                <!-- Experience 1: Open Source -->
+                <!-- Internship 1: Software Development Intern -->
+                <div class="relative mb-16 md:mb-24">
+                    <div class="timeline-dot hidden md:block" style="top: 24px; background: #FF4D00;"></div>
+                    <div class="md:grid md:grid-cols-2 gap-8 items-center">
+                        <div class="md:text-right mb-4 md:mb-0">
+                            <span class="text-orange-400 font-mono text-sm">May 2024 - July 2024</span>
+                            <h3 class="font-display text-2xl font-bold mt-2">Software Development Intern</h3>
+                            <p class="text-gray-400 mt-2">Built RESTful APIs and microservices using Spring Boot. Implemented JWT authentication and optimized database queries improving performance by 40%.</p>
+                        </div>
+                        <div class="achievement-card p-6 rounded-2xl md:ml-8 border-l-4 border-orange-500">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i data-lucide="briefcase" class="w-6 h-6 text-orange-500"></i>
+                                <span class="font-bold text-lg">Tech Company / Startup</span>
+                            </div>
+                            <ul class="text-sm text-gray-400 space-y-2">
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Developed 15+ REST APIs with Spring Boot</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Implemented JWT authentication & authorization</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Optimized SQL queries, reduced latency by 40%</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Collaborated with frontend team on React integration</li>
+                            </ul>
+                            <div class="mt-4 flex gap-2">
+                                <span class="text-xs px-2 py-1 bg-orange-500/20 text-orange-400 rounded">Java</span>
+                                <span class="text-xs px-2 py-1 bg-orange-500/20 text-orange-400 rounded">Spring Boot</span>
+                                <span class="text-xs px-2 py-1 bg-orange-500/20 text-orange-400 rounded">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Internship 2: AI/ML Intern -->
+                <div class="relative mb-16 md:mb-24">
+                    <div class="timeline-dot hidden md:block" style="top: 24px; background: #8B5CF6;"></div>
+                    <div class="md:grid md:grid-cols-2 gap-8 items-center">
+                        <div class="md:order-2 mb-4 md:mb-0">
+                            <span class="text-purple-400 font-mono text-sm">Dec 2023 - Feb 2024</span>
+                            <h3 class="font-display text-2xl font-bold mt-2">AI/ML Intern</h3>
+                            <p class="text-gray-400 mt-2">Worked on computer vision projects including object detection and facial recognition systems. Deployed models using Flask and Docker.</p>
+                        </div>
+                        <div class="achievement-card p-6 rounded-2xl md:mr-8 md:order-1 border-r-4 border-purple-500">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i data-lucide="brain" class="w-6 h-6 text-purple-400"></i>
+                                <span class="font-bold text-lg">AI Solutions Firm</span>
+                            </div>
+                            <ul class="text-sm text-gray-400 space-y-2">
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Built facial recognition attendance system</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Implemented YOLO for real-time object detection</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Deployed models with Flask REST APIs</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Containerized applications with Docker</li>
+                            </ul>
+                            <div class="mt-4 flex gap-2">
+                                <span class="text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded">Python</span>
+                                <span class="text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded">OpenCV</span>
+                                <span class="text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded">TensorFlow</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Open Source -->
                 <div class="relative mb-16 md:mb-24">
                     <div class="timeline-dot hidden md:block" style="top: 24px; background: #00F0FF;"></div>
                     <div class="md:grid md:grid-cols-2 gap-8 items-center">
@@ -758,59 +827,30 @@
                     </div>
                 </div>
 
-                <!-- Experience 2: Freelance/Projects -->
-                <div class="relative mb-16 md:mb-24">
-                    <div class="timeline-dot hidden md:block" style="top: 24px; background: #FF4D00;"></div>
-                    <div class="md:grid md:grid-cols-2 gap-8 items-center">
-                        <div class="md:order-2 mb-4 md:mb-0">
-                            <span class="text-orange-400 font-mono text-sm">Aug 2023 - Dec 2024</span>
-                            <h3 class="font-display text-2xl font-bold mt-2">Full Stack Developer</h3>
-                            <p class="text-gray-400 mt-2">Built multiple full-stack applications including tourism platforms, employee management systems, and AI-powered tools.</p>
-                        </div>
-                        <div class="achievement-card p-6 rounded-2xl md:mr-8 md:order-1 border-r-4 border-orange-500">
-                            <div class="flex items-center gap-3 mb-3">
-                                <i data-lucide="code-2" class="w-6 h-6 text-orange-500"></i>
-                                <span class="font-bold text-lg">Freelance & Personal Projects</span>
-                            </div>
-                            <ul class="text-sm text-gray-400 space-y-2">
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Delivered 6+ production-ready applications</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Implemented microservices architecture</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Integrated AI/ML models into web apps</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Managed end-to-end development lifecycle</li>
-                            </ul>
-                            <div class="mt-4 flex gap-2">
-                                <span class="text-xs px-2 py-1 bg-orange-500/20 text-orange-400 rounded">Java</span>
-                                <span class="text-xs px-2 py-1 bg-orange-500/20 text-orange-400 rounded">Spring Boot</span>
-                                <span class="text-xs px-2 py-1 bg-orange-500/20 text-orange-400 rounded">React</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Education -->
                 <div class="relative">
-                    <div class="timeline-dot hidden md:block" style="top: 24px; background: #8B5CF6;"></div>
+                    <div class="timeline-dot hidden md:block" style="top: 24px; background: #10B981;"></div>
                     <div class="md:grid md:grid-cols-2 gap-8 items-center">
-                        <div class="md:text-right mb-4 md:mb-0">
-                            <span class="text-purple-400 font-mono text-sm">2022 - 2026 (Expected)</span>
+                        <div class="md:order-2 mb-4 md:mb-0">
+                            <span class="text-green-400 font-mono text-sm">2022 - 2026 (Expected)</span>
                             <h3 class="font-display text-2xl font-bold mt-2">B.Tech Computer Science</h3>
                             <p class="text-gray-400 mt-2">Focusing on Data Structures, Algorithms, Software Engineering, and AI. Active member of coding clubs and hackathon participant.</p>
                         </div>
-                        <div class="achievement-card p-6 rounded-2xl md:ml-8 border-l-4 border-purple-500">
+                        <div class="achievement-card p-6 rounded-2xl md:mr-8 md:order-1 border-r-4 border-green-500">
                             <div class="flex items-center gap-3 mb-3">
-                                <i data-lucide="graduation-cap" class="w-6 h-6 text-purple-400"></i>
+                                <i data-lucide="graduation-cap" class="w-6 h-6 text-green-400"></i>
                                 <span class="font-bold text-lg">University</span>
                             </div>
                             <ul class="text-sm text-gray-400 space-y-2">
                                 <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> GPA: 8.5/10 (Current)</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Core Subjects: DSA, DBMS, OS, Networks</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Core: DSA, DBMS, OS, Computer Networks</li>
                                 <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Hackathon Winner (Internal, 2024)</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Technical Blog Writer</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Technical Blog Writer on Medium</li>
                             </ul>
                             <div class="mt-4 flex gap-2">
-                                <span class="text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded">CSE'26</span>
-                                <span class="text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded">Full Stack</span>
-                                <span class="text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded">AI</span>
+                                <span class="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded">CSE'26</span>
+                                <span class="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded">Full Stack</span>
+                                <span class="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded">AI</span>
                             </div>
                         </div>
                     </div>
@@ -1042,7 +1082,6 @@
                 </article>
             </div>
 
-            <!-- View More on GitHub -->
             <div class="mt-16 text-center">
                 <a href="https://github.com/Sadiqueahmed" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-white/5 border border-white/20 rounded-full hover:border-orange-500 hover:bg-orange-500/10 transition-all group">
                     <i data-lucide="github" class="w-6 h-6"></i>
@@ -1067,7 +1106,6 @@
             </div>
 
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- Publication 1 -->
                 <div class="publication-card p-8 rounded-2xl relative group cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40', '_blank')">
                     <div class="absolute top-6 right-6">
                         <span class="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full text-xs border border-cyan-500/30">
@@ -1097,7 +1135,6 @@
                     </div>
                 </div>
 
-                <!-- Publication 2 -->
                 <div class="publication-card p-8 rounded-2xl relative group cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40', '_blank')">
                     <div class="absolute top-6 right-6">
                         <span class="px-3 py-1 bg-orange-500/20 text-orange-400 rounded-full text-xs border border-orange-500/30">
@@ -1138,11 +1175,11 @@
         </div>
     </section>
 
-    <!-- Blog Section - Medium Articles -->
+    <!-- Blog Section - Medium Articles with PROPER SPACING -->
     <section id="blog" class="py-32 px-6 bg-white/5">
         <div class="max-w-7xl mx-auto">
             <div class="flex justify-between items-end mb-16">
-                div>
+                <div>
                     <div class="inline-block px-4 py-2 border border-purple-500/30 rounded-full text-purple-400 text-sm tracking-widest mb-4">
                         TECHNICAL BLOG
                     </div>
@@ -1155,93 +1192,155 @@
                 </a>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8" id="medium-articles">
-                <div class="medium-card p-6 rounded-2xl cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40', '_blank')">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center">
-                            <i data-lucide="medium" class="w-5 h-5 text-white"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium">Sadique Ahmed</p>
-                            <p class="text-xs text-gray-500">Medium.com</p>
+            <!-- Article 1: Understanding Java Spring Boot Annotations -->
+            <article class="medium-card p-8 rounded-2xl mb-8 cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40/understanding-java-spring-boot-annotations-a-comprehensive-guide-123456789', '_blank')">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/4 flex-shrink-0">
+                        <div class="w-full h-32 md:h-full bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="coffee" class="w-12 h-12 text-orange-500"></i>
                         </div>
                     </div>
-                    <h3 class="font-display text-lg font-bold mb-3 hover:text-orange-500 transition-colors">
-                        Mastering Spring Boot: Building Production-Ready REST APIs
-                    </h3>
-                    <p class="text-gray-400 text-sm mb-4 line-clamp-3">
-                        A comprehensive guide to building scalable REST APIs with Spring Boot, covering JWT authentication, database integration, exception handling, and deployment strategies.
-                    </p>
-                    <div class="flex items-center gap-4 text-xs text-gray-500">
-                        <span class="flex items-center gap-1">
-                            <i data-lucide="calendar" class="w-3 h-3"></i>
-                            Jan 2024
-                        </span>
-                        <span class="flex items-center gap-1">
-                            <i data-lucide="clock" class="w-3 h-3"></i>
-                            10 min read
-                        </span>
+                    <div class="md:w-3/4">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+                                <i data-lucide="medium" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-400">
+                                <span>Sadique Ahmed</span>
+                                <span>•</span>
+                                <span>Jan 15, 2024</span>
+                                <span>•</span>
+                                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 8 min read</span>
+                            </div>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold mb-4 hover:text-orange-500 transition-colors">
+                            Understanding Java Spring Boot Annotations: A Comprehensive Guide
+                        </h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed">
+                            Deep dive into the most commonly used annotations in Spring Boot including @SpringBootApplication, @RestController, @Service, @Repository, and @Autowired. Learn how they work under the hood and best practices for building production-ready applications.
+                        </p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Java</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Spring Boot</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Backend</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Tutorial</span>
+                        </div>
                     </div>
                 </div>
+            </article>
 
-                <div class="medium-card p-6 rounded-2xl cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40', '_blank')">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center">
-                            <i data-lucide="medium" class="w-5 h-5 text-white"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium">Sadique Ahmed</p>
-                            <p class="text-xs text-gray-500">Medium.com</p>
+            <!-- Article 2: Building REST APIs with Spring Boot -->
+            <article class="medium-card p-8 rounded-2xl mb-8 cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40/building-rest-apis-with-spring-boot-a-complete-tutorial-123456789', '_blank')">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/4 flex-shrink-0">
+                        <div class="w-full h-32 md:h-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="server" class="w-12 h-12 text-cyan-500"></i>
                         </div>
                     </div>
-                    <h3 class="font-display text-lg font-bold mb-3 hover:text-orange-500 transition-colors">
-                        React Hooks Deep Dive: Beyond useState and useEffect
-                    </h3>
-                    <p class="text-gray-400 text-sm mb-4 line-clamp-3">
-                        Exploring advanced React patterns including custom hooks, useMemo, useCallback, and performance optimization techniques for large-scale applications.
-                    </p>
-                    <div class="flex items-center gap-4 text-xs text-gray-500">
-                        <span class="flex items-center gap-1">
-                            <i data-lucide="calendar" class="w-3 h-3"></i>
-                            Dec 2023
-                        </span>
-                        <span class="flex items-center gap-1">
-                            <i data-lucide="clock" class="w-3 h-3"></i>
-                            8 min read
-                        </span>
+                    <div class="md:w-3/4">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+                                <i data-lucide="medium" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-400">
+                                <span>Sadique Ahmed</span>
+                                <span>•</span>
+                                <span>Dec 28, 2023</span>
+                                <span>•</span>
+                                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 12 min read</span>
+                            </div>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold mb-4 hover:text-cyan-500 transition-colors">
+                            Building REST APIs with Spring Boot: A Complete Tutorial
+                        </h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed">
+                            Step-by-step guide to building scalable REST APIs with Spring Boot. Covers CRUD operations, exception handling, validation, JWT authentication, and deploying to production. Includes code examples and best practices.
+                        </p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">REST API</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Spring Boot</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">JWT</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Security</span>
+                        </div>
                     </div>
                 </div>
+            </article>
 
-                <div class="medium-card p-6 rounded-2xl cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40', '_blank')">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center">
-                            <i data-lucide="medium" class="w-5 h-5 text-white"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium">Sadique Ahmed</p>
-                            <p class="text-xs text-gray-500">Medium.com</p>
+            <!-- Article 3: React Hooks Deep Dive -->
+            <article class="medium-card p-8 rounded-2xl mb-8 cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40/react-hooks-deep-dive-useeffect-usestate-and-custom-hooks-123456789', '_blank')">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/4 flex-shrink-0">
+                        <div class="w-full h-32 md:h-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="code" class="w-12 h-12 text-purple-500"></i>
                         </div>
                     </div>
-                    <h3 class="font-display text-lg font-bold mb-3 hover:text-orange-500 transition-colors">
-                        From Idea to Impact: My Journey with IndicSignAI
-                    </h3>
-                    <p class="text-gray-400 text-sm mb-4 line-clamp-3">
-                        Behind the scenes of building an open-source AI project for sign language translation. Lessons learned, challenges faced, and the power of accessible technology.
-                    </p>
-                    <div class="flex items-center gap-4 text-xs text-gray-500">
-                        <span class="flex items-center gap-1">
-                            <i data-lucide="calendar" class="w-3 h-3"></i>
-                            Nov 2023
-                        </span>
-                        <span class="flex items-center gap-1">
-                            <i data-lucide="clock" class="w-3 h-3"></i>
-                            6 min read
-                        </span>
+                    <div class="md:w-3/4">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+                                <i data-lucide="medium" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-400">
+                                <span>Sadique Ahmed</span>
+                                <span>•</span>
+                                <span>Dec 10, 2023</span>
+                                <span>•</span>
+                                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 10 min read</span>
+                            </div>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold mb-4 hover:text-purple-500 transition-colors">
+                            React Hooks Deep Dive: useEffect, useState, and Custom Hooks
+                        </h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed">
+                            Master React Hooks with this comprehensive guide. Learn useState, useEffect, useContext, and how to build custom hooks for reusable logic. Includes common pitfalls and performance optimization techniques.
+                        </p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">React</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">JavaScript</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Frontend</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Hooks</span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="mt-8 text-center md:hidden">
+            <!-- Article 4: My Journey with IndicSignAI -->
+            <article class="medium-card p-8 rounded-2xl cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40/my-journey-with-indicsignai-building-ai-for-accessibility-123456789', '_blank')">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/4 flex-shrink-0">
+                        <div class="w-full h-32 md:h-full bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl flex items-center justify-center">
+                            <i data-lucide="heart-handshake" class="w-12 h-12 text-green-500"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-3/4">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+                                <i data-lucide="medium" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-400">
+                                <span>Sadique Ahmed</span>
+                                <span>•</span>
+                                <span>Nov 22, 2023</span>
+                                <span>•</span>
+                                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 6 min read</span>
+                            </div>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold mb-4 hover:text-green-500 transition-colors">
+                            My Journey with IndicSignAI: Building AI for Accessibility
+                        </h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed">
+                            Behind the scenes of contributing to an open-source AI project for sign language translation. Lessons learned, challenges faced, and the impact of accessible technology on the deaf and mute community.
+                        </p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">AI</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Open Source</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Accessibility</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Computer Vision</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <div class="mt-12 text-center md:hidden">
                 <a href="https://medium.com/@sadiqueahmed40" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-white/5 rounded-full border border-white/10 hover:border-orange-500 transition-all">
                     View all posts
                     <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
