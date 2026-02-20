@@ -338,6 +338,51 @@
             background: #FF4D00;
         }
 
+        /* Experience card specific styles */
+        .experience-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .experience-card:hover {
+            border-color: rgba(255, 77, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: white;
+            padding: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .experience-card:hover .company-logo {
+            transform: scale(1.1);
+        }
+
+        .tech-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            background: rgba(255, 77, 0, 0.1);
+            border: 1px solid rgba(255, 77, 0, 0.2);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #FF4D00;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            background: rgba(255, 77, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
         /* Article spacing fixes */
         .article-content {
             line-height: 1.8;
@@ -727,130 +772,277 @@
         </div>
     </section>
 
-    <!-- Experience Section - UPDATED WITH INTERNSHIPS -->
+    <!-- Experience Section - UPDATED WITH SPECIFIC INFORMATION -->
     <section id="experience" class="py-32 px-6 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <div class="text-center mb-20">
                 <div class="inline-block px-4 py-2 border border-cyan-500/30 rounded-full text-cyan-400 text-sm tracking-widest mb-4">
                     EXPERIENCE & EDUCATION
                 </div>
                 <h2 class="font-display text-4xl md:text-5xl font-bold">My Journey</h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Professional experience across ML, Web Development, and AI</p>
             </div>
 
-            <div class="relative">
-                <div class="timeline-line hidden md:block"></div>
-                
-                <!-- Internship 1: Software Development Intern -->
-                <div class="relative mb-16 md:mb-24">
-                    <div class="timeline-dot hidden md:block" style="top: 24px; background: #FF4D00;"></div>
-                    <div class="md:grid md:grid-cols-2 gap-8 items-center">
-                        <div class="md:text-right mb-4 md:mb-0">
-                            <span class="text-orange-400 font-mono text-sm">May 2024 - July 2024</span>
-                            <h3 class="font-display text-2xl font-bold mt-2">Software Development Intern</h3>
-                            <p class="text-gray-400 mt-2">Built RESTful APIs and microservices using Spring Boot. Implemented JWT authentication and optimized database queries improving performance by 40%.</p>
+            <div class="space-y-8">
+                <!-- Experience 1: NIELIT Summer Intern 2025 -->
+                <div class="experience-card rounded-2xl p-8 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-orange-500/5 rounded-full blur-3xl -mr-32 -mt-32 group-hover:bg-orange-500/10 transition-all"></div>
+                    <div class="flex flex-col md:flex-row gap-6 relative z-10">
+                        <div class="flex-shrink-0">
+                            <img src="https://kimi-web-img.moonshot.cn/img/api.itcentre.org/977e16f3d45f1b369eea2652c9dc7844f8a26d76.jpeg" alt="NIELIT Logo" class="company-logo">
                         </div>
-                        <div class="achievement-card p-6 rounded-2xl md:ml-8 border-l-4 border-orange-500">
-                            <div class="flex items-center gap-3 mb-3">
-                                <i data-lucide="briefcase" class="w-6 h-6 text-orange-500"></i>
-                                <span class="font-bold text-lg">Tech Company / Startup</span>
+                        <div class="flex-grow">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                <div>
+                                    <h3 class="font-display text-2xl font-bold text-white group-hover:text-orange-500 transition-colors">Machine Learning Intern</h3>
+                                    <p class="text-gray-400 flex items-center gap-2 mt-1">
+                                        <i data-lucide="building-2" class="w-4 h-4"></i>
+                                        National Institute of Electronics and IT (NIELIT)
+                                        <span class="text-gray-600">•</span>
+                                        <span class="text-sm">Guwahati, Assam, India</span>
+                                    </p>
+                                </div>
+                                <div class="mt-2 md:mt-0">
+                                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/10 border border-orange-500/20 rounded-full text-orange-400 text-sm font-medium">
+                                        <i data-lucide="calendar" class="w-4 h-4"></i>
+                                        Jun 2025 – Jul 2025
+                                    </span>
+                                </div>
                             </div>
-                            <ul class="text-sm text-gray-400 space-y-2">
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Developed 15+ REST APIs with Spring Boot</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Implemented JWT authentication & authorization</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Optimized SQL queries, reduced latency by 40%</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Collaborated with frontend team on React integration</li>
-                            </ul>
-                            <div class="mt-4 flex gap-2">
-                                <span class="text-xs px-2 py-1 bg-orange-500/20 text-orange-400 rounded">Java</span>
-                                <span class="text-xs px-2 py-1 bg-orange-500/20 text-orange-400 rounded">Spring Boot</span>
-                                <span class="text-xs px-2 py-1 bg-orange-500/20 text-orange-400 rounded">MySQL</span>
+                            
+                            <div class="space-y-3 mb-6">
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0"></i>
+                                    <p class="text-gray-300">Developed machine learning models for <strong class="text-white">heart disease detection</strong> using Logistic Regression, Random Forest, and Neural Networks; achieved <span class="text-orange-400 font-semibold">89% accuracy</span> after feature engineering and hyperparameter tuning.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tech-badge">
+                                    <i data-lucide="code-2" class="w-3 h-3"></i> Python
+                                </span>
+                                <span class="tech-badge">
+                                    <i data-lucide="brain" class="w-3 h-3"></i> Scikit-learn
+                                </span>
+                                <span class="tech-badge">
+                                    <i data-lucide="table" class="w-3 h-3"></i> Pandas
+                                </span>
+                                <span class="tech-badge">
+                                    <i data-lucide="activity" class="w-3 h-3"></i> Neural Networks
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Internship 2: AI/ML Intern -->
-                <div class="relative mb-16 md:mb-24">
-                    <div class="timeline-dot hidden md:block" style="top: 24px; background: #8B5CF6;"></div>
-                    <div class="md:grid md:grid-cols-2 gap-8 items-center">
-                        <div class="md:order-2 mb-4 md:mb-0">
-                            <span class="text-purple-400 font-mono text-sm">Dec 2023 - Feb 2024</span>
-                            <h3 class="font-display text-2xl font-bold mt-2">AI/ML Intern</h3>
-                            <p class="text-gray-400 mt-2">Worked on computer vision projects including object detection and facial recognition systems. Deployed models using Flask and Docker.</p>
+                <!-- Experience 2: NIT Silchar -->
+                <div class="experience-card rounded-2xl p-8 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl -mr-32 -mt-32 group-hover:bg-cyan-500/10 transition-all"></div>
+                    <div class="flex flex-col md:flex-row gap-6 relative z-10">
+                        <div class="flex-shrink-0">
+                            <img src="https://kimi-web-img.moonshot.cn/img/static.wikia.nocookie.net/782c3f2dd63743669ad0d48ba1c6e9a3e30bde19" alt="NIT Silchar Logo" class="company-logo">
                         </div>
-                        <div class="achievement-card p-6 rounded-2xl md:mr-8 md:order-1 border-r-4 border-purple-500">
-                            <div class="flex items-center gap-3 mb-3">
-                                <i data-lucide="brain" class="w-6 h-6 text-purple-400"></i>
-                                <span class="font-bold text-lg">AI Solutions Firm</span>
+                        <div class="flex-grow">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                <div>
+                                    <h3 class="font-display text-2xl font-bold text-white group-hover:text-cyan-500 transition-colors">Sole Web Developer</h3>
+                                    <p class="text-gray-400 flex items-center gap-2 mt-1">
+                                        <i data-lucide="building-2" class="w-4 h-4"></i>
+                                        National Institute of Technology Silchar
+                                        <span class="text-gray-600">•</span>
+                                        <span class="text-sm">Silchar, India</span>
+                                    </p>
+                                </div>
+                                <div class="mt-2 md:mt-0">
+                                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full text-cyan-400 text-sm font-medium">
+                                        <i data-lucide="calendar" class="w-4 h-4"></i>
+                                        Jun 2024 – Jul 2024
+                                    </span>
+                                </div>
                             </div>
-                            <ul class="text-sm text-gray-400 space-y-2">
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Built facial recognition attendance system</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Implemented YOLO for real-time object detection</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Deployed models with Flask REST APIs</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Containerized applications with Docker</li>
-                            </ul>
-                            <div class="mt-4 flex gap-2">
-                                <span class="text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded">Python</span>
-                                <span class="text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded">OpenCV</span>
-                                <span class="text-xs px-2 py-1 bg-purple-500/20 text-purple-400 rounded">TensorFlow</span>
+                            
+                            <div class="space-y-3 mb-6">
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-cyan-500 mt-0.5 flex-shrink-0"></i>
+                                    <p class="text-gray-300">Built <strong class="text-white">Excursa tourism platform</strong> with 3+ API integrations and optimized assets to reduce page load times by <span class="text-cyan-400 font-semibold">40%</span>.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tech-badge" style="color: #00F0FF; border-color: rgba(0, 240, 255, 0.2); background: rgba(0, 240, 255, 0.1);">
+                                    <i data-lucide="code" class="w-3 h-3"></i> HTML
+                                </span>
+                                <span class="tech-badge" style="color: #00F0FF; border-color: rgba(0, 240, 255, 0.2); background: rgba(0, 240, 255, 0.1);">
+                                    <i data-lucide="palette" class="w-3 h-3"></i> CSS
+                                </span>
+                                <span class="tech-badge" style="color: #00F0FF; border-color: rgba(0, 240, 255, 0.2); background: rgba(0, 240, 255, 0.1);">
+                                    <i data-lucide="file-json" class="w-3 h-3"></i> JavaScript
+                                </span>
+                                <span class="tech-badge" style="color: #00F0FF; border-color: rgba(0, 240, 255, 0.2); background: rgba(0, 240, 255, 0.1);">
+                                    <i data-lucide="map" class="w-3 h-3"></i> Mapbox
+                                </span>
+                                <span class="tech-badge" style="color: #00F0FF; border-color: rgba(0, 240, 255, 0.2); background: rgba(0, 240, 255, 0.1);">
+                                    <i data-lucide="server" class="w-3 h-3"></i> Netlify
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Open Source -->
-                <div class="relative mb-16 md:mb-24">
-                    <div class="timeline-dot hidden md:block" style="top: 24px; background: #00F0FF;"></div>
-                    <div class="md:grid md:grid-cols-2 gap-8 items-center">
-                        <div class="md:text-right mb-4 md:mb-0">
-                            <span class="text-cyan-400 font-mono text-sm">Jan 2024 - Present</span>
-                            <h3 class="font-display text-2xl font-bold mt-2">Open Source Contributor</h3>
-                            <p class="text-gray-400 mt-2">Contributing to AI-powered sign language translation system using Python, TensorFlow, and Computer Vision to bridge communication gaps.</p>
+                <!-- Experience 3: SH1ELD Tech -->
+                <div class="experience-card rounded-2xl p-8 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl -mr-32 -mt-32 group-hover:bg-purple-500/10 transition-all"></div>
+                    <div class="flex flex-col md:flex-row gap-6 relative z-10">
+                        <div class="flex-shrink-0">
+                            <img src="https://kimi-web-img.moonshot.cn/img/sh1eldtech.com/b8b2f41ee8dc0cdad0a41ff4296ca5af33ddd392.jpg" alt="SH1ELD Tech Logo" class="company-logo">
                         </div>
-                        <div class="achievement-card p-6 rounded-2xl md:ml-8 border-l-4 border-cyan-500">
-                            <div class="flex items-center gap-3 mb-3">
-                                <i data-lucide="git-branch" class="w-6 h-6 text-cyan-400"></i>
-                                <span class="font-bold text-lg">IndicSignAI</span>
+                        <div class="flex-grow">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                <div>
+                                    <h3 class="font-display text-2xl font-bold text-white group-hover:text-purple-500 transition-colors">Web Development Team Member</h3>
+                                    <p class="text-gray-400 flex items-center gap-2 mt-1">
+                                        <i data-lucide="building-2" class="w-4 h-4"></i>
+                                        SH1ELD Tech InfoSec Solutions
+                                        <span class="text-gray-600">•</span>
+                                        <span class="text-sm">Gangtok, Sikkim, India</span>
+                                    </p>
+                                </div>
+                                <div class="mt-2 md:mt-0">
+                                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full text-purple-400 text-sm font-medium">
+                                        <i data-lucide="calendar" class="w-4 h-4"></i>
+                                        Jul 2024 – Sep 2024
+                                    </span>
+                                </div>
                             </div>
-                            <ul class="text-sm text-gray-400 space-y-2">
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Developed real-time sign detection module</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Implemented Indic language support (Hindi, Bengali)</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Optimized model performance for edge devices</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Collaborated with 5+ developers globally</li>
-                            </ul>
-                            <div class="mt-4 flex gap-2">
-                                <span class="text-xs px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded">Python</span>
-                                <span class="text-xs px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded">TensorFlow</span>
-                                <span class="text-xs px-2 py-1 bg-cyan-500/20 text-cyan-400 rounded">OpenCV</span>
+                            
+                            <div class="space-y-3 mb-6">
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-purple-500 mt-0.5 flex-shrink-0"></i>
+                                    <p class="text-gray-300">Contributed to <strong class="text-white">4+ client websites</strong> in a 5-member team; improved responsiveness and reduced bug reports by <span class="text-purple-400 font-semibold">35%</span> via peer reviews.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tech-badge" style="color: #a855f7; border-color: rgba(168, 85, 247, 0.2); background: rgba(168, 85, 247, 0.1);">
+                                    <i data-lucide="layout" class="w-3 h-3"></i> Bootstrap
+                                </span>
+                                <span class="tech-badge" style="color: #a855f7; border-color: rgba(168, 85, 247, 0.2); background: rgba(168, 85, 247, 0.1);">
+                                    <i data-lucide="code" class="w-3 h-3"></i> HTML/CSS/JS
+                                </span>
+                                <span class="tech-badge" style="color: #a855f7; border-color: rgba(168, 85, 247, 0.2); background: rgba(168, 85, 247, 0.1);">
+                                    <i data-lucide="git-branch" class="w-3 h-3"></i> GitHub
+                                </span>
+                                <span class="tech-badge" style="color: #a855f7; border-color: rgba(168, 85, 247, 0.2); background: rgba(168, 85, 247, 0.1);">
+                                    <i data-lucide="ticket" class="w-3 h-3"></i> Jira
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience 4: NIELIT ML Intern 2024 -->
+                <div class="experience-card rounded-2xl p-8 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-green-500/5 rounded-full blur-3xl -mr-32 -mt-32 group-hover:bg-green-500/10 transition-all"></div>
+                    <div class="flex flex-col md:flex-row gap-6 relative z-10">
+                        <div class="flex-shrink-0">
+                            <img src="https://kimi-web-img.moonshot.cn/img/images.crunchbase.com/45149c42678c3d993a1acc74f197f6a40f951e07" alt="NIELIT Logo" class="company-logo">
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                <div>
+                                    <h3 class="font-display text-2xl font-bold text-white group-hover:text-green-500 transition-colors">Machine Learning Intern</h3>
+                                    <p class="text-gray-400 flex items-center gap-2 mt-1">
+                                        <i data-lucide="building-2" class="w-4 h-4"></i>
+                                        National Institute of Electronics and IT (NIELIT)
+                                        <span class="text-gray-600">•</span>
+                                        <span class="text-sm">Guwahati, Assam, India</span>
+                                    </p>
+                                </div>
+                                <div class="mt-2 md:mt-0">
+                                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm font-medium">
+                                        <i data-lucide="calendar" class="w-4 h-4"></i>
+                                        Aug 2024
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-3 mb-6">
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0"></i>
+                                    <p class="text-gray-300">Developed a <strong class="text-white">CNN-based animal classifier</strong> on a 10K+ image dataset; achieved <span class="text-green-400 font-semibold">92% test accuracy</span> with data augmentation and hyperparameter tuning.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tech-badge" style="color: #22c55e; border-color: rgba(34, 197, 94, 0.2); background: rgba(34, 197, 94, 0.1);">
+                                    <i data-lucide="code-2" class="w-3 h-3"></i> Python
+                                </span>
+                                <span class="tech-badge" style="color: #22c55e; border-color: rgba(34, 197, 94, 0.2); background: rgba(34, 197, 94, 0.1);">
+                                    <i data-lucide="brain-circuit" class="w-3 h-3"></i> TensorFlow
+                                </span>
+                                <span class="tech-badge" style="color: #22c55e; border-color: rgba(34, 197, 94, 0.2); background: rgba(34, 197, 94, 0.1);">
+                                    <i data-lucide="eye" class="w-3 h-3"></i> OpenCV
+                                </span>
+                                <span class="tech-badge" style="color: #22c55e; border-color: rgba(34, 197, 94, 0.2); background: rgba(34, 197, 94, 0.1);">
+                                    <i data-lucide="network" class="w-3 h-3"></i> CNN
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Education -->
-                <div class="relative">
-                    <div class="timeline-dot hidden md:block" style="top: 24px; background: #10B981;"></div>
-                    <div class="md:grid md:grid-cols-2 gap-8 items-center">
-                        <div class="md:order-2 mb-4 md:mb-0">
-                            <span class="text-green-400 font-mono text-sm">2022 - 2026 (Expected)</span>
-                            <h3 class="font-display text-2xl font-bold mt-2">B.Tech Computer Science</h3>
-                            <p class="text-gray-400 mt-2">Focusing on Data Structures, Algorithms, Software Engineering, and AI. Active member of coding clubs and hackathon participant.</p>
-                        </div>
-                        <div class="achievement-card p-6 rounded-2xl md:mr-8 md:order-1 border-r-4 border-green-500">
-                            <div class="flex items-center gap-3 mb-3">
-                                <i data-lucide="graduation-cap" class="w-6 h-6 text-green-400"></i>
-                                <span class="font-bold text-lg">University</span>
+                <div class="experience-card rounded-2xl p-8 relative overflow-hidden group border-l-4 border-l-yellow-500">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-yellow-500/5 rounded-full blur-3xl -mr-32 -mt-32 group-hover:bg-yellow-500/10 transition-all"></div>
+                    <div class="flex flex-col md:flex-row gap-6 relative z-10">
+                        <div class="flex-shrink-0">
+                            <div class="w-[60px] h-[60px] rounded-xl bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center text-2xl">
+                                🎓
                             </div>
-                            <ul class="text-sm text-gray-400 space-y-2">
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> GPA: 8.5/10 (Current)</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Core: DSA, DBMS, OS, Computer Networks</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Hackathon Winner (Internal, 2024)</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-green-500"></i> Technical Blog Writer on Medium</li>
-                            </ul>
-                            <div class="mt-4 flex gap-2">
-                                <span class="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded">CSE'26</span>
-                                <span class="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded">Full Stack</span>
-                                <span class="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded">AI</span>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                <div>
+                                    <h3 class="font-display text-2xl font-bold text-white group-hover:text-yellow-500 transition-colors">B.Tech Computer Science</h3>
+                                    <p class="text-gray-400 flex items-center gap-2 mt-1">
+                                        <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                                        University
+                                        <span class="text-gray-600">•</span>
+                                        <span class="text-sm">India</span>
+                                    </p>
+                                </div>
+                                <div class="mt-2 md:mt-0">
+                                    <span class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 border border-yellow-500/20 rounded-full text-yellow-400 text-sm font-medium">
+                                        <i data-lucide="calendar" class="w-4 h-4"></i>
+                                        2022 - 2026 (Expected)
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-3 mb-6">
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0"></i>
+                                    <p class="text-gray-300">Focusing on <strong class="text-white">Data Structures, Algorithms, Software Engineering, and AI</strong>. Active member of coding clubs and hackathon participant.</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="trophy" class="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0"></i>
+                                    <p class="text-gray-300">Hackathon Winner (Internal, 2024) • Technical Blog Writer on Medium</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tech-badge" style="color: #eab308; border-color: rgba(234, 179, 8, 0.2); background: rgba(234, 179, 8, 0.1);">
+                                    GPA: 8.5/10
+                                </span>
+                                <span class="tech-badge" style="color: #eab308; border-color: rgba(234, 179, 8, 0.2); background: rgba(234, 179, 8, 0.1);">
+                                    DSA
+                                </span>
+                                <span class="tech-badge" style="color: #eab308; border-color: rgba(234, 179, 8, 0.2); background: rgba(234, 179, 8, 0.1);">
+                                    DBMS
+                                </span>
+                                <span class="tech-badge" style="color: #eab308; border-color: rgba(234, 179, 8, 0.2); background: rgba(234, 179, 8, 0.1);">
+                                    OS
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -1175,7 +1367,7 @@
         </div>
     </section>
 
-    <!-- Blog Section - Medium Articles with PROPER SPACING -->
+    <!-- Blog Section - Medium Articles -->
     <section id="blog" class="py-32 px-6 bg-white/5">
         <div class="max-w-7xl mx-auto">
             <div class="flex justify-between items-end mb-16">
@@ -1566,7 +1758,7 @@
             }, { duration: 500, fill: "forwards" });
         });
 
-        const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-tag, input, textarea, .medium-card, .publication-card, .testimonial-card');
+        const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-tag, input, textarea, .medium-card, .publication-card, .testimonial-card, .experience-card');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
@@ -1633,6 +1825,22 @@
                 duration: 0.6,
                 delay: i * 0.1,
                 ease: 'back.out(1.7)'
+            });
+        });
+
+        // Experience cards animation
+        gsap.utils.toArray('.experience-card').forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top bottom-=50',
+                    toggleActions: 'play none none reverse'
+                },
+                x: i % 2 === 0 ? -50 : 50,
+                opacity: 0,
+                duration: 0.8,
+                delay: i * 0.15,
+                ease: 'power3.out'
             });
         });
 
