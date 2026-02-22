@@ -56,7 +56,6 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Light mode styles */
         html.light body {
             background: #f4f4f0;
             color: #0a0a0a;
@@ -240,7 +239,6 @@
             50% { opacity: 0.5; }
         }
         
-        /* 3D Carousel Styles */
         .carousel-container {
             perspective: 1000px;
             height: 500px;
@@ -434,7 +432,6 @@
             .carousel-nav-btn.next { right: 10px; }
         }
 
-        /* FAQ Styles */
         .faq-container {
             max-width: 800px;
             margin: 0 auto;
@@ -504,7 +501,6 @@
             color: rgba(0,0,0,0.7);
         }
 
-        /* Theme Toggle */
         .theme-toggle {
             position: fixed;
             bottom: 30px;
@@ -532,7 +528,6 @@
             transform: scale(0.95);
         }
 
-        /* Publication Enhancements */
         .research-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -568,7 +563,6 @@
             font-family: 'Syne', sans-serif;
         }
 
-        /* Medium Article Images */
         .medium-image {
             width: 100%;
             height: 200px;
@@ -784,7 +778,6 @@
             background: #FF4D00;
         }
 
-        /* Article spacing fixes */
         .article-content {
             line-height: 1.8;
         }
@@ -796,9 +789,81 @@
             flex-wrap: wrap;
         }
 
-        /* Fix for deployment */
         .netlify-deploy-fix {
             min-height: 100vh;
+        }
+
+        /* Timeline Styles */
+        .timeline-item {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .timeline-item:nth-child(1) { transition-delay: 0.1s; }
+        .timeline-item:nth-child(2) { transition-delay: 0.2s; }
+        .timeline-item:nth-child(3) { transition-delay: 0.3s; }
+        .timeline-item:nth-child(4) { transition-delay: 0.4s; }
+        .timeline-item:nth-child(5) { transition-delay: 0.5s; }
+
+        /* Skill Bar Styles - FIXED */
+        .skill-bar-container {
+            width: 100%;
+            background: rgba(255,255,255,0.1);
+            border-radius: 9999px;
+            height: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        html.light .skill-bar-container {
+            background: rgba(0,0,0,0.1);
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            border-radius: 9999px;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .skill-bar-fill.java {
+            background: linear-gradient(90deg, #FF4D00, #ff6b35);
+        }
+
+        .skill-bar-fill.react {
+            background: linear-gradient(90deg, #00F0FF, #00d4ff);
+        }
+
+        .skill-bar-fill.python {
+            background: linear-gradient(90deg, #a855f7, #ec4899);
+        }
+
+        .skill-bar-fill.database {
+            background: linear-gradient(90deg, #22c55e, #10b981);
         }
     </style>
 </head>
@@ -864,148 +929,142 @@
     </div>
 
     <!-- Hero Section -->
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-20">
-    <div class="absolute inset-0 z-0">
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/20 rounded-full blur-[120px] animate-pulse"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-[120px] animate-pulse delay-1000"></div>
-    </div>
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-20">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500/20 rounded-full blur-[120px] animate-pulse"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-[120px] animate-pulse delay-1000"></div>
+        </div>
 
-    <div class="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
-        <div class="space-y-8">
-            <!-- Status Badges -->
-            <div class="flex flex-wrap gap-3">
-                <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10 hover:border-orange-500/50 transition-colors cursor-pointer group">
-                    <span class="w-2 h-2 bg-green-500 rounded-full status-badge"></span>
-                    <span class="text-sm text-gray-300 group-hover:text-white transition-colors">Available for hire</span>
+        <div class="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-8">
+                <!-- Status Badges -->
+                <div class="flex flex-wrap gap-3">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/5 rounded-full border border-white/10 hover:border-orange-500/50 transition-colors cursor-pointer group">
+                        <span class="w-2 h-2 bg-green-500 rounded-full status-badge"></span>
+                        <span class="text-sm text-gray-300 group-hover:text-white transition-colors">Available for hire</span>
+                    </div>
+                    
+                    <!-- Topmate Link -->
+                    <a href="https://topmate.io/sadique_ahmed/" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full border border-purple-500/30 hover:border-purple-500 hover:bg-purple-500/30 transition-all cursor-pointer group animate-pulse">
+                        <i data-lucide="calendar-check" class="w-4 h-4 text-purple-400 group-hover:text-white transition-colors"></i>
+                        <span class="text-sm text-purple-300 group-hover:text-white transition-colors font-medium">Book 1:1 Call</span>
+                        <span class="hidden sm:inline text-xs text-purple-400/70 group-hover:text-white/70">via Topmate</span>
+                    </a>
                 </div>
                 
-                <!-- Topmate Link -->
-                <a href="https://topmate.io/sadique_ahmed/" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full border border-purple-500/30 hover:border-purple-500 hover:bg-purple-500/30 transition-all cursor-pointer group animate-pulse">
-                    <i data-lucide="calendar-check" class="w-4 h-4 text-purple-400 group-hover:text-white transition-colors"></i>
-                    <span class="text-sm text-purple-300 group-hover:text-white transition-colors font-medium">Book 1:1 Call</span>
-                    <span class="hidden sm:inline text-xs text-purple-400/70 group-hover:text-white/70">via Topmate</span>
-                </a>
-            </div>
-            
-            <h1 class="font-display font-bold text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter">
-                <span class="block" id="hero-line-1">SADIQUE</span>
-                <span class="block gradient-text" id="hero-line-2">AHMED</span>
-            </h1>
+                <h1 class="font-display font-bold text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter">
+                    <span class="block" id="hero-line-1">SADIQUE</span>
+                    <span class="block gradient-text" id="hero-line-2">AHMED</span>
+                </h1>
 
-            <p class="text-xl md:text-2xl text-gray-400 font-light max-w-lg" id="hero-subtitle">
-                Full Stack Developer & CS Student building scalable solutions with <span class="text-orange-500">Java</span>, <span class="text-cyan-400">Spring Boot</span> & <span class="text-purple-400">AI</span>
-            </p>
+                <p class="text-xl md:text-2xl text-gray-400 font-light max-w-lg" id="hero-subtitle">
+                    Full Stack Developer & CS Student building scalable solutions with <span class="text-orange-500">Java</span>, <span class="text-cyan-400">Spring Boot</span> & <span class="text-purple-400">AI</span>
+                </p>
 
-            <div class="flex gap-6 text-sm border-l-2 border-orange-500 pl-6">
-                <div>
-                    <span class="block text-2xl font-display font-bold text-white">CSE'26</span>
-                    <span class="text-gray-500">Computer Science</span>
-                </div>
-                <div class="w-px bg-white/10"></div>
-                <div>
-                    <span class="block text-2xl font-display font-bold text-white">India</span>
-                    <span class="text-gray-500">Based in</span>
-                </div>
-                <div class="w-px bg-white/10"></div>
-                <div>
-                    <span class="block text-2xl font-display font-bold text-white">6+</span>
-                    <span class="text-gray-500">Projects</span>
-                </div>
-            </div>
-
-            <!-- CTA Buttons -->
-            <div class="flex flex-wrap gap-4" id="hero-cta">
-                <a href="#projects" class="group px-8 py-4 bg-orange-500 text-white font-medium rounded-full flex items-center gap-2 hover:bg-orange-600 transition-all hover:gap-4 shadow-lg shadow-orange-500/25">
-                    View Projects
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-                <a href="https://drive.google.com/file/d/1jJ_fr1QrKboW7_Mu8i-5yezUmOiDqGhO/view?usp=drive_link" target="_blank" class="px-8 py-4 border border-white/30 rounded-full hover:border-cyan-500 hover:text-cyan-400 transition-all flex items-center gap-2 hover:bg-white/5">
-                    <i data-lucide="file-text" class="w-5 h-5"></i>
-                    Download Resume
-                </a>
-                <!-- Connect 1:1 Button -->
-                <a href="https://topmate.io/sadique_ahmed/" target="_blank" class="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full hover:from-purple-500 hover:to-pink-500 transition-all flex items-center gap-2 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40">
-                    <i data-lucide="video" class="w-5 h-5"></i>
-                    Connect 1:1
-                </a>
-            </div>
-
-            <!-- Social Links - NEW -->
-            <div class="flex items-center gap-4 pt-2">
-                <span class="text-sm text-gray-500">Connect with me:</span>
-                <div class="flex gap-3">
-                    <!-- Email -->
-                    <a href="mailto:sadiqueahmed40@gmail.com" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-white transition-all group" title="Email">
-                        <i data-lucide="mail" class="w-4 h-4 text-gray-400 group-hover:text-white"></i>
-                    </a>
-                    <!-- GitHub -->
-                    <a href="https://github.com/Sadiqueahmed" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-gray-800 hover:border-gray-600 hover:text-white transition-all group" title="GitHub">
-                        <i data-lucide="github" class="w-4 h-4 text-gray-400 group-hover:text-white"></i>
-                    </a>
-                    <!-- LinkedIn -->
-                    <a href="https://www.linkedin.com/in/sadique-ahmed-b2039524b" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-all group" title="LinkedIn">
-                        <i data-lucide="linkedin" class="w-4 h-4 text-gray-400 group-hover:text-white"></i>
-                    </a>
-                    <!-- Medium -->
-                    <a href="https://medium.com/@sadiqueahmed40" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-black hover:border-black hover:text-white transition-all group" title="Medium">
-                        <svg class="w-4 h-4 text-gray-400 group-hover:text-white" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
-                        </svg>
-                    </a>
-                    <!-- Twitter/X -->
-                    <a href="https://twitter.com/" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-sky-500 hover:border-sky-500 hover:text-white transition-all group" title="Twitter">
-                        <svg class="w-4 h-4 text-gray-400 group-hover:text-white" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                        </svg>
-                    </a>
-                    <!-- Topmate -->
-                    <a href="https://topmate.io/sadique_ahmed/" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#FF4444] hover:border-[#FF4444] hover:text-white transition-all group" title="Topmate">
-                        <i data-lucide="calendar-check" class="w-4 h-4 text-gray-400 group-hover:text-white"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right side code block -->
-        <div class="relative hidden md:block">
-            <div class="relative w-full aspect-square max-w-md mx-auto">
-                <div class="absolute inset-0 bg-gradient-to-br from-orange-500 to-cyan-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
-                <div class="relative bg-gray-900/80 backdrop-blur-xl rounded-3xl border border-white/10 p-8 h-full flex flex-col justify-center overflow-hidden group hover:border-orange-500/30 transition-colors">
-                    <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="text-xs text-orange-500 font-mono">// open to work</span>
+                <div class="flex gap-6 text-sm border-l-2 border-orange-500 pl-6">
+                    <div>
+                        <span class="block text-2xl font-display font-bold text-white">CSE'26</span>
+                        <span class="text-gray-500">Computer Science</span>
                     </div>
-                    <div class="font-mono text-sm text-gray-400 space-y-4">
-                        <div class="flex items-center gap-2 text-orange-500 mb-4">
-                            <span class="w-3 h-3 rounded-full bg-red-500"></span>
-                            <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
-                            <span class="w-3 h-3 rounded-full bg-green-500"></span>
-                            <span class="ml-2 text-xs">sadique@dev:~</span>
+                    <div class="w-px bg-white/10"></div>
+                    <div>
+                        <span class="block text-2xl font-display font-bold text-white">India</span>
+                        <span class="text-gray-500">Based in</span>
+                    </div>
+                    <div class="w-px bg-white/10"></div>
+                    <div>
+                        <span class="block text-2xl font-display font-bold text-white">6+</span>
+                        <span class="text-gray-500">Projects</span>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-wrap gap-4" id="hero-cta">
+                    <a href="#projects" class="group px-8 py-4 bg-orange-500 text-white font-medium rounded-full flex items-center gap-2 hover:bg-orange-600 transition-all hover:gap-4 shadow-lg shadow-orange-500/25">
+                        View Projects
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="https://drive.google.com/file/d/1jJ_fr1QrKboW7_Mu8i-5yezUmOiDqGhO/view?usp=drive_link" target="_blank" class="px-8 py-4 border border-white/30 rounded-full hover:border-cyan-500 hover:text-cyan-400 transition-all flex items-center gap-2 hover:bg-white/5">
+                        <i data-lucide="file-text" class="w-5 h-5"></i>
+                        Download Resume
+                    </a>
+                    <!-- Connect 1:1 Button -->
+                    <a href="https://topmate.io/sadique_ahmed/" target="_blank" class="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full hover:from-purple-500 hover:to-pink-500 transition-all flex items-center gap-2 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40">
+                        <i data-lucide="video" class="w-5 h-5"></i>
+                        Connect 1:1
+                    </a>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex items-center gap-4 pt-2">
+                    <span class="text-sm text-gray-500">Connect with me:</span>
+                    <div class="flex gap-3">
+                        <a href="mailto:sadiqueahmed40@gmail.com" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-white transition-all group" title="Email">
+                            <i data-lucide="mail" class="w-4 h-4 text-gray-400 group-hover:text-white"></i>
+                        </a>
+                        <a href="https://github.com/Sadiqueahmed" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-gray-800 hover:border-gray-600 hover:text-white transition-all group" title="GitHub">
+                            <i data-lucide="github" class="w-4 h-4 text-gray-400 group-hover:text-white"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/sadique-ahmed-b2039524b" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-all group" title="LinkedIn">
+                            <i data-lucide="linkedin" class="w-4 h-4 text-gray-400 group-hover:text-white"></i>
+                        </a>
+                        <a href="https://medium.com/@sadiqueahmed40" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-black hover:border-black hover:text-white transition-all group" title="Medium">
+                            <svg class="w-4 h-4 text-gray-400 group-hover:text-white" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-sky-500 hover:border-sky-500 hover:text-white transition-all group" title="Twitter">
+                            <svg class="w-4 h-4 text-gray-400 group-hover:text-white" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://topmate.io/sadique_ahmed/" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#FF4444] hover:border-[#FF4444] hover:text-white transition-all group" title="Topmate">
+                            <i data-lucide="calendar-check" class="w-4 h-4 text-gray-400 group-hover:text-white"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right side code block -->
+            <div class="relative hidden md:block">
+                <div class="relative w-full aspect-square max-w-md mx-auto">
+                    <div class="absolute inset-0 bg-gradient-to-br from-orange-500 to-cyan-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+                    <div class="relative bg-gray-900/80 backdrop-blur-xl rounded-3xl border border-white/10 p-8 h-full flex flex-col justify-center overflow-hidden group hover:border-orange-500/30 transition-colors">
+                        <div class="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="text-xs text-orange-500 font-mono">// open to work</span>
                         </div>
-                        <div class="space-y-2" id="typewriter">
-                            <p><span class="text-cyan-400">const</span> <span class="text-purple-400">developer</span> = {</p>
-                            <p class="pl-4">name: <span class="text-green-400">'Sadique Ahmed'</span>,</p>
-                            <p class="pl-4">role: <span class="text-green-400">'Full Stack Developer'</span>,</p>
-                            <p class="pl-4">location: <span class="text-green-400">'India'</span>,</p>
-                            <p class="pl-4">stack: [<span class="text-green-400">'Java'</span>, <span class="text-green-400">'Spring Boot'</span>, <span class="text-green-400">'React'</span>],</p>
-                            <p class="pl-4">experience: <span class="text-green-400">'Open Source & Internships'</span>,</p>
-                            <p class="pl-4">seeking: <span class="text-green-400">'SDE Opportunities'</span>,</p>
-                            <p class="pl-4">available: <span class="text-orange-400">true</span></p>
-                            <p>};</p>
-                        </div>
-                        <div class="mt-4 pt-4 border-t border-white/10">
-                            <p class="text-gray-500">// Ready to contribute</p>
-                            <p class="text-cyan-400">hireMe(); <span class="animate-pulse">_</span></p>
+                        <div class="font-mono text-sm text-gray-400 space-y-4">
+                            <div class="flex items-center gap-2 text-orange-500 mb-4">
+                                <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                                <span class="ml-2 text-xs">sadique@dev:~</span>
+                            </div>
+                            <div class="space-y-2" id="typewriter">
+                                <p><span class="text-cyan-400">const</span> <span class="text-purple-400">developer</span> = {</p>
+                                <p class="pl-4">name: <span class="text-green-400">'Sadique Ahmed'</span>,</p>
+                                <p class="pl-4">role: <span class="text-green-400">'Full Stack Developer'</span>,</p>
+                                <p class="pl-4">location: <span class="text-green-400">'India'</span>,</p>
+                                <p class="pl-4">stack: [<span class="text-green-400">'Java'</span>, <span class="text-green-400">'Spring Boot'</span>, <span class="text-green-400">'React'</span>],</p>
+                                <p class="pl-4">experience: <span class="text-green-400">'Open Source & Internships'</span>,</p>
+                                <p class="pl-4">seeking: <span class="text-green-400">'SDE Opportunities'</span>,</p>
+                                <p class="pl-4">available: <span class="text-orange-400">true</span></p>
+                                <p>};</p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-white/10">
+                                <p class="text-gray-500">// Ready to contribute</p>
+                                <p class="text-cyan-400">hireMe(); <span class="animate-pulse">_</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce">
-        <i data-lucide="chevron-down" class="w-6 h-6"></i>
-    </div>
-</section>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce">
+            <i data-lucide="chevron-down" class="w-6 h-6"></i>
+        </div>
+    </section>
 
     <!-- About Section -->
     <section id="about" class="py-32 px-6 relative">
@@ -1088,7 +1147,7 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Skills Section - FIXED SKILL BARS -->
     <section id="skills" class="py-32 px-6 bg-white/5">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-20">
@@ -1158,52 +1217,52 @@
                 </div>
             </div>
 
-            <!-- Skill Proficiency -->
+            <!-- Skill Proficiency - FIXED -->
             <div class="achievement-card p-8 rounded-2xl max-w-4xl mx-auto">
                 <h3 class="font-display text-xl font-bold mb-6 text-center">Proficiency Levels</h3>
                 <div class="space-y-6">
-                    <div>
+                    <div class="skill-item" data-skill="java" data-level="90">
                         <div class="flex justify-between mb-2">
                             <span class="text-sm font-medium flex items-center gap-2">
                                 <i data-lucide="coffee" class="w-4 h-4 text-orange-500"></i> Java & Spring Boot
                             </span>
                             <span class="text-sm text-gray-400">90%</span>
                         </div>
-                        <div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
-                            <div class="bg-gradient-to-r from-orange-500 to-red-500 h-2 rounded-full transition-all duration-1000 w-0" data-width="90%"></div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill java" data-width="90"></div>
                         </div>
                     </div>
-                    <div>
+                    <div class="skill-item" data-skill="react" data-level="85">
                         <div class="flex justify-between mb-2">
                             <span class="text-sm font-medium flex items-center gap-2">
                                 <i data-lucide="code" class="w-4 h-4 text-cyan-500"></i> React & Frontend
                             </span>
                             <span class="text-sm text-gray-400">85%</span>
                         </div>
-                        <div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
-                            <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full transition-all duration-1000 w-0" data-width="85%"></div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill react" data-width="85"></div>
                         </div>
                     </div>
-                    <div>
+                    <div class="skill-item" data-skill="python" data-level="75">
                         <div class="flex justify-between mb-2">
                             <span class="text-sm font-medium flex items-center gap-2">
                                 <i data-lucide="brain" class="w-4 h-4 text-purple-500"></i> Python & AI/ML
                             </span>
                             <span class="text-sm text-gray-400">75%</span>
                         </div>
-                        <div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
-                            <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-1000 w-0" data-width="75%"></div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill python" data-width="75"></div>
                         </div>
                     </div>
-                    <div>
+                    <div class="skill-item" data-skill="database" data-level="80">
                         <div class="flex justify-between mb-2">
                             <span class="text-sm font-medium flex items-center gap-2">
                                 <i data-lucide="database" class="w-4 h-4 text-green-500"></i> Databases & System Design
                             </span>
                             <span class="text-sm text-gray-400">80%</span>
                         </div>
-                        <div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
-                            <div class="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full transition-all duration-1000 w-0" data-width="80%"></div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill database" data-width="80"></div>
                         </div>
                     </div>
                 </div>
@@ -1234,233 +1293,195 @@
     </section>
 
     <!-- Experience Section - LINKEDIN STYLE TIMELINE -->
-<section id="experience" class="py-32 px-6 relative overflow-hidden">
-    <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16">
-            <div class="inline-block px-4 py-2 border border-cyan-500/30 rounded-full text-cyan-400 text-sm tracking-widest mb-4">
-                PROFESSIONAL JOURNEY
+    <section id="experience" class="py-32 px-6 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block px-4 py-2 border border-cyan-500/30 rounded-full text-cyan-400 text-sm tracking-widest mb-4">
+                    PROFESSIONAL JOURNEY
+                </div>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Experience & Education</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">My career path and academic background</p>
             </div>
-            <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Experience & Education</h2>
-            <p class="text-gray-400 max-w-2xl mx-auto">My career path and academic background</p>
-        </div>
 
-        <!-- Timeline Container -->
-        <div class="relative">
-            <!-- Vertical Line - Left Side -->
-            <div class="absolute left-6 md:left-8 top-0 bottom-0 w-0.5 bg-gray-700"></div>
+            <!-- Timeline Container -->
+            <div class="relative">
+                <!-- Vertical Line - Left Side -->
+                <div class="absolute left-6 md:left-8 top-0 bottom-0 w-0.5 bg-gray-700"></div>
 
-            <!-- Experience Items -->
-            <div class="space-y-10">
+                <!-- Experience Items -->
+                <div class="space-y-10">
 
-                <!-- Item 1: NIELIT Summer Intern 2025 - ORANGE -->
-                <div class="timeline-item relative pl-16 md:pl-20 group">
-                    <!-- Node -->
-                    <div class="absolute left-0 md:left-8 w-12 h-12 rounded-full bg-[#0a0a0a] border-2 border-orange-500 transform -translate-x-1/2 flex items-center justify-center z-10 group-hover:scale-110 transition-transform">
-                        <img src="https://kimi-web-img.moonshot.cn/img/api.itcentre.org/977e16f3d45f1b369eea2652c9dc7844f8a26d76.jpeg" alt="NIELIT" class="w-8 h-8 object-contain rounded-full">
-                    </div>
-                    
-                    <!-- Content Card -->
-                    <div class="bg-transparent hover:bg-white/5 rounded-xl p-4 -mx-4 transition-colors">
-                        <div class="flex flex-col gap-1">
-                            <h3 class="font-display text-xl font-bold text-white">Machine Learning Intern</h3>
-                            <p class="text-orange-400 font-medium">National Institute of Electronics and IT (NIELIT) • Guwahati</p>
-                            <p class="text-gray-500 text-sm">Jun 2025 – Jul 2025 • 2 mos</p>
-                            
-                            <p class="text-gray-300 text-sm mt-3 leading-relaxed">
-                                Developed machine learning models for <strong class="text-white">heart disease detection</strong> using Logistic Regression, Random Forest, and Neural Networks. Achieved 89% accuracy on test dataset.
-                            </p>
-                            
-                            <!-- Achievement Badge -->
-                            <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-orange-500/10 text-orange-400 text-xs rounded-full border border-orange-500/20 w-fit">
-                                <i data-lucide="trophy" class="w-3 h-3"></i>
-                                <span>89% Model Accuracy</span>
-                            </div>
+                    <!-- Item 1: NIELIT Summer Intern 2025 - ORANGE -->
+                    <div class="timeline-item relative pl-16 md:pl-20 group">
+                        <!-- Node -->
+                        <div class="absolute left-0 md:left-8 w-12 h-12 rounded-full bg-[#0a0a0a] border-2 border-orange-500 transform -translate-x-1/2 flex items-center justify-center z-10 group-hover:scale-110 transition-transform">
+                            <img src="https://kimi-web-img.moonshot.cn/img/api.itcentre.org/977e16f3d45f1b369eea2652c9dc7844f8a26d76.jpeg" alt="NIELIT" class="w-8 h-8 object-contain rounded-full">
+                        </div>
+                        
+                        <!-- Content Card -->
+                        <div class="bg-transparent hover:bg-white/5 rounded-xl p-4 -mx-4 transition-colors">
+                            <div class="flex flex-col gap-1">
+                                <h3 class="font-display text-xl font-bold text-white">Machine Learning Intern</h3>
+                                <p class="text-orange-400 font-medium">National Institute of Electronics and IT (NIELIT) • Guwahati</p>
+                                <p class="text-gray-500 text-sm">Jun 2025 – Jul 2025 • 2 mos</p>
+                                
+                                <p class="text-gray-300 text-sm mt-3 leading-relaxed">
+                                    Developed machine learning models for <strong class="text-white">heart disease detection</strong> using Logistic Regression, Random Forest, and Neural Networks. Achieved 89% accuracy on test dataset.
+                                </p>
+                                
+                                <!-- Achievement Badge -->
+                                <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-orange-500/10 text-orange-400 text-xs rounded-full border border-orange-500/20 w-fit">
+                                    <i data-lucide="trophy" class="w-3 h-3"></i>
+                                    <span>89% Model Accuracy</span>
+                                </div>
 
-                            <div class="flex flex-wrap gap-2 mt-3">
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Python</span>
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Scikit-learn</span>
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Pandas</span>
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Neural Networks</span>
+                                <div class="flex flex-wrap gap-2 mt-3">
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Python</span>
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Scikit-learn</span>
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Pandas</span>
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Neural Networks</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Item 2: NIT Silchar - CYAN -->
-                <div class="timeline-item relative pl-16 md:pl-20 group">
-                    <!-- Node -->
-                    <div class="absolute left-0 md:left-8 w-12 h-12 rounded-full bg-[#0a0a0a] border-2 border-cyan-500 transform -translate-x-1/2 flex items-center justify-center z-10 group-hover:scale-110 transition-transform">
-                        <img src="https://kimi-web-img.moonshot.cn/img/static.wikia.nocookie.net/782c3f2dd63743669ad0d48ba1c6e9a3e30bde19" alt="NIT" class="w-8 h-8 object-contain rounded-full">
-                    </div>
-                    
-                    <!-- Content Card -->
-                    <div class="bg-transparent hover:bg-white/5 rounded-xl p-4 -mx-4 transition-colors">
-                        <div class="flex flex-col gap-1">
-                            <h3 class="font-display text-xl font-bold text-white">Sole Web Developer</h3>
-                            <p class="text-cyan-400 font-medium">National Institute of Technology Silchar • Silchar</p>
-                            <p class="text-gray-500 text-sm">Jun 2024 – Jul 2024 • 2 mos</p>
-                            
-                            <p class="text-gray-300 text-sm mt-3 leading-relaxed">
-                                Built <strong class="text-white">Excursa tourism platform</strong> with 3+ API integrations and optimized assets to reduce page load times by 40%. Implemented responsive design and SEO best practices.
-                            </p>
-                            
-                            <!-- Achievement Badge -->
-                            <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-cyan-500/10 text-cyan-400 text-xs rounded-full border border-cyan-500/20 w-fit">
-                                <i data-lucide="zap" class="w-3 h-3"></i>
-                                <span>40% Performance Boost</span>
-                            </div>
+                    <!-- Item 2: NIT Silchar - CYAN -->
+                    <div class="timeline-item relative pl-16 md:pl-20 group">
+                        <!-- Node -->
+                        <div class="absolute left-0 md:left-8 w-12 h-12 rounded-full bg-[#0a0a0a] border-2 border-cyan-500 transform -translate-x-1/2 flex items-center justify-center z-10 group-hover:scale-110 transition-transform">
+                            <img src="https://kimi-web-img.moonshot.cn/img/static.wikia.nocookie.net/782c3f2dd63743669ad0d48ba1c6e9a3e30bde19" alt="NIT" class="w-8 h-8 object-contain rounded-full">
+                        </div>
+                        
+                        <!-- Content Card -->
+                        <div class="bg-transparent hover:bg-white/5 rounded-xl p-4 -mx-4 transition-colors">
+                            <div class="flex flex-col gap-1">
+                                <h3 class="font-display text-xl font-bold text-white">Sole Web Developer</h3>
+                                <p class="text-cyan-400 font-medium">National Institute of Technology Silchar • Silchar</p>
+                                <p class="text-gray-500 text-sm">Jun 2024 – Jul 2024 • 2 mos</p>
+                                
+                                <p class="text-gray-300 text-sm mt-3 leading-relaxed">
+                                    Built <strong class="text-white">Excursa tourism platform</strong> with 3+ API integrations and optimized assets to reduce page load times by 40%. Implemented responsive design and SEO best practices.
+                                </p>
+                                
+                                <!-- Achievement Badge -->
+                                <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-cyan-500/10 text-cyan-400 text-xs rounded-full border border-cyan-500/20 w-fit">
+                                    <i data-lucide="zap" class="w-3 h-3"></i>
+                                    <span>40% Performance Boost</span>
+                                </div>
 
-                            <div class="flex flex-wrap gap-2 mt-3">
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">HTML/CSS/JS</span>
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Mapbox</span>
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Netlify</span>
+                                <div class="flex flex-wrap gap-2 mt-3">
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">HTML/CSS/JS</span>
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Mapbox</span>
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Netlify</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Item 3: SH1ELD Tech - PURPLE -->
-                <div class="timeline-item relative pl-16 md:pl-20 group">
-                    <!-- Node -->
-                    <div class="absolute left-0 md:left-8 w-12 h-12 rounded-full bg-[#0a0a0a] border-2 border-purple-500 transform -translate-x-1/2 flex items-center justify-center z-10 group-hover:scale-110 transition-transform">
-                        <img src="https://kimi-web-img.moonshot.cn/img/sh1eldtech.com/b8b2f41ee8dc0cdad0a41ff4296ca5af33ddd392.jpg" alt="SH1ELD" class="w-8 h-8 object-contain rounded-full">
-                    </div>
-                    
-                    <!-- Content Card -->
-                    <div class="bg-transparent hover:bg-white/5 rounded-xl p-4 -mx-4 transition-colors">
-                        <div class="flex flex-col gap-1">
-                            <h3 class="font-display text-xl font-bold text-white">Web Development Team Member</h3>
-                            <p class="text-purple-400 font-medium">SH1ELD Tech InfoSec Solutions • Gangtok, Sikkim</p>
-                            <p class="text-gray-500 text-sm">Jul 2024 – Sep 2024 • 3 mos</p>
-                            
-                            <p class="text-gray-300 text-sm mt-3 leading-relaxed">
-                                Contributed to <strong class="text-white">4+ client websites</strong> in a 5-member team; improved responsiveness and reduced bug reports by 35% via peer reviews and code quality standards.
-                            </p>
-                            
-                            <!-- Achievement Badge -->
-                            <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-purple-500/10 text-purple-400 text-xs rounded-full border border-purple-500/20 w-fit">
-                                <i data-lucide="bug" class="w-3 h-3"></i>
-                                <span>35% Less Bugs</span>
-                            </div>
+                    <!-- Item 3: SH1ELD Tech - PURPLE -->
+                    <div class="timeline-item relative pl-16 md:pl-20 group">
+                        <!-- Node -->
+                        <div class="absolute left-0 md:left-8 w-12 h-12 rounded-full bg-[#0a0a0a] border-2 border-purple-500 transform -translate-x-1/2 flex items-center justify-center z-10 group-hover:scale-110 transition-transform">
+                            <img src="https://kimi-web-img.moonshot.cn/img/sh1eldtech.com/b8b2f41ee8dc0cdad0a41ff4296ca5af33ddd392.jpg" alt="SH1ELD" class="w-8 h-8 object-contain rounded-full">
+                        </div>
+                        
+                        <!-- Content Card -->
+                        <div class="bg-transparent hover:bg-white/5 rounded-xl p-4 -mx-4 transition-colors">
+                            <div class="flex flex-col gap-1">
+                                <h3 class="font-display text-xl font-bold text-white">Web Development Team Member</h3>
+                                <p class="text-purple-400 font-medium">SH1ELD Tech InfoSec Solutions • Gangtok, Sikkim</p>
+                                <p class="text-gray-500 text-sm">Jul 2024 – Sep 2024 • 3 mos</p>
+                                
+                                <p class="text-gray-300 text-sm mt-3 leading-relaxed">
+                                    Contributed to <strong class="text-white">4+ client websites</strong> in a 5-member team; improved responsiveness and reduced bug reports by 35% via peer reviews and code quality standards.
+                                </p>
+                                
+                                <!-- Achievement Badge -->
+                                <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-purple-500/10 text-purple-400 text-xs rounded-full border border-purple-500/20 w-fit">
+                                    <i data-lucide="bug" class="w-3 h-3"></i>
+                                    <span>35% Less Bugs</span>
+                                </div>
 
-                            <div class="flex flex-wrap gap-2 mt-3">
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Bootstrap</span>
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">GitHub</span>
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Jira</span>
+                                <div class="flex flex-wrap gap-2 mt-3">
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Bootstrap</span>
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">GitHub</span>
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Jira</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Item 4: NIELIT ML - GREEN -->
-                <div class="timeline-item relative pl-16 md:pl-20 group">
-                    <!-- Node -->
-                    <div class="absolute left-0 md:left-8 w-12 h-12 rounded-full bg-[#0a0a0a] border-2 border-green-500 transform -translate-x-1/2 flex items-center justify-center z-10 group-hover:scale-110 transition-transform">
-                        <img src="https://kimi-web-img.moonshot.cn/img/images.crunchbase.com/45149c42678c3d993a1acc74f197f6a40f951e07" alt="NIELIT" class="w-8 h-8 object-contain rounded-full">
-                    </div>
-                    
-                    <!-- Content Card -->
-                    <div class="bg-transparent hover:bg-white/5 rounded-xl p-4 -mx-4 transition-colors">
-                        <div class="flex flex-col gap-1">
-                            <h3 class="font-display text-xl font-bold text-white">Machine Learning Intern</h3>
-                            <p class="text-green-400 font-medium">National Institute of Electronics and IT (NIELIT) • Guwahati</p>
-                            <p class="text-gray-500 text-sm">Aug 2024 • 1 mo</p>
-                            
-                            <p class="text-gray-300 text-sm mt-3 leading-relaxed">
-                                Developed a <strong class="text-white">CNN-based animal classifier</strong> on a 10K+ image dataset; achieved 92% test accuracy with data augmentation and transfer learning techniques.
-                            </p>
-                            
-                            <!-- Achievement Badge -->
-                            <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-green-500/10 text-green-400 text-xs rounded-full border border-green-500/20 w-fit">
-                                <i data-lucide="target" class="w-3 h-3"></i>
-                                <span>92% Test Accuracy</span>
-                            </div>
+                    <!-- Item 4: NIELIT ML - GREEN -->
+                    <div class="timeline-item relative pl-16 md:pl-20 group">
+                        <!-- Node -->
+                        <div class="absolute left-0 md:left-8 w-12 h-12 rounded-full bg-[#0a0a0a] border-2 border-green-500 transform -translate-x-1/2 flex items-center justify-center z-10 group-hover:scale-110 transition-transform">
+                            <img src="https://kimi-web-img.moonshot.cn/img/images.crunchbase.com/45149c42678c3d993a1acc74f197f6a40f951e07" alt="NIELIT" class="w-8 h-8 object-contain rounded-full">
+                        </div>
+                        
+                        <!-- Content Card -->
+                        <div class="bg-transparent hover:bg-white/5 rounded-xl p-4 -mx-4 transition-colors">
+                            <div class="flex flex-col gap-1">
+                                <h3 class="font-display text-xl font-bold text-white">Machine Learning Intern</h3>
+                                <p class="text-green-400 font-medium">National Institute of Electronics and IT (NIELIT) • Guwahati</p>
+                                <p class="text-gray-500 text-sm">Aug 2024 • 1 mo</p>
+                                
+                                <p class="text-gray-300 text-sm mt-3 leading-relaxed">
+                                    Developed a <strong class="text-white">CNN-based animal classifier</strong> on a 10K+ image dataset; achieved 92% test accuracy with data augmentation and transfer learning techniques.
+                                </p>
+                                
+                                <!-- Achievement Badge -->
+                                <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-green-500/10 text-green-400 text-xs rounded-full border border-green-500/20 w-fit">
+                                    <i data-lucide="target" class="w-3 h-3"></i>
+                                    <span>92% Test Accuracy</span>
+                                </div>
 
-                            <div class="flex flex-wrap gap-2 mt-3">
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Python</span>
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">TensorFlow</span>
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">OpenCV</span>
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">CNN</span>
+                                <div class="flex flex-wrap gap-2 mt-3">
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Python</span>
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">TensorFlow</span>
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">OpenCV</span>
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">CNN</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Item 5: Education - YELLOW -->
-                <div class="timeline-item relative pl-16 md:pl-20 group">
-                    <!-- Node -->
-                    <div class="absolute left-0 md:left-8 w-12 h-12 rounded-full bg-gradient-to-br from-yellow-500 to-orange-500 transform -translate-x-1/2 flex items-center justify-center z-10 group-hover:scale-110 transition-transform text-xl">
-                        🎓
-                    </div>
-                    
-                    <!-- Content Card -->
-                    <div class="bg-transparent hover:bg-white/5 rounded-xl p-4 -mx-4 transition-colors">
-                        <div class="flex flex-col gap-1">
-                            <h3 class="font-display text-xl font-bold text-white">B.Tech Computer Science</h3>
-                            <p class="text-yellow-400 font-medium">University • India</p>
-                            <p class="text-gray-500 text-sm">2022 - 2026 (Expected)</p>
-                            
-                            <p class="text-gray-300 text-sm mt-3 leading-relaxed">
-                                Focusing on <strong class="text-white">Data Structures, Algorithms, Software Engineering, and AI</strong>. Active member of coding clubs and hackathon participant with multiple wins.
-                            </p>
-                            
-                            <!-- Achievement Badge -->
-                            <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-yellow-500/10 text-yellow-400 text-xs rounded-full border border-yellow-500/20 w-fit">
-                                <i data-lucide="award" class="w-3 h-3"></i>
-                                <span>GPA: 7.5/10</span>
-                            </div>
+                    <!-- Item 5: Education - YELLOW -->
+                    <div class="timeline-item relative pl-16 md:pl-20 group">
+                        <!-- Node -->
+                        <div class="absolute left-0 md:left-8 w-12 h-12 rounded-full bg-gradient-to-br from-yellow-500 to-orange-500 transform -translate-x-1/2 flex items-center justify-center z-10 group-hover:scale-110 transition-transform text-xl">
+                            🎓
+                        </div>
+                        
+                        <!-- Content Card -->
+                        <div class="bg-transparent hover:bg-white/5 rounded-xl p-4 -mx-4 transition-colors">
+                            <div class="flex flex-col gap-1">
+                                <h3 class="font-display text-xl font-bold text-white">B.Tech Computer Science</h3>
+                                <p class="text-yellow-400 font-medium">University • India</p>
+                                <p class="text-gray-500 text-sm">2022 - 2026 (Expected)</p>
+                                
+                                <p class="text-gray-300 text-sm mt-3 leading-relaxed">
+                                    Focusing on <strong class="text-white">Data Structures, Algorithms, Software Engineering, and AI</strong>. Active member of coding clubs and hackathon participant with multiple wins.
+                                </p>
+                                
+                                <!-- Achievement Badge -->
+                                <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-yellow-500/10 text-yellow-400 text-xs rounded-full border border-yellow-500/20 w-fit">
+                                    <i data-lucide="award" class="w-3 h-3"></i>
+                                    <span>GPA: 7.5/10</span>
+                                </div>
 
-                            <div class="flex flex-wrap gap-2 mt-3">
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">DSA</span>
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">DBMS</span>
-                                <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Hackathons</span>
+                                <div class="flex flex-wrap gap-2 mt-3">
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">DSA</span>
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">DBMS</span>
+                                    <span class="px-2 py-1 bg-white/5 rounded text-xs text-gray-400">Hackathons</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
-<style>
-    /* Timeline animation */
-    .timeline-item {
-        opacity: 0;
-        transform: translateX(-20px);
-        transition: all 0.5s ease;
-    }
-    
-    .timeline-item.visible {
-        opacity: 1;
-        transform: translateX(0);
-    }
-    
-    /* Stagger delay for items */
-    .timeline-item:nth-child(1) { transition-delay: 0.1s; }
-    .timeline-item:nth-child(2) { transition-delay: 0.2s; }
-    .timeline-item:nth-child(3) { transition-delay: 0.3s; }
-    .timeline-item:nth-child(4) { transition-delay: 0.4s; }
-    .timeline-item:nth-child(5) { transition-delay: 0.5s; }
-</style>
-
-<script>
-    // Scroll animation
-    document.addEventListener('DOMContentLoaded', () => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.timeline-item').forEach(item => {
-            observer.observe(item);
-        });
-    });
-</script>
+    </section>
 
     <!-- Projects Section -->
     <section id="projects" class="py-32 px-6 bg-white/5">
@@ -1483,7 +1504,6 @@
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
-                <!-- Projects content remains the same -->
                 <!-- Project 1: IndicSignAI -->
                 <article class="project-card group relative bg-gradient-to-b from-white/10 to-transparent rounded-2xl overflow-hidden border border-white/10" data-category="ai">
                     <div class="aspect-video bg-gray-800 relative overflow-hidden">
@@ -1561,47 +1581,47 @@
                 </article>
 
                 <!-- Project 3: Agri Dom -->
-<article class="project-card group relative bg-gradient-to-b from-white/10 to-transparent rounded-2xl overflow-hidden border border-white/10" data-category="ai fullstack">
-    <div class="aspect-video bg-gray-800 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-green-600/40 to-emerald-600/40"></div>
-        <div class="absolute inset-0 flex items-center justify-center">
-            <span class="text-6xl">🌾</span>
-        </div>
-        <div class="project-overlay absolute inset-0 flex items-end p-6">
-            <div>
-                <p class="text-sm text-green-400 mb-2 font-medium">AI-Powered Agriculture</p>
-                <h3 class="font-display text-2xl font-bold">Agri Dom 2095</h3>
-            </div>
-        </div>
-        <div class="absolute top-4 right-4 px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs flex items-center gap-1 border border-green-500/30 backdrop-blur-sm">
-            <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-            Live
-        </div>
-    </div>
-    <div class="p-6">
-        <p class="text-gray-400 text-sm mb-4 line-clamp-2">Smart agriculture platform with AI-powered crop monitoring, disease detection, and automated irrigation system. Features real-time weather integration and yield prediction.</p>
-        <div class="flex gap-2 flex-wrap mb-4">
-            <span class="text-xs px-3 py-1 bg-white/5 rounded-full border border-white/10">React</span>
-            <span class="text-xs px-3 py-1 bg-white/5 rounded-full border border-white/10">Node.js</span>
-            <span class="text-xs px-3 py-1 bg-white/5 rounded-full border border-white/10">TypeScript</span>
-            <span class="text-xs px-3 py-1 bg-white/5 rounded-full border border-white/10">Tailwind CSS</span>
-        </div>
-        <div class="flex gap-3 justify-between items-center pt-4 border-t border-white/10">
-            <div class="flex gap-3">
-                <a href="https://agri-dom-2095.vercel.app/" target="_blank" class="text-sm text-green-500 hover:text-green-400 flex items-center gap-1 font-medium">
-                    Live Demo <i data-lucide="external-link" class="w-4 h-4"></i>
-                </a>
-                <a href="https://github.com/Sadiqueahmed/agri-dom-2095" target="_blank" class="text-sm text-gray-400 hover:text-white flex items-center gap-1">
-                    Code <i data-lucide="github" class="w-4 h-4"></i>
-                </a>
-            </div>
-            <div class="flex gap-3 text-xs text-gray-500">
-                <span class="flex items-center gap-1"><i data-lucide="star" class="w-3 h-3"></i> 15</span>
-                <span class="flex items-center gap-1"><i data-lucide="git-fork" class="w-3 h-3"></i> 3</span>
-            </div>
-        </div>
-    </div>
-</article>
+                <article class="project-card group relative bg-gradient-to-b from-white/10 to-transparent rounded-2xl overflow-hidden border border-white/10" data-category="ai fullstack">
+                    <div class="aspect-video bg-gray-800 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-600/40 to-emerald-600/40"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-6xl">🌾</span>
+                        </div>
+                        <div class="project-overlay absolute inset-0 flex items-end p-6">
+                            <div>
+                                <p class="text-sm text-green-400 mb-2 font-medium">AI-Powered Agriculture</p>
+                                <h3 class="font-display text-2xl font-bold">Agri Dom 2095</h3>
+                            </div>
+                        </div>
+                        <div class="absolute top-4 right-4 px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs flex items-center gap-1 border border-green-500/30 backdrop-blur-sm">
+                            <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                            Live
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">Smart agriculture platform with AI-powered crop monitoring, disease detection, and automated irrigation system. Features real-time weather integration and yield prediction.</p>
+                        <div class="flex gap-2 flex-wrap mb-4">
+                            <span class="text-xs px-3 py-1 bg-white/5 rounded-full border border-white/10">React</span>
+                            <span class="text-xs px-3 py-1 bg-white/5 rounded-full border border-white/10">Node.js</span>
+                            <span class="text-xs px-3 py-1 bg-white/5 rounded-full border border-white/10">TypeScript</span>
+                            <span class="text-xs px-3 py-1 bg-white/5 rounded-full border border-white/10">Tailwind CSS</span>
+                        </div>
+                        <div class="flex gap-3 justify-between items-center pt-4 border-t border-white/10">
+                            <div class="flex gap-3">
+                                <a href="https://agri-dom-2095.vercel.app/" target="_blank" class="text-sm text-green-500 hover:text-green-400 flex items-center gap-1 font-medium">
+                                    Live Demo <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </a>
+                                <a href="https://github.com/Sadiqueahmed/agri-dom-2095" target="_blank" class="text-sm text-gray-400 hover:text-white flex items-center gap-1">
+                                    Code <i data-lucide="github" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                            <div class="flex gap-3 text-xs text-gray-500">
+                                <span class="flex items-center gap-1"><i data-lucide="star" class="w-3 h-3"></i> 15</span>
+                                <span class="flex items-center gap-1"><i data-lucide="git-fork" class="w-3 h-3"></i> 3</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
 
                 <!-- Project 4: AI Resume Analyser -->
                 <article class="project-card group relative bg-gradient-to-b from-white/10 to-transparent rounded-2xl overflow-hidden border border-white/10" data-category="ai fullstack">
@@ -1715,7 +1735,7 @@
         </div>
     </section>
 
-    <!-- Publications Section - ENHANCED -->
+    <!-- Publications Section -->
     <section id="publications" class="py-32 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
@@ -1858,191 +1878,191 @@
         </div>
     </section>
 
-    <!-- Blog Section - WITH ACTUAL MEDIUM POSTS -->
-<section id="blog" class="py-32 px-6 bg-white/5">
-    <div class="max-w-7xl mx-auto">
-        <div class="flex justify-between items-end mb-16">
-            <div>
-                <div class="inline-block px-4 py-2 border border-purple-500/30 rounded-full text-purple-400 text-sm tracking-widest mb-4">
-                    TECHNICAL BLOG
+    <!-- Blog Section -->
+    <section id="blog" class="py-32 px-6 bg-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <div class="inline-block px-4 py-2 border border-purple-500/30 rounded-full text-purple-400 text-sm tracking-widest mb-4">
+                        TECHNICAL BLOG
+                    </div>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold">Latest Articles</h2>
+                    <p class="text-gray-400 mt-2">Sharing knowledge on <a href="https://medium.com/@sadiqueahmed40" target="_blank" class="text-orange-500 hover:underline">Medium</a></p>
                 </div>
-                <h2 class="font-display text-4xl md:text-5xl font-bold">Latest Articles</h2>
-                <p class="text-gray-400 mt-2">Sharing knowledge on <a href="https://medium.com/@sadiqueahmed40" target="_blank" class="text-orange-500 hover:underline">Medium</a></p>
+                <a href="https://medium.com/@sadiqueahmed40" target="_blank" class="hidden md:flex items-center gap-2 px-6 py-3 bg-white/5 rounded-full border border-white/10 hover:border-orange-500 hover:text-orange-500 transition-all group">
+                    View all posts
+                    <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                </a>
             </div>
-            <a href="https://medium.com/@sadiqueahmed40" target="_blank" class="hidden md:flex items-center gap-2 px-6 py-3 bg-white/5 rounded-full border border-white/10 hover:border-orange-500 hover:text-orange-500 transition-all group">
-                View all posts
-                <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
-            </a>
+
+            <!-- Article 1: Java Performance -->
+            <article class="medium-card p-6 rounded-2xl mb-8 cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40/the-java-feature-everyones-using-wrong-and-it-s-killing-performance-c4758e5eae94', '_blank')">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/3 flex-shrink-0">
+                        <div class="medium-image-container h-48 md:h-full">
+                            <img src="https://miro.medium.com/v2/resize:fit:1400/1*M85VTv8Tl7aV_yq6nGTnaw.png" alt="Java Performance Article" class="medium-image" onerror="this.src='https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80'">
+                            <div class="medium-image-overlay">
+                                <span class="text-white text-sm font-medium">Read on Medium →</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 flex flex-col justify-center">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+                                <i data-lucide="medium" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-400">
+                                <span>Sadique Ahmed</span>
+                                <span>•</span>
+                                <span>Java Performance</span>
+                                <span>•</span>
+                                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 6 min read</span>
+                            </div>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold mb-4 hover:text-orange-500 transition-colors">
+                            The Java Feature Everyone's Using Wrong (And It's Killing Performance)
+                        </h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed">
+                            A deep dive into common Java performance pitfalls that developers overlook. Discover the hidden costs of popular features and learn optimization techniques that can dramatically improve your application's speed and efficiency.
+                        </p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Java</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Performance</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">JVM</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Optimization</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 2: Full Stack Developer Myth -->
+            <article class="medium-card p-6 rounded-2xl mb-8 cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40/the-full-stack-developer-myth-why-jack-of-all-trades-is-killing-your-startup-d545fed4ce05', '_blank')">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/3 flex-shrink-0">
+                        <div class="medium-image-container h-48 md:h-full">
+                            <img src="https://miro.medium.com/v2/resize:fit:1400/1*enEX6_JJn388UmRWqYFQlg.png" alt="Full Stack Developer Myth" class="medium-image" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80'">
+                            <div class="medium-image-overlay">
+                                <span class="text-white text-sm font-medium">Read on Medium →</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 flex flex-col justify-center">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+                                <i data-lucide="medium" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-400">
+                                <span>Sadique Ahmed</span>
+                                <span>•</span>
+                                <span>Startup Advice</span>
+                                <span>•</span>
+                                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 8 min read</span>
+                            </div>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold mb-4 hover:text-cyan-500 transition-colors">
+                            The Full-Stack Developer Myth: Why "Jack of All Trades" Is Killing Your Startup
+                        </h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed">
+                            Challenging the full-stack developer stereotype and exploring why specialization might be better for your startup's success. An honest look at the trade-offs between breadth and depth in software engineering teams.
+                        </p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Full Stack</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Startups</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Hiring</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Team Building</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 3: Supabase -->
+            <article class="medium-card p-6 rounded-2xl mb-8 cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40/supabase-the-open-source-firebase-alternative-thats-changing-the-game-76adac98f8ae', '_blank')">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/3 flex-shrink-0">
+                        <div class="medium-image-container h-48 md:h-full">
+                            <img src="https://miro.medium.com/v2/resize:fit:1400/1*eQtlb5VYpSNepJdB6gblow.png" alt="Supabase Article" class="medium-image" onerror="this.src='https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80'">
+                            <div class="medium-image-overlay">
+                                <span class="text-white text-sm font-medium">Read on Medium →</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 flex flex-col justify-center">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+                                <i data-lucide="medium" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-400">
+                                <span>Sadique Ahmed</span>
+                                <span>•</span>
+                                <span>Database</span>
+                                <span>•</span>
+                                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 7 min read</span>
+                            </div>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold mb-4 hover:text-green-500 transition-colors">
+                            Supabase: The Open-Source Firebase Alternative That's Changing the Game
+                        </h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed">
+                            Why developers are switching from Firebase to Supabase. Explore the benefits of open-source backend-as-a-service, PostgreSQL power, and how Supabase is reshaping modern application development with real-time capabilities.
+                        </p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Supabase</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Firebase</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">PostgreSQL</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Backend</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 4: IndicSignAI Journey -->
+            <article class="medium-card p-6 rounded-2xl cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40', '_blank')">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/3 flex-shrink-0">
+                        <div class="medium-image-container h-48 md:h-full bg-gradient-to-br from-green-600/40 to-emerald-600/40 flex items-center justify-center">
+                            <span class="text-6xl">🤟</span>
+                            <div class="medium-image-overlay">
+                                <span class="text-white text-sm font-medium">Read on Medium →</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 flex flex-col justify-center">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+                                <i data-lucide="medium" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-gray-400">
+                                <span>Sadique Ahmed</span>
+                                <span>•</span>
+                                <span>Open Source</span>
+                                <span>•</span>
+                                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 6 min read</span>
+                            </div>
+                        </div>
+                        <h3 class="font-display text-2xl font-bold mb-4 hover:text-green-500 transition-colors">
+                            My Journey with IndicSignAI: Building AI for Accessibility
+                        </h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed">
+                            Behind the scenes of contributing to an open-source AI project for sign language translation. Lessons learned, challenges faced, and the impact of accessible technology on the deaf and mute community.
+                        </p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">AI</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Open Source</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Accessibility</span>
+                            <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Computer Vision</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <div class="mt-12 text-center md:hidden">
+                <a href="https://medium.com/@sadiqueahmed40" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-white/5 rounded-full border border-white/10 hover:border-orange-500 transition-all">
+                    View all posts
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </a>
+            </div>
         </div>
-
-        <!-- Article 1: Java Performance -->
-        <article class="medium-card p-6 rounded-2xl mb-8 cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40/the-java-feature-everyones-using-wrong-and-it-s-killing-performance-c4758e5eae94', '_blank')">
-            <div class="flex flex-col md:flex-row gap-6">
-                <div class="md:w-1/3 flex-shrink-0">
-                    <div class="medium-image-container h-48 md:h-full">
-                        <img src="https://miro.medium.com/v2/resize:fit:1400/1*M85VTv8Tl7aV_yq6nGTnaw.png" alt="Java Performance Article" class="medium-image" onerror="this.src='https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80'">
-                        <div class="medium-image-overlay">
-                            <span class="text-white text-sm font-medium">Read on Medium →</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-2/3 flex flex-col justify-center">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center">
-                            <i data-lucide="medium" class="w-4 h-4 text-white"></i>
-                        </div>
-                        <div class="flex items-center gap-2 text-sm text-gray-400">
-                            <span>Sadique Ahmed</span>
-                            <span>•</span>
-                            <span>Java Performance</span>
-                            <span>•</span>
-                            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 6 min read</span>
-                        </div>
-                    </div>
-                    <h3 class="font-display text-2xl font-bold mb-4 hover:text-orange-500 transition-colors">
-                        The Java Feature Everyone's Using Wrong (And It's Killing Performance)
-                    </h3>
-                    <p class="text-gray-400 mb-4 leading-relaxed">
-                        A deep dive into common Java performance pitfalls that developers overlook. Discover the hidden costs of popular features and learn optimization techniques that can dramatically improve your application's speed and efficiency.
-                    </p>
-                    <div class="flex gap-2 flex-wrap">
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Java</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Performance</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">JVM</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Optimization</span>
-                    </div>
-                </div>
-            </div>
-        </article>
-
-        <!-- Article 2: Full Stack Developer Myth -->
-        <article class="medium-card p-6 rounded-2xl mb-8 cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40/the-full-stack-developer-myth-why-jack-of-all-trades-is-killing-your-startup-d545fed4ce05', '_blank')">
-            <div class="flex flex-col md:flex-row gap-6">
-                <div class="md:w-1/3 flex-shrink-0">
-                    <div class="medium-image-container h-48 md:h-full">
-                        <img src="https://miro.medium.com/v2/resize:fit:1400/1*enEX6_JJn388UmRWqYFQlg.png" alt="Full Stack Developer Myth" class="medium-image" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80'">
-                        <div class="medium-image-overlay">
-                            <span class="text-white text-sm font-medium">Read on Medium →</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-2/3 flex flex-col justify-center">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center">
-                            <i data-lucide="medium" class="w-4 h-4 text-white"></i>
-                        </div>
-                        <div class="flex items-center gap-2 text-sm text-gray-400">
-                            <span>Sadique Ahmed</span>
-                            <span>•</span>
-                            <span>Startup Advice</span>
-                            <span>•</span>
-                            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 8 min read</span>
-                        </div>
-                    </div>
-                    <h3 class="font-display text-2xl font-bold mb-4 hover:text-cyan-500 transition-colors">
-                        The Full-Stack Developer Myth: Why "Jack of All Trades" Is Killing Your Startup
-                    </h3>
-                    <p class="text-gray-400 mb-4 leading-relaxed">
-                        Challenging the full-stack developer stereotype and exploring why specialization might be better for your startup's success. An honest look at the trade-offs between breadth and depth in software engineering teams.
-                    </p>
-                    <div class="flex gap-2 flex-wrap">
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Full Stack</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Startups</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Hiring</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Team Building</span>
-                    </div>
-                </div>
-            </div>
-        </article>
-
-        <!-- Article 3: Supabase -->
-        <article class="medium-card p-6 rounded-2xl mb-8 cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40/supabase-the-open-source-firebase-alternative-thats-changing-the-game-76adac98f8ae', '_blank')">
-            <div class="flex flex-col md:flex-row gap-6">
-                <div class="md:w-1/3 flex-shrink-0">
-                    <div class="medium-image-container h-48 md:h-full">
-                        <img src="https://miro.medium.com/v2/resize:fit:1400/1*eQtlb5VYpSNepJdB6gblow.png" alt="Supabase Article" class="medium-image" onerror="this.src='https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80'">
-                        <div class="medium-image-overlay">
-                            <span class="text-white text-sm font-medium">Read on Medium →</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-2/3 flex flex-col justify-center">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center">
-                            <i data-lucide="medium" class="w-4 h-4 text-white"></i>
-                        </div>
-                        <div class="flex items-center gap-2 text-sm text-gray-400">
-                            <span>Sadique Ahmed</span>
-                            <span>•</span>
-                            <span>Database</span>
-                            <span>•</span>
-                            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 7 min read</span>
-                        </div>
-                    </div>
-                    <h3 class="font-display text-2xl font-bold mb-4 hover:text-green-500 transition-colors">
-                        Supabase: The Open-Source Firebase Alternative That's Changing the Game
-                    </h3>
-                    <p class="text-gray-400 mb-4 leading-relaxed">
-                        Why developers are switching from Firebase to Supabase. Explore the benefits of open-source backend-as-a-service, PostgreSQL power, and how Supabase is reshaping modern application development with real-time capabilities.
-                    </p>
-                    <div class="flex gap-2 flex-wrap">
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Supabase</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Firebase</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">PostgreSQL</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Backend</span>
-                    </div>
-                </div>
-            </div>
-        </article>
-
-        <!-- Article 4: IndicSignAI Journey (Keep this one) -->
-        <article class="medium-card p-6 rounded-2xl cursor-pointer" onclick="window.open('https://medium.com/@sadiqueahmed40', '_blank')">
-            <div class="flex flex-col md:flex-row gap-6">
-                <div class="md:w-1/3 flex-shrink-0">
-                    <div class="medium-image-container h-48 md:h-full bg-gradient-to-br from-green-600/40 to-emerald-600/40 flex items-center justify-center">
-                        <span class="text-6xl">🤟</span>
-                        <div class="medium-image-overlay">
-                            <span class="text-white text-sm font-medium">Read on Medium →</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-2/3 flex flex-col justify-center">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center">
-                            <i data-lucide="medium" class="w-4 h-4 text-white"></i>
-                        </div>
-                        <div class="flex items-center gap-2 text-sm text-gray-400">
-                            <span>Sadique Ahmed</span>
-                            <span>•</span>
-                            <span>Open Source</span>
-                            <span>•</span>
-                            <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> 6 min read</span>
-                        </div>
-                    </div>
-                    <h3 class="font-display text-2xl font-bold mb-4 hover:text-green-500 transition-colors">
-                        My Journey with IndicSignAI: Building AI for Accessibility
-                    </h3>
-                    <p class="text-gray-400 mb-4 leading-relaxed">
-                        Behind the scenes of contributing to an open-source AI project for sign language translation. Lessons learned, challenges faced, and the impact of accessible technology on the deaf and mute community.
-                    </p>
-                    <div class="flex gap-2 flex-wrap">
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">AI</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Open Source</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Accessibility</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs">Computer Vision</span>
-                    </div>
-                </div>
-            </div>
-        </article>
-
-        <div class="mt-12 text-center md:hidden">
-            <a href="https://medium.com/@sadiqueahmed40" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-white/5 rounded-full border border-white/10 hover:border-orange-500 transition-all">
-                View all posts
-                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-            </a>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- FAQ Section for Recruiters -->
     <section id="faq" class="py-32 px-6">
@@ -2451,155 +2471,40 @@
             delay: 1.3
         });
 
-        // 3D Carousel Logic
-        let currentSlide = 0;
-        const totalSlides = 5;
-        let autoRotateInterval;
-        const carouselTrack = document.getElementById('carouselTrack');
-        const carouselDots = document.getElementById('carouselDots').children;
-
-        function updateCarousel() {
-            const cards = document.querySelectorAll('.carousel-card');
-            
-            cards.forEach((card, index) => {
-                const offset = index - currentSlide;
-                const absOffset = Math.abs(offset);
-                
-                // Calculate 3D position
-                let translateX = offset * 60;
-                let translateZ = -absOffset * 150;
-                let rotateY = offset * -15;
-                let opacity = 1 - (absOffset * 0.3);
-                let scale = 1 - (absOffset * 0.15);
-                
-                // Hide cards that are too far
-                if (absOffset > 2) {
-                    opacity = 0;
-                    scale = 0.5;
-                }
-                
-                card.style.transform = `translateX(calc(-50% + ${translateX}%)) translateY(-50%) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`;
-                card.style.opacity = opacity;
-                card.style.zIndex = totalSlides - absOffset;
-                
-                // Add active class to center card
-                if (offset === 0) {
-                    card.classList.add('active');
-                } else {
-                    card.classList.remove('active');
+        // FIXED: Skill Bar Animation with Intersection Observer
+        const skillBars = document.querySelectorAll('.skill-bar-fill');
+        
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width + '%';
+                    skillObserver.unobserve(bar);
                 }
             });
-            
-            // Update dots
-            Array.from(carouselDots).forEach((dot, index) => {
-                if (index === currentSlide) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-        }
-
-        function moveCarousel(direction) {
-            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-            updateCarousel();
-            resetAutoRotate();
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
-            resetAutoRotate();
-        }
-
-        function resetAutoRotate() {
-            clearInterval(autoRotateInterval);
-            autoRotateInterval = setInterval(() => {
-                moveCarousel(1);
-            }, 5000);
-        }
-
-        // Initialize carousel
-        updateCarousel();
-        resetAutoRotate();
-
-        // Touch/Swipe support for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-        const carouselContainer = document.getElementById('experienceCarousel');
-
-        carouselContainer.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        carouselContainer.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-            
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    moveCarousel(1); // Swipe left - next
-                } else {
-                    moveCarousel(-1); // Swipe right - prev
-                }
-            }
-        }
-
-        // Pause auto-rotate on hover
-        carouselContainer.addEventListener('mouseenter', () => {
-            clearInterval(autoRotateInterval);
+        }, {
+            threshold: 0.5,
+            rootMargin: '0px'
         });
 
-        carouselContainer.addEventListener('mouseleave', () => {
-            resetAutoRotate();
-        });
-
-        // Scroll Animations
-        gsap.utils.toArray('.project-card').forEach((card, i) => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top bottom-=100',
-                    toggleActions: 'play none none reverse'
-                },
-                y: 100,
-                opacity: 0,
-                duration: 0.8,
-                delay: i * 0.1,
-                ease: 'power3.out'
-            });
-        });
-
-        gsap.utils.toArray('.achievement-card').forEach((card, i) => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top bottom-=50',
-                    toggleActions: 'play none none reverse'
-                },
-                scale: 0.8,
-                opacity: 0,
-                duration: 0.6,
-                delay: i * 0.1,
-                ease: 'back.out(1.7)'
-            });
-        });
-
-        // Animate skill bars
-        const skillBars = document.querySelectorAll('[data-width]');
         skillBars.forEach(bar => {
-            ScrollTrigger.create({
-                trigger: bar,
-                start: 'top bottom-=100',
-                onEnter: () => {
-                    bar.style.width = bar.getAttribute('data-width');
+            skillObserver.observe(bar);
+        });
+
+        // Timeline Animation
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    timelineObserver.unobserve(entry.target);
                 }
             });
+        }, { threshold: 0.1 });
+
+        timelineItems.forEach(item => {
+            timelineObserver.observe(item);
         });
 
         // Project Filtering
