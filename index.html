@@ -70,7 +70,9 @@
         html.light .experience-card,
         html.light .publication-card,
         html.light .medium-card,
-        html.light .testimonial-card {
+        html.light .testimonial-card,
+        html.light .certificate-card,
+        html.light .github-stat-card {
             background: linear-gradient(135deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.01) 100%);
             border-color: rgba(0,0,0,0.1);
         }
@@ -865,6 +867,383 @@
         .skill-bar-fill.database {
             background: linear-gradient(90deg, #22c55e, #10b981);
         }
+
+        /* GitHub Stats - NEW */
+        .github-stat-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .github-stat-card:hover {
+            border-color: rgba(255, 77, 0, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .github-contribution-graph {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.02);
+            padding: 16px;
+            overflow-x: auto;
+        }
+        
+        .github-contribution-graph img {
+            min-width: 750px;
+            width: 100%;
+        }
+
+        /* Certificates Horizontal Scroll - NEW */
+        .certificates-scroll {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 20px;
+            scrollbar-width: thin;
+            scrollbar-color: #FF4D00 #1a1a1a;
+        }
+        
+        .certificates-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .certificates-scroll::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            border-radius: 4px;
+        }
+        
+        .certificates-scroll::-webkit-scrollbar-thumb {
+            background: #FF4D00;
+            border-radius: 4px;
+        }
+        
+        html.light .certificates-scroll::-webkit-scrollbar-track {
+            background: #e0e0e0;
+        }
+
+        .certificate-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 77, 0, 0.5);
+            box-shadow: 0 20px 40px rgba(255, 77, 0, 0.1);
+        }
+
+        .certificates-scroll .certificate-card {
+            flex: 0 0 300px;
+            scroll-snap-align: start;
+        }
+        
+        @media (min-width: 768px) {
+            .certificates-scroll .certificate-card {
+                flex: 0 0 340px;
+            }
+        }
+
+        .certificate-image-container {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+
+        .certificate-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .certificate-card:hover .certificate-image {
+            transform: scale(1.05);
+        }
+
+        .certificate-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(10,10,10,0.9) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        html.light .certificate-overlay {
+            background: linear-gradient(180deg, transparent 0%, rgba(244,244,240,0.9) 100%);
+        }
+
+        .certificate-card:hover .certificate-overlay {
+            opacity: 1;
+        }
+
+        .certificate-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 6px 12px;
+            background: rgba(255,77,0,0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .certificate-verified {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 32px;
+            height: 32px;
+            background: rgba(34,197,94,0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .certificate-verified svg {
+            width: 18px;
+            height: 18px;
+            color: white;
+        }
+
+        /* Certificates Collapsible - NEW */
+        .certificates-collapsible {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .certificates-collapsible.expanded {
+            max-height: 3000px;
+        }
+
+        /* Certificate Modal */
+        .certificate-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .certificate-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .certificate-modal-content {
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .certificate-modal.active .certificate-modal-content {
+            transform: scale(1);
+        }
+
+        .certificate-modal-image {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+
+        .certificate-modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .certificate-modal-close:hover {
+            background: #FF4D00;
+            border-color: #FF4D00;
+        }
+
+        .certificate-modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .certificate-modal-btn {
+            padding: 12px 24px;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .certificate-modal-btn.primary {
+            background: #FF4D00;
+            color: white;
+        }
+
+        .certificate-modal-btn.primary:hover {
+            background: #ff6b35;
+        }
+
+        .certificate-modal-btn.secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .certificate-modal-btn.secondary:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Testimonial Modal - NEW */
+        .testimonial-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+        
+        .testimonial-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .testimonial-modal-content {
+            max-width: 500px;
+            width: 100%;
+            background: linear-gradient(135deg, rgba(20,20,20,0.98) 0%, rgba(10,10,10,0.99) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        html.light .testimonial-modal-content {
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(240,240,240,0.99) 100%);
+            border-color: rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-modal.active .testimonial-modal-content {
+            transform: scale(1);
+        }
+        
+        .testimonial-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .testimonial-modal-close:hover {
+            background: #FF4D00;
+            border-color: #FF4D00;
+        }
+        
+        .star-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            color: #4b5563;
+            transition: color 0.2s;
+        }
+        
+        .star-btn.active {
+            color: #eab308;
+        }
+        
+        .star-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+        
+        .star-btn.active svg {
+            fill: #eab308;
+            stroke: #eab308;
+        }
+
+        @media (max-width: 768px) {
+            .certificate-modal-close {
+                top: -40px;
+                right: 0;
+            }
+            .certificate-modal-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .certificate-modal-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .github-contribution-graph img {
+                min-width: 600px;
+            }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-orange-500 selection:text-white netlify-deploy-fix">
@@ -898,7 +1277,10 @@
             <a href="#experience" class="nav-link hover:text-orange-500 transition-colors">EXPERIENCE</a>
             <a href="#projects" class="nav-link hover:text-orange-500 transition-colors">PROJECTS</a>
             <a href="#publications" class="nav-link hover:text-orange-500 transition-colors">RESEARCH</a>
+            <a href="#github" class="nav-link hover:text-orange-500 transition-colors">GITHUB</a>
+            <a href="#certificates" class="nav-link hover:text-orange-500 transition-colors">CERTIFICATES</a>
             <a href="#blog" class="nav-link hover:text-orange-500 transition-colors">BLOG</a>
+            <a href="#testimonials" class="nav-link hover:text-orange-500 transition-colors">TESTIMONIALS</a>
             <a href="#faq" class="nav-link hover:text-orange-500 transition-colors">FAQ</a>
             <a href="#contact" class="nav-link hover:text-orange-500 transition-colors">CONTACT</a>
         </div>
@@ -920,7 +1302,10 @@
         <a href="#experience" onclick="toggleMenu()" class="hover:text-orange-500">EXPERIENCE</a>
         <a href="#projects" onclick="toggleMenu()" class="hover:text-orange-500">PROJECTS</a>
         <a href="#publications" onclick="toggleMenu()" class="hover:text-orange-500">RESEARCH</a>
+        <a href="#github" onclick="toggleMenu()" class="hover:text-orange-500">GITHUB</a>
+        <a href="#certificates" onclick="toggleMenu()" class="hover:text-orange-500">CERTIFICATES</a>
         <a href="#blog" onclick="toggleMenu()" class="hover:text-orange-500">BLOG</a>
+        <a href="#testimonials" onclick="toggleMenu()" class="hover:text-orange-500">TESTIMONIALS</a>
         <a href="#faq" onclick="toggleMenu()" class="hover:text-orange-500">FAQ</a>
         <a href="#contact" onclick="toggleMenu()" class="hover:text-orange-500">CONTACT</a>
         <a href="https://drive.google.com/file/d/1jJ_fr1QrKboW7_Mu8i-5yezUmOiDqGhO/view?usp=drive_link" target="_blank" class="px-6 py-3 bg-orange-500 rounded-full text-white text-lg flex items-center gap-2">
@@ -973,7 +1358,7 @@
                     </div>
                     <div class="w-px bg-white/10"></div>
                     <div>
-                        <span class="block text-2xl font-display font-bold text-white">6+</span>
+                        <span class="block text-2xl font-display font-bold text-white">7+</span>
                         <span class="text-gray-500">Projects</span>
                     </div>
                 </div>
@@ -1723,6 +2108,46 @@
                         </div>
                     </div>
                 </article>
+
+                <!-- Project 7: Lairik Pulse - NEW -->
+                <article class="project-card group relative bg-gradient-to-b from-white/10 to-transparent rounded-2xl overflow-hidden border border-white/10" data-category="fullstack">
+                    <div class="aspect-video bg-gray-800 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-red-600/40 to-orange-600/40"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-6xl">📰</span>
+                        </div>
+                        <div class="project-overlay absolute inset-0 flex items-end p-6">
+                            <div>
+                                <p class="text-sm text-red-400 mb-2 font-medium">Regional News Platform</p>
+                                <h3 class="font-display text-2xl font-bold">Lairik Pulse</h3>
+                            </div>
+                        </div>
+                        <div class="absolute top-4 right-4 px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs flex items-center gap-1 border border-green-500/30 backdrop-blur-sm">
+                            <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                            Active
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-400 text-sm mb-4 line-clamp-2">Regional news and content aggregator platform for Manipur delivering real-time updates, curated content, and community-driven stories.</p>
+                        <div class="flex gap-2 flex-wrap mb-4">
+                            <span class="text-xs px-3 py-1 bg-white/5 rounded-full border border-white/10">React</span>
+                            <span class="text-xs px-3 py-1 bg-white/5 rounded-full border border-white/10">Node.js</span>
+                            <span class="text-xs px-3 py-1 bg-white/5 rounded-full border border-white/10">Express</span>
+                            <span class="text-xs px-3 py-1 bg-white/5 rounded-full border border-white/10">MongoDB</span>
+                        </div>
+                        <div class="flex gap-3 justify-between items-center pt-4 border-t border-white/10">
+                            <div class="flex gap-3">
+                                <a href="https://github.com/Sadiqueahmed/Lairik-Pulse" target="_blank" class="text-sm text-orange-500 hover:text-orange-400 flex items-center gap-1 font-medium">
+                                    View Code <i data-lucide="github" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                            <div class="flex gap-3 text-xs text-gray-500">
+                                <span class="flex items-center gap-1"><i data-lucide="star" class="w-3 h-3"></i> 6</span>
+                                <span class="flex items-center gap-1"><i data-lucide="git-fork" class="w-3 h-3"></i> 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
             </div>
 
             <div class="mt-16 text-center">
@@ -1877,6 +2302,118 @@
             </div>
         </div>
     </section>
+
+    <!-- GitHub Stats Section - NEW -->
+    <section id="github" class="py-32 px-6 bg-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block px-4 py-2 border border-purple-500/30 rounded-full text-purple-400 text-sm tracking-widest mb-4">
+                    OPEN SOURCE ACTIVITY
+                </div>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">GitHub Stats</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Live contribution metrics and coding activity for <a href="https://github.com/Sadiqueahmed" target="_blank" class="text-orange-500 hover:underline">@Sadiqueahmed</a></p>
+            </div>
+
+            <!-- Contribution Graph -->
+            <div class="github-contribution-graph mb-8">
+                <img src="https://ghchart.rshah.org/FF4D00/Sadiqueahmed" alt="GitHub Contribution Graph for Sadiqueahmed" class="w-full rounded-xl" onerror="this.style.display='none'">
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="github-stat-card flex flex-col items-center">
+                    <img src="https://github-readme-stats.vercel.app/api?username=Sadiqueahmed&show_icons=true&theme=dark&hide_border=true&bg_color=0a0a0a&title_color=FF4D00&text_color=f4f4f0&icon_color=00F0FF" alt="Sadiqueahmed GitHub Stats" class="w-full rounded-xl" onerror="this.parentElement.innerHTML='<div class=\'text-gray-400 text-sm\'>Stats loading...</div>'">
+                </div>
+                <div class="github-stat-card flex flex-col items-center">
+                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=Sadiqueahmed&theme=dark&hide_border=true&background=0a0a0a&ring=FF4D00&fire=FF4D00&currStreakLabel=00F0FF" alt="Sadiqueahmed GitHub Streak" class="w-full rounded-xl" onerror="this.parentElement.innerHTML='<div class=\'text-gray-400 text-sm\'>Streak loading...</div>'">
+                </div>
+                <div class="github-stat-card flex flex-col items-center">
+                    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Sadiqueahmed&layout=compact&theme=dark&hide_border=true&bg_color=0a0a0a&title_color=FF4D00&text_color=f4f4f0" alt="Sadiqueahmed Top Languages" class="w-full rounded-xl" onerror="this.parentElement.innerHTML='<div class=\'text-gray-400 text-sm\'>Languages loading...</div>'">
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="https://github.com/Sadiqueahmed" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full hover:border-orange-500 hover:text-orange-500 transition-all">
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                    View GitHub Profile
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates & Achievements Section - UPDATED -->
+    <section id="certificates" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <div class="inline-block px-4 py-2 border border-yellow-500/30 rounded-full text-yellow-400 text-sm tracking-widest mb-4">
+                    CERTIFICATIONS & CREDENTIALS
+                </div>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Certificates & Achievements</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Professional certifications and verified credentials that validate my expertise</p>
+            </div>
+
+            <!-- Certificate Stats -->
+            <div class="research-stats max-w-3xl mx-auto mb-12">
+                <div class="stat-card">
+                    <div class="stat-number">6+</div>
+                    <p class="text-sm text-gray-400 mt-2">Certifications</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4+</div>
+                    <p class="text-sm text-gray-400 mt-2">Organizations</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <p class="text-sm text-gray-400 mt-2">Verified</p>
+                </div>
+            </div>
+
+            <!-- Horizontal Scroll Container -->
+            <div class="certificates-scroll mb-8" id="certificatesScroll">
+                <!-- Rendered via JS -->
+            </div>
+
+            <!-- View All Toggle -->
+            <div class="text-center mb-8">
+                <button id="certificatesToggle" class="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full hover:border-orange-500 hover:text-orange-500 transition-all group">
+                    <span id="certificatesToggleText">View All</span>
+                    <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300" id="certificatesToggleIcon"></i>
+                </button>
+            </div>
+
+            <!-- Collapsible Grid -->
+            <div class="certificates-collapsible" id="certificatesCollapsible">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="certificatesGrid">
+                    <!-- Rendered via JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificate Modal -->
+    <div class="certificate-modal" id="certificateModal" onclick="closeCertificateModal(event)">
+        <div class="certificate-modal-content" onclick="event.stopPropagation()">
+            <button class="certificate-modal-close" onclick="closeCertificateModal()">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <img src="" alt="Certificate" class="certificate-modal-image" id="modalCertificateImage">
+            <div class="certificate-modal-actions">
+                <a href="#" target="_blank" class="certificate-modal-btn primary" id="modalVerifyLink">
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                    Verify on Google Drive
+                </a>
+                <button class="certificate-modal-btn secondary" onclick="downloadCertificate()">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    Download
+                </button>
+            </div>
+            <div class="mt-4 text-center">
+                <h3 class="font-display text-xl font-bold" id="modalCertificateTitle"></h3>
+                <p class="text-gray-400 text-sm mt-1" id="modalCertificateIssuer"></p>
+                <div class="flex justify-center gap-2 mt-3 flex-wrap" id="modalCertificateSkills"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Blog Section -->
     <section id="blog" class="py-32 px-6 bg-white/5">
@@ -2064,6 +2601,78 @@
         </div>
     </section>
 
+    <!-- Testimonials Section - UPDATED with ID and Add Functionality -->
+    <section id="testimonials" class="py-32 px-6 bg-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block px-4 py-2 border border-green-500/30 rounded-full text-green-400 text-sm tracking-widest mb-4">
+                    RECOMMENDATIONS
+                </div>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">What People Say</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mb-8">Kind words from colleagues, mentors, and collaborators</p>
+                
+                <!-- Add Testimonial Button -->
+                <button onclick="openTestimonialModal()" class="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-all group">
+                    <i data-lucide="pen-line" class="w-4 h-4"></i>
+                    Write a Testimonial
+                </button>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8" id="testimonials-grid">
+                <!-- Rendered dynamically via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Modal - NEW -->
+    <div class="testimonial-modal" id="testimonialModal" onclick="closeTestimonialModal(event)">
+        <div class="testimonial-modal-content" onclick="event.stopPropagation()">
+            <button class="testimonial-modal-close" onclick="closeTestimonialModal()">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <h3 class="font-display text-2xl font-bold mb-6 text-center">Write a Testimonial</h3>
+            <form id="testimonialForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">Your Name</label>
+                    <input type="text" id="testimonialName" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-orange-500 focus:outline-none transition-colors text-white" placeholder="John Doe">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">Your Role / Company</label>
+                    <input type="text" id="testimonialRole" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-orange-500 focus:outline-none transition-colors text-white" placeholder="Software Engineer at Google">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">Rating</label>
+                    <div class="flex gap-2" id="starRating">
+                        <button type="button" class="star-btn active" data-rating="1">
+                            <svg viewBox="0 0 24 24" fill="#eab308" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </button>
+                        <button type="button" class="star-btn active" data-rating="2">
+                            <svg viewBox="0 0 24 24" fill="#eab308" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </button>
+                        <button type="button" class="star-btn active" data-rating="3">
+                            <svg viewBox="0 0 24 24" fill="#eab308" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </button>
+                        <button type="button" class="star-btn active" data-rating="4">
+                            <svg viewBox="0 0 24 24" fill="#eab308" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </button>
+                        <button type="button" class="star-btn active" data-rating="5">
+                            <svg viewBox="0 0 24 24" fill="#eab308" stroke="#eab308" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </button>
+                    </div>
+                    <input type="hidden" id="testimonialRating" value="5">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-2">Your Message</label>
+                    <textarea id="testimonialMessage" rows="4" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-orange-500 focus:outline-none transition-colors text-white resize-none" placeholder="Share your experience working with Sadique..."></textarea>
+                </div>
+                <button type="submit" class="w-full py-4 bg-orange-500 text-white rounded-lg font-medium hover:bg-orange-600 transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                    Submit Testimonial
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- FAQ Section for Recruiters -->
     <section id="faq" class="py-32 px-6">
         <div class="max-w-4xl mx-auto">
@@ -2211,101 +2820,6 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="py-32 px-6 bg-white/5">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <div class="inline-block px-4 py-2 border border-green-500/30 rounded-full text-green-400 text-sm tracking-widest mb-4">
-                    RECOMMENDATIONS
-                </div>
-                <h2 class="font-display text-4xl md:text-5xl font-bold">What People Say</h2>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Harsimran Singh -->
-                <div class="testimonial-card p-8 rounded-2xl relative">
-                    <i data-lucide="quote" class="w-10 h-10 text-orange-500/20 absolute top-6 right-6"></i>
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-xl font-bold">
-                            HS
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Harsimran Singh</h4>
-                            <p class="text-sm text-gray-400">Software Engineer | Open Source Contributor</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 leading-relaxed">"Sadique is one of the most dedicated developers I've worked with. His contributions to IndicSignAI were exceptional—he quickly grasped complex computer vision concepts and delivered production-ready code. His Java backend skills are particularly impressive."</p>
-                    <div class="flex gap-1 mt-4">
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                        <a href="https://github.com/harsimran44" target="_blank" class="text-xs text-gray-500 hover:text-orange-500 flex items-center gap-1">
-                            <i data-lucide="github" class="w-3 h-3"></i> github.com/harsimran44
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Praneet Gogoi -->
-                <div class="testimonial-card p-8 rounded-2xl relative">
-                    <i data-lucide="quote" class="w-10 h-10 text-cyan-500/20 absolute top-6 right-6"></i>
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-xl font-bold">
-                            PG
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Praneet Gogoi</h4>
-                            <p class="text-sm text-gray-400">Full Stack Developer | UI/UX Designer</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 leading-relaxed">"Working with Sadique on the Excursa project was a fantastic experience. He handled the entire backend architecture with Spring Boot, implementing microservices that scaled beautifully. His attention to security and performance optimization is commendable."</p>
-                    <div class="flex gap-1 mt-4">
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                        <a href="https://github.com/PraneetGogoi" target="_blank" class="text-xs text-gray-500 hover:text-cyan-500 flex items-center gap-1">
-                            <i data-lucide="github" class="w-3 h-3"></i> github.com/PraneetGogoi
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Samiul Hoque Chowdhury -->
-                <div class="testimonial-card p-8 rounded-2xl relative">
-                    <i data-lucide="quote" class="w-10 h-10 text-purple-500/20 absolute top-6 right-6"></i>
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-xl font-bold">
-                            SC
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Samiul Hoque Chowdhury</h4>
-                            <p class="text-sm text-gray-400">AI/ML Engineer | Data Scientist</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 leading-relaxed">"Sadique's ability to bridge backend development with AI integration is rare. He built the Audio Transcribe project with impressive efficiency, handling both the FastAPI backend and OpenAI integration seamlessly. A quick learner with great problem-solving skills."</p>
-                    <div class="flex gap-1 mt-4">
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                        <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-yellow-500"></i>
-                    </div>
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                        <a href="https://github.com/samiulhoquechowdhury" target="_blank" class="text-xs text-gray-500 hover:text-purple-500 flex items-center gap-1">
-                            <i data-lucide="github" class="w-3 h-3"></i> github.com/samiulhoquechowdhury
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section -->
     <section id="contact" class="py-32 px-6 bg-white/5 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"></div>
@@ -2324,19 +2838,19 @@
             <div class="grid md:grid-cols-3 gap-6 mb-16">
                 <a href="mailto:sadiqueahmed40@gmail.com" class="group p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-orange-500 hover:bg-orange-500/10 transition-all flex flex-col items-center gap-3">
                     <div class="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <i data-lucide="mail" class="w-6 h-6 text-orange-500"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF4D00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                     </div>
                     <span class="font-medium">sadiqueahmed40@gmail.com</span>
                 </a>
                 <a href="https://www.linkedin.com/in/sadique-ahmed-b2039524b" target="_blank" class="group p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-cyan-500 hover:bg-cyan-500/10 transition-all flex flex-col items-center gap-3">
                     <div class="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <i data-lucide="linkedin" class="w-6 h-6 text-cyan-400"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
                     </div>
                     <span class="font-medium">LinkedIn Profile</span>
                 </a>
                 <a href="https://github.com/Sadiqueahmed" target="_blank" class="group p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-purple-500 hover:bg-purple-500/10 transition-all flex flex-col items-center gap-3">
                     <div class="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <i data-lucide="github" class="w-6 h-6 text-purple-400"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                     </div>
                     <span class="font-medium">GitHub Profile</span>
                 </a>
@@ -2365,7 +2879,7 @@
                 </div>
                 <button type="submit" class="w-full py-4 bg-orange-500 text-white rounded-lg font-medium hover:bg-orange-600 transition-all flex items-center justify-center gap-2 group">
                     Send Message
-                    <i data-lucide="send" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 group-hover:translate-x-1 transition-transform"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
                 </button>
             </form>
 
@@ -2374,10 +2888,10 @@
                 <p>&copy; 2026 Sadique Ahmed. All rights reserved.</p>
                 <div class="flex gap-6">
                     <a href="https://drive.google.com/file/d/1jJ_fr1QrKboW7_Mu8i-5yezUmOiDqGhO/view?usp=drive_link" target="_blank" class="hover:text-white transition-colors flex items-center gap-1">
-                        <i data-lucide="file-text" class="w-4 h-4"></i> Resume
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg> Resume
                     </a>
                     <a href="https://medium.com/@sadiqueahmed40" target="_blank" class="hover:text-white transition-colors flex items-center gap-1">
-                        <i data-lucide="pen-tool" class="w-4 h-4"></i> Blog
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg> Blog
                     </a>
                 </div>
                 <p class="flex items-center gap-2">
@@ -2390,12 +2904,12 @@
 
     <!-- Toast Notification -->
     <div id="toast" class="fixed bottom-8 right-8 bg-white text-black px-6 py-4 rounded-lg shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 z-[10000] flex items-center gap-3">
-        <i data-lucide="check-circle" class="w-5 h-5 text-green-500"></i>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         <span id="toast-message">Message sent successfully!</span>
     </div>
 
     <script>
-        // Initialize Lucide icons
+        // Initialize Lucide icons for static content
         lucide.createIcons();
 
         // Register GSAP plugins
@@ -2432,7 +2946,7 @@
             }, { duration: 500, fill: "forwards" });
         });
 
-        const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-tag, input, textarea, .medium-card, .publication-card, .testimonial-card, .carousel-card, .faq-question');
+        const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-tag, input, textarea, .medium-card, .publication-card, .testimonial-card, .carousel-card, .faq-question, .certificate-card, .star-btn');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
@@ -2655,6 +3169,379 @@
             }).catch(error => {
                 showToast('Something went wrong. Please try again.');
             });
+        });
+
+        // ==================== CERTIFICATES SYSTEM - NEW ====================
+        const certificatesData = [
+            {
+                image: "data:image/jpeg;base64,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",
+                title: "Summer Internship",
+                issuer: "NIELIT • Guwahati",
+                date: "Jul 2025",
+                link: "https://drive.google.com/file/d/1Vlze-vV3iMLNrJUGt8FkdDbwHE1tbZ1G/view?usp=sharing",
+                skills: ["Python", "Scikit-learn", "Neural Networks"],
+                badge: "Internship",
+                badgeIcon: "award"
+            },
+            {
+                image: "data:image/png;base64,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",
+                title: "Machine Learning Internship",
+                issuer: "NIELIT • Guwahati",
+                date: "Jul 2024",
+                link: "https://drive.google.com/file/d/YOUR_NIELIT_WEB_CERT_ID/view?usp=sharing",
+                skills: ["HTML/CSS", "JavaScript", "React"],
+                badge: "Internship",
+                badgeIcon: "award"
+            },
+            {
+                image: "data:image/png;base64,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",
+                title: "Summer Internship",
+                issuer: "NIT Silchar",
+                date: "Jul 2024",
+                link: "https://drive.google.com/file/d/YOUR_NIT_CERT_ID/view?usp=sharing",
+                skills: ["Full Stack", "React", "Node.js"],
+                badge: "Internship",
+                badgeIcon: "award"
+            },
+            {
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTydxIr0VTPKD5XwXdRrMvbuggignN_fo4P5I3Zevr0kg&s",
+                title: "Web Development Team",
+                issuer: "SH1ELD Tech • Gangtok",
+                date: "Sep 2024",
+                link: "https://drive.google.com/file/d/YOUR_SH1ELD_CERT_ID/view?usp=sharing",
+                skills: ["Bootstrap", "GitHub", "Jira"],
+                badge: "Professional",
+                badgeIcon: "briefcase"
+            },
+            {
+                image: "data:image/jpeg;base64,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",
+                title: "Internship",
+                issuer: "Codveda",
+                date: "April 2026",
+                link: "https://drive.google.com/file/d/1PAcWLpaSW5uVZxMKvbwPXdHlxyIIPOWE/view?usp=drive_link",
+                skills: ["Full Stack", "React", "Node.js"],
+                badge: "Internship",
+                badgeIcon: "award"
+            },
+            {
+                image: "data:image/png;base64,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",
+                title: "Internship",
+                issuer: "Q-Skill",
+                date: "April 2026",
+                link: "https://drive.google.com/file/d/1CEN29bfuX-zJlelRX6ocCdXG-SFyNT5l/view?usp=drive_link",
+                skills: ["Full Stack", "React", "Node.js"],
+                badge: "Internship",
+                badgeIcon: "award"
+            },
+            {
+                image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80",
+                title: "Hackathon Winner",
+                issuer: "Tech Community",
+                date: "2024",
+                link: "https://drive.google.com/file/d/YOUR_HACKATHON_CERT_ID/view?usp=sharing",
+                skills: ["Problem Solving", "Teamwork", "Innovation"],
+                badge: "Winner",
+                badgeIcon: "trophy"
+            },
+            {
+                image: "data:image/png;base64,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",
+                title: "Full Stack Web-Development Bootcamp",
+                issuer: "Udemy",
+                date: "2024",
+                link: "https://drive.google.com/file/d/1-6c6jEQqAw2dXpUDI9EbRaobLCA9Bxiy/view?usp=drive_link",
+                skills: ["React", "Node.js", "Express", "MongoDB", "JavaScript", "HTML", "CSS", "Git", "REST APIs"],
+                badge: "Course",
+                badgeIcon: "graduation-cap"
+            },
+            {
+                image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80",
+                title: "Full Stack Specialization",
+                issuer: "Coursera",
+                date: "2024",
+                link: "https://drive.google.com/file/d/YOUR_COURSE_CERT_ID/view?usp=sharing",
+                skills: ["React", "Node.js", "MongoDB"],
+                badge: "Course",
+                badgeIcon: "graduation-cap"
+            }
+        ];
+
+        function createCertificateCard(cert, isHorizontal) {
+            const skillsTags = cert.skills.map(s => `<span class="text-xs px-2 py-1 bg-white/5 rounded border border-white/10">${s}</span>`).join('');
+            const widthClass = isHorizontal ? 'flex-shrink-0 w-[300px] md:w-[340px]' : '';
+            return `
+                <div class="certificate-card ${widthClass} rounded-2xl overflow-hidden border border-white/10" 
+                     onclick="openCertificateModal('${cert.image}', '${cert.title}', '${cert.issuer}', '${cert.date}', '${cert.link}', '${cert.skills.join(',')}')">
+                    <div class="certificate-image-container relative aspect-[4/3] overflow-hidden">
+                        <img src="${cert.image}" alt="${cert.title}" class="certificate-image w-full h-full object-cover transition-transform duration-500">
+                        <div class="certificate-verified absolute top-3 left-3 w-8 h-8 bg-green-500/90 backdrop-blur rounded-full flex items-center justify-center z-10">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
+                        </div>
+                        <div class="certificate-badge absolute top-3 right-3 px-3 py-1.5 bg-orange-500/90 backdrop-blur rounded-full text-xs font-semibold text-white z-10 flex items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                            ${cert.badge}
+                        </div>
+                        <div class="certificate-overlay absolute inset-0 bg-gradient-to-t from-black/90 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                            <div class="text-white">
+                                <p class="text-sm font-medium">Click to view details</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-display text-base font-bold mb-1">${cert.title}</h3>
+                        <p class="text-sm text-gray-400 mb-3">${cert.issuer}</p>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            ${skillsTags}
+                        </div>
+                        <div class="flex items-center justify-between pt-3 border-t border-white/10">
+                            <span class="text-xs text-gray-500 flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                                ${cert.date}
+                            </span>
+                            <span class="text-xs text-green-400 flex items-center gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                Verified
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderCertificates() {
+            const scrollContainer = document.getElementById('certificatesScroll');
+            const gridContainer = document.getElementById('certificatesGrid');
+            
+            // Horizontal scroll: first 4
+            scrollContainer.innerHTML = certificatesData.slice(0, 4).map(cert => createCertificateCard(cert, true)).join('');
+            
+            // Grid: all
+            gridContainer.innerHTML = certificatesData.map(cert => createCertificateCard(cert, false)).join('');
+        }
+
+        renderCertificates();
+
+        // Certificates Toggle
+        document.getElementById('certificatesToggle').addEventListener('click', function() {
+            const collapsible = document.getElementById('certificatesCollapsible');
+            const text = document.getElementById('certificatesToggleText');
+            const icon = document.getElementById('certificatesToggleIcon');
+            
+            if (collapsible.classList.contains('expanded')) {
+                collapsible.classList.remove('expanded');
+                text.textContent = 'View All';
+                icon.style.transform = 'rotate(0deg)';
+                setTimeout(() => {
+                    document.getElementById('certificates').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            } else {
+                collapsible.classList.add('expanded');
+                text.textContent = 'Show Less';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        });
+
+        // Certificate Modal
+        let currentCertificateLink = '';
+
+        function openCertificateModal(image, title, issuer, date, link, skillsStr) {
+            const modal = document.getElementById('certificateModal');
+            document.getElementById('modalCertificateImage').src = image;
+            document.getElementById('modalCertificateTitle').textContent = title;
+            document.getElementById('modalCertificateIssuer').textContent = issuer + ' • ' + date;
+            document.getElementById('modalVerifyLink').href = link;
+            currentCertificateLink = link;
+            
+            const skillsContainer = document.getElementById('modalCertificateSkills');
+            skillsContainer.innerHTML = '';
+            if (skillsStr) {
+                skillsStr.split(',').forEach(skill => {
+                    const tag = document.createElement('span');
+                    tag.className = 'text-xs px-3 py-1 bg-white/5 rounded-full border border-white/10';
+                    tag.textContent = skill.trim();
+                    skillsContainer.appendChild(tag);
+                });
+            }
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCertificateModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            const modal = document.getElementById('certificateModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function downloadCertificate() {
+            if (currentCertificateLink) {
+                window.open(currentCertificateLink, '_blank');
+            }
+        }
+
+        // ==================== TESTIMONIALS SYSTEM - NEW ====================
+        const defaultTestimonials = [
+            {
+                name: "Harsimran Singh",
+                role: "Software Engineer | Open Source Contributor",
+                initials: "HS",
+                gradient: "from-orange-500 to-red-600",
+                text: "Sadique is one of the most dedicated developers I've worked with. His contributions to IndicSignAI were exceptional—he quickly grasped complex computer vision concepts and delivered production-ready code. His Java backend skills are particularly impressive.",
+                rating: 5,
+                github: "harsimran44",
+                githubColor: "hover:text-orange-500"
+            },
+            {
+                name: "Praneet Gogoi",
+                role: "Full Stack Developer | UI/UX Designer",
+                initials: "PG",
+                gradient: "from-cyan-500 to-blue-600",
+                text: "Working with Sadique on the Excursa project was a fantastic experience. He handled the entire backend architecture with Spring Boot, implementing microservices that scaled beautifully. His attention to security and performance optimization is commendable.",
+                rating: 5,
+                github: "PraneetGogoi",
+                githubColor: "hover:text-cyan-500"
+            },
+            {
+                name: "Samiul Hoque Chowdhury",
+                role: "AI/ML Engineer | Data Scientist",
+                initials: "SC",
+                gradient: "from-purple-500 to-pink-600",
+                text: "Sadique's ability to bridge backend development with AI integration is rare. He built the Audio Transcribe project with impressive efficiency, handling both the FastAPI backend and OpenAI integration seamlessly. A quick learner with great problem-solving skills.",
+                rating: 5,
+                github: "samiulhoquechowdhury",
+                githubColor: "hover:text-purple-500"
+            }
+        ];
+
+        function getAllTestimonials() {
+            const stored = localStorage.getItem('sadique_testimonials');
+            const custom = stored ? JSON.parse(stored) : [];
+            return [...defaultTestimonials, ...custom];
+        }
+
+        function renderTestimonials() {
+            const grid = document.getElementById('testimonials-grid');
+            const all = getAllTestimonials();
+            
+            grid.innerHTML = all.map(t => {
+                const stars = Array(5).fill(0).map((_, si) => {
+                    const filled = si < t.rating;
+                    return `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="${filled ? '#eab308' : 'none'}" stroke="${filled ? '#eab308' : '#4b5563'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+                }).join('');
+                
+                const githubLink = t.github ? `
+                    <div class="mt-4 pt-4 border-t border-white/10">
+                        <a href="https://github.com/${t.github}" target="_blank" class="text-xs text-gray-500 ${t.githubColor || 'hover:text-orange-500'} flex items-center gap-1 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                            github.com/${t.github}
+                        </a>
+                    </div>
+                ` : '';
+                
+                return `
+                    <div class="testimonial-card p-8 rounded-2xl relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="absolute top-6 right-6 text-orange-500/20"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></svg>
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br ${t.gradient} flex items-center justify-center text-xl font-bold text-white">
+                                ${t.initials}
+                            </div>
+                            <div>
+                                <h4 class="font-bold">${t.name}</h4>
+                                <p class="text-sm text-gray-400">${t.role}</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 leading-relaxed mb-4">"${t.text}"</p>
+                        <div class="flex gap-1">
+                            ${stars}
+                        </div>
+                        ${githubLink}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        renderTestimonials();
+
+        // Testimonial Modal Functions
+        function openTestimonialModal() {
+            document.getElementById('testimonialModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTestimonialModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            document.getElementById('testimonialModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Star Rating
+        let selectedRating = 5;
+        const starBtns = document.querySelectorAll('.star-btn');
+        
+        function updateStarDisplay() {
+            starBtns.forEach(btn => {
+                const rating = parseInt(btn.getAttribute('data-rating'));
+                const svg = btn.querySelector('svg');
+                if (rating <= selectedRating) {
+                    btn.classList.add('active');
+                    svg.setAttribute('fill', '#eab308');
+                    svg.setAttribute('stroke', '#eab308');
+                } else {
+                    btn.classList.remove('active');
+                    svg.setAttribute('fill', 'none');
+                    svg.setAttribute('stroke', '#4b5563');
+                }
+            });
+        }
+
+        starBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                selectedRating = parseInt(btn.getAttribute('data-rating'));
+                document.getElementById('testimonialRating').value = selectedRating;
+                updateStarDisplay();
+            });
+        });
+
+        // Testimonial Form Submission
+        document.getElementById('testimonialForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('testimonialName').value;
+            const role = document.getElementById('testimonialRole').value;
+            const text = document.getElementById('testimonialMessage').value;
+            const rating = parseInt(document.getElementById('testimonialRating').value);
+            
+            const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+            
+            const newTestimonial = {
+                name,
+                role,
+                text,
+                rating,
+                initials,
+                gradient: "from-green-500 to-emerald-600",
+                github: "",
+                githubColor: ""
+            };
+            
+            const stored = JSON.parse(localStorage.getItem('sadique_testimonials') || '[]');
+            stored.push(newTestimonial);
+            localStorage.setItem('sadique_testimonials', JSON.stringify(stored));
+            
+            renderTestimonials();
+            closeTestimonialModal();
+            showToast('Thank you for your testimonial!');
+            this.reset();
+            selectedRating = 5;
+            updateStarDisplay();
+        });
+
+        // Close modals on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeCertificateModal();
+                closeTestimonialModal();
+            }
         });
     </script>
 </body>
