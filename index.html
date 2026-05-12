@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="description" content="Sadique Ahmed - Full Stack Developer & CS Student | Java, Spring Boot, React, AI/ML | Open Source Contributor">
     <meta name="keywords" content="Sadique Ahmed, Full Stack Developer, Java, Spring Boot, React, AI, IndicSignAI, Software Engineer">
     <meta property="og:title" content="Sadique Ahmed | Full Stack Developer">
@@ -36,17 +36,17 @@
             --dark: #0a0a0a;
             --light: #f4f4f0;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         html {
             scroll-behavior: smooth;
         }
-        
+
         body {
             font-family: 'Space Grotesk', sans-serif;
             background: var(--dark);
@@ -63,7 +63,6 @@
 
         html.light .grain {
             opacity: 0.02;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
         html.light .achievement-card,
@@ -107,11 +106,19 @@
         html.light .nav-link::after {
             background: var(--primary);
         }
-        
+
+        html.light .certificate-modal {
+            background: rgba(0,0,0,0.85);
+        }
+
+        html.light .testimonial-modal {
+            background: rgba(0,0,0,0.85);
+        }
+
         .font-display {
             font-family: 'Syne', sans-serif;
         }
-        
+
         .grain {
             position: fixed;
             top: 0;
@@ -123,7 +130,7 @@
             opacity: 0.03;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
-        
+
         .cursor-dot, .cursor-outline {
             position: fixed;
             top: 0;
@@ -133,27 +140,27 @@
             z-index: 9999;
             pointer-events: none;
         }
-        
+
         .cursor-dot {
             width: 8px;
             height: 8px;
             background: var(--primary);
         }
-        
+
         .cursor-outline {
             width: 40px;
             height: 40px;
             border: 1px solid var(--primary);
             transition: width 0.2s, height 0.2s, background-color 0.2s;
         }
-        
+
         .cursor-outline.hover {
             width: 80px;
             height: 80px;
             background: rgba(255, 77, 0, 0.1);
             border-color: transparent;
         }
-        
+
         .spotlight {
             background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 77, 0, 0.15) 0%, transparent 50%);
             position: fixed;
@@ -165,19 +172,19 @@
         html.light .spotlight {
             background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 77, 0, 0.08) 0%, transparent 50%);
         }
-        
+
         .project-card {
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        
+
         .project-card:hover {
             transform: translateY(-10px);
         }
-        
+
         .project-card:hover .project-overlay {
             opacity: 1;
         }
-        
+
         .project-overlay {
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -187,28 +194,28 @@
         html.light .project-overlay {
             background: linear-gradient(180deg, transparent 0%, rgba(244,244,240,0.95) 100%);
         }
-        
+
         .skill-tag {
             transition: all 0.3s ease;
         }
-        
+
         .skill-tag:hover {
             background: var(--primary);
             color: white;
             transform: translateY(-2px);
         }
-        
+
         .achievement-card {
             background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
         }
-        
+
         .nav-link {
             position: relative;
             overflow: hidden;
         }
-        
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -220,27 +227,27 @@
             transform: translateX(-100%);
             transition: transform 0.3s ease;
         }
-        
+
         .nav-link:hover::after {
             transform: translateX(0);
         }
-        
+
         .gradient-text {
             background: linear-gradient(135deg, #FF4D00 0%, #00F0FF 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         .status-badge {
             animation: pulse 2s infinite;
         }
-        
+
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
         }
-        
+
         .carousel-container {
             perspective: 1000px;
             height: 500px;
@@ -458,6 +465,10 @@
             font-size: 1.1rem;
             font-weight: 500;
             transition: color 0.3s ease;
+            background: none;
+            border: none;
+            color: inherit;
+            cursor: pointer;
         }
 
         .faq-question:hover {
@@ -608,17 +619,17 @@
             background: linear-gradient(135deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.01) 100%);
             border-color: rgba(0,0,0,0.1);
         }
-        
+
         .testimonial-card:hover {
             border-color: rgba(255, 77, 0, 0.5);
             transform: translateY(-5px);
         }
-        
+
         .blog-card {
             position: relative;
             overflow: hidden;
         }
-        
+
         .blog-card::before {
             content: '';
             position: absolute;
@@ -630,7 +641,7 @@
         html.light .blog-card::before {
             background: linear-gradient(to top, rgba(244,244,240,0.9), transparent);
         }
-        
+
         .loader {
             position: fixed;
             inset: 0;
@@ -645,12 +656,12 @@
         html.light .loader {
             background: #f4f4f0;
         }
-        
+
         .loader.hidden {
             opacity: 0;
             visibility: hidden;
         }
-        
+
         .loader-text {
             font-family: 'Syne', sans-serif;
             font-size: 2rem;
@@ -671,7 +682,7 @@
             background: linear-gradient(135deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.01) 100%);
             border-color: rgba(0,0,0,0.1);
         }
-        
+
         .publication-card:hover {
             border-color: rgba(0, 240, 255, 0.5);
             transform: translateY(-5px);
@@ -690,7 +701,7 @@
             background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,240,240,0.9) 100%);
             border-color: rgba(0,0,0,0.1);
         }
-        
+
         .medium-card::before {
             content: '';
             position: absolute;
@@ -702,11 +713,11 @@
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
-        
+
         .medium-card:hover::before {
             transform: scaleX(1);
         }
-        
+
         .medium-card:hover {
             transform: translateY(-5px);
             border-color: rgba(255, 77, 0, 0.3);
@@ -717,7 +728,7 @@
             overflow: hidden;
             background: linear-gradient(135deg, #FF4D00 0%, #ff6b35 100%);
         }
-        
+
         .resume-btn::before {
             content: '';
             position: absolute;
@@ -728,7 +739,7 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             transition: left 0.5s;
         }
-        
+
         .resume-btn:hover::before {
             left: 100%;
         }
@@ -801,19 +812,19 @@
             transform: translateX(-20px);
             transition: all 0.5s ease;
         }
-        
+
         .timeline-item.visible {
             opacity: 1;
             transform: translateX(0);
         }
-        
+
         .timeline-item:nth-child(1) { transition-delay: 0.1s; }
         .timeline-item:nth-child(2) { transition-delay: 0.2s; }
         .timeline-item:nth-child(3) { transition-delay: 0.3s; }
         .timeline-item:nth-child(4) { transition-delay: 0.4s; }
         .timeline-item:nth-child(5) { transition-delay: 0.5s; }
 
-        /* Skill Bar Styles - FIXED */
+        /* Skill Bar Styles */
         .skill-bar-container {
             width: 100%;
             background: rgba(255,255,255,0.1);
@@ -868,7 +879,7 @@
             background: linear-gradient(90deg, #22c55e, #10b981);
         }
 
-        /* GitHub Stats - NEW */
+        /* GitHub Stats */
         .github-stat-card {
             background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
             border: 1px solid rgba(255,255,255,0.1);
@@ -876,12 +887,12 @@
             padding: 16px;
             transition: all 0.3s ease;
         }
-        
+
         .github-stat-card:hover {
             border-color: rgba(255, 77, 0, 0.3);
             transform: translateY(-3px);
         }
-        
+
         .github-contribution-graph {
             width: 100%;
             border-radius: 12px;
@@ -890,13 +901,13 @@
             padding: 16px;
             overflow-x: auto;
         }
-        
+
         .github-contribution-graph img {
             min-width: 750px;
             width: 100%;
         }
 
-        /* Certificates Horizontal Scroll - NEW */
+        /* Certificates Horizontal Scroll */
         .certificates-scroll {
             display: flex;
             gap: 24px;
@@ -906,21 +917,21 @@
             scrollbar-width: thin;
             scrollbar-color: #FF4D00 #1a1a1a;
         }
-        
+
         .certificates-scroll::-webkit-scrollbar {
             height: 8px;
         }
-        
+
         .certificates-scroll::-webkit-scrollbar-track {
             background: #1a1a1a;
             border-radius: 4px;
         }
-        
+
         .certificates-scroll::-webkit-scrollbar-thumb {
             background: #FF4D00;
             border-radius: 4px;
         }
-        
+
         html.light .certificates-scroll::-webkit-scrollbar-track {
             background: #e0e0e0;
         }
@@ -944,7 +955,7 @@
             flex: 0 0 300px;
             scroll-snap-align: start;
         }
-        
+
         @media (min-width: 768px) {
             .certificates-scroll .certificate-card {
                 flex: 0 0 340px;
@@ -1025,13 +1036,12 @@
             color: white;
         }
 
-        /* Certificates Collapsible - NEW */
         .certificates-collapsible {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.8s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        
+
         .certificates-collapsible.expanded {
             max-height: 3000px;
         }
@@ -1060,9 +1070,20 @@
         .certificate-modal-content {
             max-width: 900px;
             width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
             position: relative;
             transform: scale(0.9);
             transition: transform 0.3s ease;
+            background: linear-gradient(135deg, rgba(20,20,20,0.98) 0%, rgba(10,10,10,0.99) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 40px;
+        }
+
+        html.light .certificate-modal-content {
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(240,240,240,0.99) 100%);
+            border-color: rgba(0,0,0,0.1);
         }
 
         .certificate-modal.active .certificate-modal-content {
@@ -1073,14 +1094,17 @@
             width: 100%;
             border-radius: 16px;
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            max-height: 60vh;
+            object-fit: contain;
+            background: rgba(255,255,255,0.05);
         }
 
         .certificate-modal-close {
             position: absolute;
-            top: -50px;
-            right: 0;
-            width: 40px;
-            height: 40px;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: rgba(255,255,255,0.1);
             border: 1px solid rgba(255,255,255,0.2);
@@ -1090,6 +1114,7 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            z-index: 10;
         }
 
         .certificate-modal-close:hover {
@@ -1100,19 +1125,22 @@
         .certificate-modal-actions {
             display: flex;
             gap: 12px;
-            margin-top: 20px;
+            margin-top: 24px;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .certificate-modal-btn {
-            padding: 12px 24px;
+            padding: 12px 28px;
             border-radius: 9999px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 500;
             display: flex;
             align-items: center;
             gap: 8px;
             transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
         }
 
         .certificate-modal-btn.primary {
@@ -1122,6 +1150,7 @@
 
         .certificate-modal-btn.primary:hover {
             background: #ff6b35;
+            transform: translateY(-2px);
         }
 
         .certificate-modal-btn.secondary {
@@ -1130,11 +1159,21 @@
             border: 1px solid rgba(255,255,255,0.2);
         }
 
+        html.light .certificate-modal-btn.secondary {
+            background: rgba(0,0,0,0.05);
+            color: #0a0a0a;
+            border: 1px solid rgba(0,0,0,0.2);
+        }
+
         .certificate-modal-btn.secondary:hover {
             background: rgba(255,255,255,0.2);
         }
 
-        /* Testimonial Modal - NEW */
+        html.light .certificate-modal-btn.secondary:hover {
+            background: rgba(0,0,0,0.1);
+        }
+
+        /* Testimonial Modal */
         .testimonial-modal {
             position: fixed;
             inset: 0;
@@ -1149,12 +1188,12 @@
             transition: all 0.3s ease;
             padding: 20px;
         }
-        
+
         .testimonial-modal.active {
             opacity: 1;
             visibility: visible;
         }
-        
+
         .testimonial-modal-content {
             max-width: 500px;
             width: 100%;
@@ -1168,16 +1207,16 @@
             max-height: 90vh;
             overflow-y: auto;
         }
-        
+
         html.light .testimonial-modal-content {
             background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(240,240,240,0.99) 100%);
             border-color: rgba(0,0,0,0.1);
         }
-        
+
         .testimonial-modal.active .testimonial-modal-content {
             transform: scale(1);
         }
-        
+
         .testimonial-modal-close {
             position: absolute;
             top: 20px;
@@ -1195,12 +1234,12 @@
             transition: all 0.3s ease;
             z-index: 10;
         }
-        
+
         .testimonial-modal-close:hover {
             background: #FF4D00;
             border-color: #FF4D00;
         }
-        
+
         .star-btn {
             background: none;
             border: none;
@@ -1209,11 +1248,11 @@
             color: #4b5563;
             transition: color 0.2s;
         }
-        
+
         .star-btn.active {
             color: #eab308;
         }
-        
+
         .star-btn svg {
             width: 28px;
             height: 28px;
@@ -1221,30 +1260,337 @@
             stroke: currentColor;
             stroke-width: 2;
         }
-        
+
         .star-btn.active svg {
             fill: #eab308;
             stroke: #eab308;
         }
 
+        /* ===== RESPONSIVE FIXES ===== */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            .hero-code-block {
+                display: none !important;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
         @media (max-width: 768px) {
-            .certificate-modal-close {
-                top: -40px;
-                right: 0;
+            .hero-title {
+                font-size: 3rem !important;
+            }
+            .hero-subtitle {
+                font-size: 1.1rem !important;
+            }
+            .hero-cta {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .hero-cta a {
+                justify-content: center;
+            }
+            .social-links-row {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .social-links-row a {
+                width: 44px;
+                height: 44px;
+            }
+            .timeline-item {
+                padding-left: 3.5rem !important;
+            }
+            .research-stats {
+                grid-template-columns: 1fr;
+            }
+            .github-contribution-graph img {
+                min-width: 100%;
+            }
+            .certificate-modal-content {
+                padding: 20px;
+                border-radius: 16px;
+            }
+            .certificate-modal-image {
+                max-height: 50vh;
+            }
+            .testimonial-modal-content {
+                padding: 24px;
+            }
+            .carousel-container {
+                height: auto;
+                min-height: 400px;
+            }
+            .carousel-card {
+                max-width: 95%;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2.5rem !important;
+            }
+            .section-title {
+                font-size: 2rem !important;
+            }
+            .stat-number {
+                font-size: 1.75rem;
             }
             .certificate-modal-actions {
                 flex-direction: column;
-                align-items: center;
             }
             .certificate-modal-btn {
                 width: 100%;
                 justify-content: center;
             }
-            .github-contribution-graph img {
-                min-width: 600px;
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem !important;
+            }
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero-stats .w-px {
+                display: none;
+            }
+            .timeline-item {
+                padding-left: 3rem !important;
+            }
+            .timeline-item .absolute {
+                width: 2.5rem !important;
+                height: 2.5rem !important;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) {
+            .cursor-dot, .cursor-outline {
+                display: none !important;
+            }
+            .project-overlay {
+                opacity: 1;
+                background: linear-gradient(180deg, transparent 40%, rgba(10,10,10,0.9) 100%);
+            }
+            html.light .project-overlay {
+                background: linear-gradient(180deg, transparent 40%, rgba(244,244,240,0.9) 100%);
+            }
+        }
+
+        /* Social icon visibility fix */
+        .social-icon-link {
+            position: relative;
+            overflow: hidden;
+        }
+        .social-icon-link::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: currentColor;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: inherit;
+        }
+        .social-icon-link:hover::before {
+            opacity: 0.1;
+        }
+
+        /* ===== TESTIMONIAL CAROUSEL ===== */
+        .testimonials-carousel-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .testimonials-carousel-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 0 16px;
+            box-sizing: border-box;
+        }
+
+        .testimonial-slide-inner {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            text-align: center;
+        }
+
+        html.light .testimonial-slide-inner {
+            background: linear-gradient(135deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.01) 100%);
+            border-color: rgba(0,0,0,0.1);
+        }
+
+        .testimonial-quote-icon {
+            position: absolute;
+            top: 20px;
+            left: 24px;
+            width: 40px;
+            height: 40px;
+            opacity: 0.15;
+            color: #FF4D00;
+        }
+
+        .testimonial-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #FF4D00, #ff6b35);
+            box-shadow: 0 8px 30px rgba(255,77,0,0.3);
+        }
+
+        .testimonial-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        html.light .testimonial-text {
+            color: rgba(0,0,0,0.8);
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 12px;
+        }
+
+        html.light .testimonial-role {
+            color: rgba(0,0,0,0.5);
+        }
+
+        .testimonial-stars {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .testimonial-nav-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        html.light .testimonial-nav-btn {
+            background: rgba(0,0,0,0.05);
+            border-color: rgba(0,0,0,0.15);
+            color: #0a0a0a;
+        }
+
+        .testimonial-nav-btn:hover {
+            background: #FF4D00;
+            border-color: #FF4D00;
+            transform: scale(1.1);
+        }
+
+        .testimonial-dots {
+            display: flex;
+            gap: 10px;
+        }
+
+        .testimonial-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        html.light .testimonial-dot {
+            background: rgba(0,0,0,0.2);
+        }
+
+        .testimonial-dot.active {
+            background: #FF4D00;
+            transform: scale(1.3);
+        }
+
+        .testimonial-progress {
+            width: 100%;
+            height: 3px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            margin-top: 24px;
+            overflow: hidden;
+        }
+
+        html.light .testimonial-progress {
+            background: rgba(0,0,0,0.1);
+        }
+
+        .testimonial-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #FF4D00, #ff6b35);
+            border-radius: 3px;
+            transition: width 0.1s linear;
+            width: 0%;
+        }
+
+        @media (max-width: 640px) {
+            .testimonial-slide-inner {
+                padding: 28px 20px;
+            }
+            .testimonial-text {
+                font-size: 1rem;
+            }
+            .testimonial-avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 1.25rem;
+            }
+            .testimonial-nav-btn {
+                width: 40px;
+                height: 40px;
             }
         }
     </style>
+<base target="_blank">
 </head>
 <body class="antialiased selection:bg-orange-500 selection:text-white netlify-deploy-fix">
 
@@ -1284,13 +1630,13 @@
             <a href="#faq" class="nav-link hover:text-orange-500 transition-colors">FAQ</a>
             <a href="#contact" class="nav-link hover:text-orange-500 transition-colors">CONTACT</a>
         </div>
-        
+
         <!-- Resume Button -->
         <a href="https://drive.google.com/file/d/1jJ_fr1QrKboW7_Mu8i-5yezUmOiDqGhO/view?usp=drive_link" target="_blank" class="hidden md:flex items-center gap-2 px-4 py-2 resume-btn rounded-full text-white font-medium transition-all hover:shadow-lg hover:shadow-orange-500/25 text-sm">
             <i data-lucide="file-text" class="w-4 h-4"></i>
             Resume
         </a>
-        <button class="md:hidden text-white" onclick="toggleMenu()">
+        <button class="md:hidden text-white" onclick="toggleMenu()" aria-label="Menu">
             <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
     </nav>
@@ -1320,7 +1666,7 @@
             <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-[120px] animate-pulse delay-1000"></div>
         </div>
 
-        <div class="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
+        <div class="relative z-10 max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center hero-grid">
             <div class="space-y-8">
                 <!-- Status Badges -->
                 <div class="flex flex-wrap gap-3">
@@ -1328,7 +1674,7 @@
                         <span class="w-2 h-2 bg-green-500 rounded-full status-badge"></span>
                         <span class="text-sm text-gray-300 group-hover:text-white transition-colors">Available for hire</span>
                     </div>
-                    
+
                     <!-- Topmate Link -->
                     <a href="https://topmate.io/sadique_ahmed/" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full border border-purple-500/30 hover:border-purple-500 hover:bg-purple-500/30 transition-all cursor-pointer group animate-pulse">
                         <i data-lucide="calendar-check" class="w-4 h-4 text-purple-400 group-hover:text-white transition-colors"></i>
@@ -1336,27 +1682,27 @@
                         <span class="hidden sm:inline text-xs text-purple-400/70 group-hover:text-white/70">via Topmate</span>
                     </a>
                 </div>
-                
-                <h1 class="font-display font-bold text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter">
+
+                <h1 class="font-display font-bold text-5xl md:text-7xl lg:text-8xl leading-none tracking-tighter hero-title">
                     <span class="block" id="hero-line-1">SADIQUE</span>
                     <span class="block gradient-text" id="hero-line-2">AHMED</span>
                 </h1>
 
-                <p class="text-xl md:text-2xl text-gray-400 font-light max-w-lg" id="hero-subtitle">
+                <p class="text-xl md:text-2xl text-gray-400 font-light max-w-lg hero-subtitle" id="hero-subtitle">
                     Full Stack Developer & CS Student building scalable solutions with <span class="text-orange-500">Java</span>, <span class="text-cyan-400">Spring Boot</span> & <span class="text-purple-400">AI</span>
                 </p>
 
-                <div class="flex gap-6 text-sm border-l-2 border-orange-500 pl-6">
+                <div class="flex gap-6 text-sm border-l-2 border-orange-500 pl-6 hero-stats flex-wrap">
                     <div>
                         <span class="block text-2xl font-display font-bold text-white">CSE'26</span>
                         <span class="text-gray-500">Computer Science</span>
                     </div>
-                    <div class="w-px bg-white/10"></div>
+                    <div class="w-px bg-white/10 hidden sm:block"></div>
                     <div>
                         <span class="block text-2xl font-display font-bold text-white">India</span>
                         <span class="text-gray-500">Based in</span>
                     </div>
-                    <div class="w-px bg-white/10"></div>
+                    <div class="w-px bg-white/10 hidden sm:block"></div>
                     <div>
                         <span class="block text-2xl font-display font-bold text-white">7+</span>
                         <span class="text-gray-500">Projects</span>
@@ -1364,7 +1710,7 @@
                 </div>
 
                 <!-- CTA Buttons -->
-                <div class="flex flex-wrap gap-4" id="hero-cta">
+                <div class="flex flex-wrap gap-4 hero-cta" id="hero-cta">
                     <a href="#projects" class="group px-8 py-4 bg-orange-500 text-white font-medium rounded-full flex items-center gap-2 hover:bg-orange-600 transition-all hover:gap-4 shadow-lg shadow-orange-500/25">
                         View Projects
                         <i data-lucide="arrow-right" class="w-4 h-4"></i>
@@ -1380,38 +1726,38 @@
                     </a>
                 </div>
 
-                <!-- Social Links -->
-                <div class="flex items-center gap-4 pt-2">
-                    <span class="text-sm text-gray-500">Connect with me:</span>
-                    <div class="flex gap-3">
-                        <a href="mailto:sadiqueahmed40@gmail.com" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 hover:text-white transition-all group" title="Email">
-                            <i data-lucide="mail" class="w-4 h-4 text-gray-400 group-hover:text-white"></i>
+                <!-- Social Links - FIXED VISIBILITY -->
+                <div class="flex items-center gap-4 pt-2 flex-wrap">
+                    <span class="text-sm text-gray-400">Connect with me:</span>
+                    <div class="flex gap-3 social-links-row">
+                        <a href="mailto:sadiqueahmed40@gmail.com" class="social-icon-link w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-orange-500 hover:border-orange-500 transition-all group" title="Email" aria-label="Email">
+                            <i data-lucide="mail" class="w-5 h-5 text-white group-hover:text-white"></i>
                         </a>
-                        <a href="https://github.com/Sadiqueahmed" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-gray-800 hover:border-gray-600 hover:text-white transition-all group" title="GitHub">
-                            <i data-lucide="github" class="w-4 h-4 text-gray-400 group-hover:text-white"></i>
+                        <a href="https://github.com/Sadiqueahmed" target="_blank" class="social-icon-link w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-gray-800 hover:border-gray-600 transition-all group" title="GitHub" aria-label="GitHub">
+                            <i data-lucide="github" class="w-5 h-5 text-white group-hover:text-white"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/sadique-ahmed-b2039524b" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-all group" title="LinkedIn">
-                            <i data-lucide="linkedin" class="w-4 h-4 text-gray-400 group-hover:text-white"></i>
+                        <a href="https://www.linkedin.com/in/sadique-ahmed-b2039524b" target="_blank" class="social-icon-link w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-blue-600 hover:border-blue-600 transition-all group" title="LinkedIn" aria-label="LinkedIn">
+                            <i data-lucide="linkedin" class="w-5 h-5 text-white group-hover:text-white"></i>
                         </a>
-                        <a href="https://medium.com/@sadiqueahmed40" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-black hover:border-black hover:text-white transition-all group" title="Medium">
-                            <svg class="w-4 h-4 text-gray-400 group-hover:text-white" viewBox="0 0 24 24" fill="currentColor">
+                        <a href="https://medium.com/@sadiqueahmed40" target="_blank" class="social-icon-link w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-black hover:border-black transition-all group" title="Medium" aria-label="Medium">
+                            <svg class="w-5 h-5 text-white group-hover:text-white" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
                             </svg>
                         </a>
-                        <a href="https://twitter.com/" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-sky-500 hover:border-sky-500 hover:text-white transition-all group" title="Twitter">
-                            <svg class="w-4 h-4 text-gray-400 group-hover:text-white" viewBox="0 0 24 24" fill="currentColor">
+                        <a href="https://twitter.com/" target="_blank" class="social-icon-link w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-sky-500 hover:border-sky-500 transition-all group" title="Twitter" aria-label="Twitter">
+                            <svg class="w-5 h-5 text-white group-hover:text-white" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                             </svg>
                         </a>
-                        <a href="https://topmate.io/sadique_ahmed/" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#FF4444] hover:border-[#FF4444] hover:text-white transition-all group" title="Topmate">
-                            <i data-lucide="calendar-check" class="w-4 h-4 text-gray-400 group-hover:text-white"></i>
+                        <a href="https://topmate.io/sadique_ahmed/" target="_blank" class="social-icon-link w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-[#FF4444] hover:border-[#FF4444] transition-all group" title="Topmate" aria-label="Topmate">
+                            <i data-lucide="calendar-check" class="w-5 h-5 text-white group-hover:text-white"></i>
                         </a>
                     </div>
                 </div>
             </div>
 
             <!-- Right side code block -->
-            <div class="relative hidden md:block">
+            <div class="relative hidden md:block hero-code-block">
                 <div class="relative w-full aspect-square max-w-md mx-auto">
                     <div class="absolute inset-0 bg-gradient-to-br from-orange-500 to-cyan-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
                     <div class="relative bg-gray-900/80 backdrop-blur-xl rounded-3xl border border-white/10 p-8 h-full flex flex-col justify-center overflow-hidden group hover:border-orange-500/30 transition-colors">
@@ -1459,7 +1805,7 @@
                     <div class="inline-block px-4 py-2 border border-orange-500/30 rounded-full text-orange-500 text-sm tracking-widest">
                         ABOUT ME
                     </div>
-                    <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight">
+                    <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight section-title">
                         Building <span class="gradient-text">scalable solutions</span> that make an impact
                     </h2>
                     <div class="space-y-4 text-gray-400 text-lg leading-relaxed">
@@ -1473,7 +1819,7 @@
                             I'm actively seeking <strong class="text-orange-500">Software Development Engineer (SDE)</strong> roles where I can leverage my skills in backend development, microservices architecture, and AI integration to build products that matter.
                         </p>
                     </div>
-                    
+
                     <div class="flex flex-wrap gap-3 pt-4">
                         <span class="skill-tag px-4 py-2 bg-white/5 rounded-full text-sm cursor-pointer border border-white/10 flex items-center gap-2">
                             <span class="w-2 h-2 bg-orange-500 rounded-full"></span> Java
@@ -1499,7 +1845,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="relative">
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-4 mt-8">
@@ -1532,14 +1878,14 @@
         </div>
     </section>
 
-    <!-- Skills Section - FIXED SKILL BARS -->
+    <!-- Skills Section -->
     <section id="skills" class="py-32 px-6 bg-white/5">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-20">
                 <div class="inline-block px-4 py-2 border border-orange-500/30 rounded-full text-orange-500 text-sm tracking-widest mb-4">
                     TECHNICAL SKILLS
                 </div>
-                <h2 class="font-display text-4xl md:text-6xl font-bold mb-6">What I Bring to the Table</h2>
+                <h2 class="font-display text-4xl md:text-6xl font-bold mb-6 section-title">What I Bring to the Table</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">
                     Full-stack expertise with strong backend foundations and growing AI/ML capabilities
                 </p>
@@ -1602,7 +1948,7 @@
                 </div>
             </div>
 
-            <!-- Skill Proficiency - FIXED -->
+            <!-- Skill Proficiency -->
             <div class="achievement-card p-8 rounded-2xl max-w-4xl mx-auto">
                 <h3 class="font-display text-xl font-bold mb-6 text-center">Proficiency Levels</h3>
                 <div class="space-y-6">
@@ -1677,44 +2023,41 @@
         </div>
     </section>
 
-    <!-- Experience Section - LINKEDIN STYLE TIMELINE -->
+    <!-- Experience Section -->
     <section id="experience" class="py-32 px-6 relative overflow-hidden">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-16">
                 <div class="inline-block px-4 py-2 border border-cyan-500/30 rounded-full text-cyan-400 text-sm tracking-widest mb-4">
                     PROFESSIONAL JOURNEY
                 </div>
-                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Experience & Education</h2>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 section-title">Experience & Education</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">My career path and academic background</p>
             </div>
 
             <!-- Timeline Container -->
             <div class="relative">
-                <!-- Vertical Line - Left Side -->
+                <!-- Vertical Line -->
                 <div class="absolute left-6 md:left-8 top-0 bottom-0 w-0.5 bg-gray-700"></div>
 
                 <!-- Experience Items -->
                 <div class="space-y-10">
 
-                    <!-- Item 1: NIELIT Summer Intern 2025 - ORANGE -->
+                    <!-- Item 1: NIELIT Summer Intern 2025 -->
                     <div class="timeline-item relative pl-16 md:pl-20 group">
-                        <!-- Node -->
                         <div class="absolute left-0 md:left-8 w-12 h-12 rounded-full bg-[#0a0a0a] border-2 border-orange-500 transform -translate-x-1/2 flex items-center justify-center z-10 group-hover:scale-110 transition-transform">
                             <img src="https://kimi-web-img.moonshot.cn/img/api.itcentre.org/977e16f3d45f1b369eea2652c9dc7844f8a26d76.jpeg" alt="NIELIT" class="w-8 h-8 object-contain rounded-full">
                         </div>
-                        
-                        <!-- Content Card -->
+
                         <div class="bg-transparent hover:bg-white/5 rounded-xl p-4 -mx-4 transition-colors">
                             <div class="flex flex-col gap-1">
                                 <h3 class="font-display text-xl font-bold text-white">Machine Learning Intern</h3>
                                 <p class="text-orange-400 font-medium">National Institute of Electronics and IT (NIELIT) • Guwahati</p>
                                 <p class="text-gray-500 text-sm">Jun 2025 – Jul 2025 • 2 mos</p>
-                                
+
                                 <p class="text-gray-300 text-sm mt-3 leading-relaxed">
                                     Developed machine learning models for <strong class="text-white">heart disease detection</strong> using Logistic Regression, Random Forest, and Neural Networks. Achieved 89% accuracy on test dataset.
                                 </p>
-                                
-                                <!-- Achievement Badge -->
+
                                 <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-orange-500/10 text-orange-400 text-xs rounded-full border border-orange-500/20 w-fit">
                                     <i data-lucide="trophy" class="w-3 h-3"></i>
                                     <span>89% Model Accuracy</span>
@@ -1730,25 +2073,22 @@
                         </div>
                     </div>
 
-                    <!-- Item 2: NIT Silchar - CYAN -->
+                    <!-- Item 2: NIT Silchar -->
                     <div class="timeline-item relative pl-16 md:pl-20 group">
-                        <!-- Node -->
                         <div class="absolute left-0 md:left-8 w-12 h-12 rounded-full bg-[#0a0a0a] border-2 border-cyan-500 transform -translate-x-1/2 flex items-center justify-center z-10 group-hover:scale-110 transition-transform">
                             <img src="https://kimi-web-img.moonshot.cn/img/static.wikia.nocookie.net/782c3f2dd63743669ad0d48ba1c6e9a3e30bde19" alt="NIT" class="w-8 h-8 object-contain rounded-full">
                         </div>
-                        
-                        <!-- Content Card -->
+
                         <div class="bg-transparent hover:bg-white/5 rounded-xl p-4 -mx-4 transition-colors">
                             <div class="flex flex-col gap-1">
                                 <h3 class="font-display text-xl font-bold text-white">Sole Web Developer</h3>
                                 <p class="text-cyan-400 font-medium">National Institute of Technology Silchar • Silchar</p>
                                 <p class="text-gray-500 text-sm">Jun 2024 – Jul 2024 • 2 mos</p>
-                                
+
                                 <p class="text-gray-300 text-sm mt-3 leading-relaxed">
                                     Built <strong class="text-white">Excursa tourism platform</strong> with 3+ API integrations and optimized assets to reduce page load times by 40%. Implemented responsive design and SEO best practices.
                                 </p>
-                                
-                                <!-- Achievement Badge -->
+
                                 <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-cyan-500/10 text-cyan-400 text-xs rounded-full border border-cyan-500/20 w-fit">
                                     <i data-lucide="zap" class="w-3 h-3"></i>
                                     <span>40% Performance Boost</span>
@@ -1763,25 +2103,22 @@
                         </div>
                     </div>
 
-                    <!-- Item 3: SH1ELD Tech - PURPLE -->
+                    <!-- Item 3: SH1ELD Tech -->
                     <div class="timeline-item relative pl-16 md:pl-20 group">
-                        <!-- Node -->
                         <div class="absolute left-0 md:left-8 w-12 h-12 rounded-full bg-[#0a0a0a] border-2 border-purple-500 transform -translate-x-1/2 flex items-center justify-center z-10 group-hover:scale-110 transition-transform">
                             <img src="https://kimi-web-img.moonshot.cn/img/sh1eldtech.com/b8b2f41ee8dc0cdad0a41ff4296ca5af33ddd392.jpg" alt="SH1ELD" class="w-8 h-8 object-contain rounded-full">
                         </div>
-                        
-                        <!-- Content Card -->
+
                         <div class="bg-transparent hover:bg-white/5 rounded-xl p-4 -mx-4 transition-colors">
                             <div class="flex flex-col gap-1">
                                 <h3 class="font-display text-xl font-bold text-white">Web Development Team Member</h3>
                                 <p class="text-purple-400 font-medium">SH1ELD Tech InfoSec Solutions • Gangtok, Sikkim</p>
                                 <p class="text-gray-500 text-sm">Jul 2024 – Sep 2024 • 3 mos</p>
-                                
+
                                 <p class="text-gray-300 text-sm mt-3 leading-relaxed">
                                     Contributed to <strong class="text-white">4+ client websites</strong> in a 5-member team; improved responsiveness and reduced bug reports by 35% via peer reviews and code quality standards.
                                 </p>
-                                
-                                <!-- Achievement Badge -->
+
                                 <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-purple-500/10 text-purple-400 text-xs rounded-full border border-purple-500/20 w-fit">
                                     <i data-lucide="bug" class="w-3 h-3"></i>
                                     <span>35% Less Bugs</span>
@@ -1796,25 +2133,22 @@
                         </div>
                     </div>
 
-                    <!-- Item 4: NIELIT ML - GREEN -->
+                    <!-- Item 4: NIELIT ML -->
                     <div class="timeline-item relative pl-16 md:pl-20 group">
-                        <!-- Node -->
                         <div class="absolute left-0 md:left-8 w-12 h-12 rounded-full bg-[#0a0a0a] border-2 border-green-500 transform -translate-x-1/2 flex items-center justify-center z-10 group-hover:scale-110 transition-transform">
                             <img src="https://kimi-web-img.moonshot.cn/img/images.crunchbase.com/45149c42678c3d993a1acc74f197f6a40f951e07" alt="NIELIT" class="w-8 h-8 object-contain rounded-full">
                         </div>
-                        
-                        <!-- Content Card -->
+
                         <div class="bg-transparent hover:bg-white/5 rounded-xl p-4 -mx-4 transition-colors">
                             <div class="flex flex-col gap-1">
                                 <h3 class="font-display text-xl font-bold text-white">Machine Learning Intern</h3>
                                 <p class="text-green-400 font-medium">National Institute of Electronics and IT (NIELIT) • Guwahati</p>
                                 <p class="text-gray-500 text-sm">Aug 2024 • 1 mo</p>
-                                
+
                                 <p class="text-gray-300 text-sm mt-3 leading-relaxed">
                                     Developed a <strong class="text-white">CNN-based animal classifier</strong> on a 10K+ image dataset; achieved 92% test accuracy with data augmentation and transfer learning techniques.
                                 </p>
-                                
-                                <!-- Achievement Badge -->
+
                                 <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-green-500/10 text-green-400 text-xs rounded-full border border-green-500/20 w-fit">
                                     <i data-lucide="target" class="w-3 h-3"></i>
                                     <span>92% Test Accuracy</span>
@@ -1830,25 +2164,22 @@
                         </div>
                     </div>
 
-                    <!-- Item 5: Education - YELLOW -->
+                    <!-- Item 5: Education -->
                     <div class="timeline-item relative pl-16 md:pl-20 group">
-                        <!-- Node -->
                         <div class="absolute left-0 md:left-8 w-12 h-12 rounded-full bg-gradient-to-br from-yellow-500 to-orange-500 transform -translate-x-1/2 flex items-center justify-center z-10 group-hover:scale-110 transition-transform text-xl">
                             🎓
                         </div>
-                        
-                        <!-- Content Card -->
+
                         <div class="bg-transparent hover:bg-white/5 rounded-xl p-4 -mx-4 transition-colors">
                             <div class="flex flex-col gap-1">
                                 <h3 class="font-display text-xl font-bold text-white">B.Tech Computer Science</h3>
                                 <p class="text-yellow-400 font-medium">University • India</p>
                                 <p class="text-gray-500 text-sm">2022 - 2026 (Expected)</p>
-                                
+
                                 <p class="text-gray-300 text-sm mt-3 leading-relaxed">
                                     Focusing on <strong class="text-white">Data Structures, Algorithms, Software Engineering, and AI</strong>. Active member of coding clubs and hackathon participant with multiple wins.
                                 </p>
-                                
-                                <!-- Achievement Badge -->
+
                                 <div class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-yellow-500/10 text-yellow-400 text-xs rounded-full border border-yellow-500/20 w-fit">
                                     <i data-lucide="award" class="w-3 h-3"></i>
                                     <span>GPA: 7.5/10</span>
@@ -1876,10 +2207,10 @@
                     <div class="inline-block px-4 py-2 border border-cyan-500/30 rounded-full text-cyan-400 text-sm tracking-widest mb-4">
                         FEATURED WORK
                     </div>
-                    <h2 class="font-display text-4xl md:text-6xl font-bold">Projects</h2>
+                    <h2 class="font-display text-4xl md:text-6xl font-bold section-title">Projects</h2>
                     <p class="text-gray-400 mt-2">Production-ready applications built with modern tech stack</p>
                 </div>
-                
+
                 <div class="flex gap-2 flex-wrap">
                     <button class="filter-btn active px-4 py-2 rounded-full text-sm border border-orange-500 bg-orange-500 text-white transition-all" data-filter="all">All</button>
                     <button class="filter-btn px-4 py-2 rounded-full text-sm border border-white/30 hover:border-orange-500 transition-all" data-filter="ai">AI/ML</button>
@@ -2109,7 +2440,7 @@
                     </div>
                 </article>
 
-                <!-- Project 7: Lairik Pulse - NEW -->
+                <!-- Project 7: Lairik Pulse -->
                 <article class="project-card group relative bg-gradient-to-b from-white/10 to-transparent rounded-2xl overflow-hidden border border-white/10" data-category="fullstack">
                     <div class="aspect-video bg-gray-800 relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-br from-red-600/40 to-orange-600/40"></div>
@@ -2167,7 +2498,7 @@
                 <div class="inline-block px-4 py-2 border border-cyan-500/30 rounded-full text-cyan-400 text-sm tracking-widest mb-4">
                     RESEARCH & PUBLICATIONS
                 </div>
-                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Academic Contributions</h2>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 section-title">Academic Contributions</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">
                     Research work in AI, computer vision, and software engineering with focus on accessibility and scalable systems
                 </p>
@@ -2231,8 +2562,7 @@
                             <p class="text-sm text-gray-400">Research paper on the IndicSignAI project, focusing on CNN-LSTM architecture for continuous sign language recognition and translation to Indic languages.</p>
                         </div>
                     </div>
-                    
-                    <!-- Methodology Tags -->
+
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="text-xs px-2 py-1 bg-white/5 rounded border border-white/10">CNN-LSTM</span>
                         <span class="text-xs px-2 py-1 bg-white/5 rounded border border-white/10">MediaPipe</span>
@@ -2270,7 +2600,6 @@
                         </div>
                     </div>
 
-                    <!-- Methodology Tags -->
                     <div class="flex flex-wrap gap-2 mb-4">
                         <span class="text-xs px-2 py-1 bg-white/5 rounded border border-white/10">Spring Boot</span>
                         <span class="text-xs px-2 py-1 bg-white/5 rounded border border-white/10">Load Balancing</span>
@@ -2303,14 +2632,14 @@
         </div>
     </section>
 
-    <!-- GitHub Stats Section - NEW -->
+    <!-- GitHub Stats Section -->
     <section id="github" class="py-32 px-6 bg-white/5">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <div class="inline-block px-4 py-2 border border-purple-500/30 rounded-full text-purple-400 text-sm tracking-widest mb-4">
                     OPEN SOURCE ACTIVITY
                 </div>
-                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">GitHub Stats</h2>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 section-title">GitHub Stats</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">Live contribution metrics and coding activity for <a href="https://github.com/Sadiqueahmed" target="_blank" class="text-orange-500 hover:underline">@Sadiqueahmed</a></p>
             </div>
 
@@ -2322,13 +2651,13 @@
             <!-- Stats Grid -->
             <div class="grid md:grid-cols-3 gap-6 mb-8">
                 <div class="github-stat-card flex flex-col items-center">
-                    <img src="https://github-readme-stats.vercel.app/api?username=Sadiqueahmed&show_icons=true&theme=dark&hide_border=true&bg_color=0a0a0a&title_color=FF4D00&text_color=f4f4f0&icon_color=00F0FF" alt="Sadiqueahmed GitHub Stats" class="w-full rounded-xl" onerror="this.parentElement.innerHTML='<div class=\'text-gray-400 text-sm\'>Stats loading...</div>'">
+                    <img src="https://github-readme-stats.vercel.app/api?username=Sadiqueahmed&show_icons=true&theme=dark&hide_border=true&bg_color=0a0a0a&title_color=FF4D00&text_color=f4f4f0&icon_color=00F0FF" alt="Sadiqueahmed GitHub Stats" class="w-full rounded-xl" onerror="this.parentElement.innerHTML='<div class='text-gray-400 text-sm'>Stats loading...</div>'">
                 </div>
                 <div class="github-stat-card flex flex-col items-center">
-                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=Sadiqueahmed&theme=dark&hide_border=true&background=0a0a0a&ring=FF4D00&fire=FF4D00&currStreakLabel=00F0FF" alt="Sadiqueahmed GitHub Streak" class="w-full rounded-xl" onerror="this.parentElement.innerHTML='<div class=\'text-gray-400 text-sm\'>Streak loading...</div>'">
+                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=Sadiqueahmed&theme=dark&hide_border=true&background=0a0a0a&ring=FF4D00&fire=FF4D00&currStreakLabel=00F0FF" alt="Sadiqueahmed GitHub Streak" class="w-full rounded-xl" onerror="this.parentElement.innerHTML='<div class='text-gray-400 text-sm'>Streak loading...</div>'">
                 </div>
                 <div class="github-stat-card flex flex-col items-center">
-                    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Sadiqueahmed&layout=compact&theme=dark&hide_border=true&bg_color=0a0a0a&title_color=FF4D00&text_color=f4f4f0" alt="Sadiqueahmed Top Languages" class="w-full rounded-xl" onerror="this.parentElement.innerHTML='<div class=\'text-gray-400 text-sm\'>Languages loading...</div>'">
+                    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Sadiqueahmed&layout=compact&theme=dark&hide_border=true&bg_color=0a0a0a&title_color=FF4D00&text_color=f4f4f0" alt="Sadiqueahmed Top Languages" class="w-full rounded-xl" onerror="this.parentElement.innerHTML='<div class='text-gray-400 text-sm'>Languages loading...</div>'">
                 </div>
             </div>
 
@@ -2341,14 +2670,14 @@
         </div>
     </section>
 
-    <!-- Certificates & Achievements Section - UPDATED -->
+    <!-- Certificates & Achievements Section -->
     <section id="certificates" class="py-32 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-12">
                 <div class="inline-block px-4 py-2 border border-yellow-500/30 rounded-full text-yellow-400 text-sm tracking-widest mb-4">
                     CERTIFICATIONS & CREDENTIALS
                 </div>
-                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Certificates & Achievements</h2>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 section-title">Certificates & Achievements</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">Professional certifications and verified credentials that validate my expertise</p>
             </div>
 
@@ -2393,7 +2722,7 @@
     <!-- Certificate Modal -->
     <div class="certificate-modal" id="certificateModal" onclick="closeCertificateModal(event)">
         <div class="certificate-modal-content" onclick="event.stopPropagation()">
-            <button class="certificate-modal-close" onclick="closeCertificateModal()">
+            <button class="certificate-modal-close" onclick="closeCertificateModal()" aria-label="Close modal">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
             <img src="" alt="Certificate" class="certificate-modal-image" id="modalCertificateImage">
@@ -2418,12 +2747,12 @@
     <!-- Blog Section -->
     <section id="blog" class="py-32 px-6 bg-white/5">
         <div class="max-w-7xl mx-auto">
-            <div class="flex justify-between items-end mb-16">
+            <div class="flex justify-between items-end mb-16 flex-wrap gap-4">
                 <div>
                     <div class="inline-block px-4 py-2 border border-purple-500/30 rounded-full text-purple-400 text-sm tracking-widest mb-4">
                         TECHNICAL BLOG
                     </div>
-                    <h2 class="font-display text-4xl md:text-5xl font-bold">Latest Articles</h2>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold section-title">Latest Articles</h2>
                     <p class="text-gray-400 mt-2">Sharing knowledge on <a href="https://medium.com/@sadiqueahmed40" target="_blank" class="text-orange-500 hover:underline">Medium</a></p>
                 </div>
                 <a href="https://medium.com/@sadiqueahmed40" target="_blank" class="hidden md:flex items-center gap-2 px-6 py-3 bg-white/5 rounded-full border border-white/10 hover:border-orange-500 hover:text-orange-500 transition-all group">
@@ -2601,16 +2930,16 @@
         </div>
     </section>
 
-    <!-- Testimonials Section - UPDATED with ID and Add Functionality -->
+    <!-- Testimonials Section - CAROUSEL -->
     <section id="testimonials" class="py-32 px-6 bg-white/5">
-        <div class="max-w-7xl mx-auto">
+        <div class="max-w-5xl mx-auto">
             <div class="text-center mb-16">
                 <div class="inline-block px-4 py-2 border border-green-500/30 rounded-full text-green-400 text-sm tracking-widest mb-4">
                     RECOMMENDATIONS
                 </div>
-                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">What People Say</h2>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 section-title">What People Say</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto mb-8">Kind words from colleagues, mentors, and collaborators</p>
-                
+
                 <!-- Add Testimonial Button -->
                 <button onclick="openTestimonialModal()" class="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-all group">
                     <i data-lucide="pen-line" class="w-4 h-4"></i>
@@ -2618,16 +2947,37 @@
                 </button>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8" id="testimonials-grid">
-                <!-- Rendered dynamically via JS -->
+            <!-- Testimonials Carousel -->
+            <div class="testimonials-carousel-container">
+                <div class="testimonials-carousel-track" id="testimonialsTrack">
+                    <!-- Rendered dynamically via JS -->
+                </div>
+
+                <!-- Carousel Navigation -->
+                <div class="testimonial-nav">
+                    <button class="testimonial-nav-btn" onclick="prevTestimonial()" aria-label="Previous testimonial">
+                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                    </button>
+                    <div class="testimonial-dots" id="testimonialDots">
+                        <!-- Rendered via JS -->
+                    </div>
+                    <button class="testimonial-nav-btn" onclick="nextTestimonial()" aria-label="Next testimonial">
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="testimonial-progress">
+                    <div class="testimonial-progress-bar" id="testimonialProgressBar"></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonial Modal - NEW -->
+    <!-- Testimonial Modal -->
     <div class="testimonial-modal" id="testimonialModal" onclick="closeTestimonialModal(event)">
         <div class="testimonial-modal-content" onclick="event.stopPropagation()">
-            <button class="testimonial-modal-close" onclick="closeTestimonialModal()">
+            <button class="testimonial-modal-close" onclick="closeTestimonialModal()" aria-label="Close modal">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
             <h3 class="font-display text-2xl font-bold mb-6 text-center">Write a Testimonial</h3>
@@ -2680,7 +3030,7 @@
                 <div class="inline-block px-4 py-2 border border-green-500/30 rounded-full text-green-400 text-sm tracking-widest mb-4">
                     FOR RECRUITERS
                 </div>
-                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6">Frequently Asked Questions</h2>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mb-6 section-title">Frequently Asked Questions</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">
                     Quick answers to common questions from hiring managers and recruiters
                 </p>
@@ -2829,7 +3179,7 @@
             <div class="inline-block px-4 py-2 border border-cyan-500/30 rounded-full text-cyan-400 text-sm tracking-widest mb-4">
                 LET'S WORK TOGETHER
             </div>
-            <h2 class="font-display text-4xl md:text-6xl font-bold mb-8">Ready to hire?</h2>
+            <h2 class="font-display text-4xl md:text-6xl font-bold mb-8 section-title">Ready to hire?</h2>
             <p class="text-gray-400 text-lg mb-12 max-w-2xl mx-auto">
                 I'm currently looking for <strong class="text-white">Software Development Engineer (SDE)</strong> opportunities. 
                 If you're hiring or know of any openings, let's connect!
@@ -2932,21 +3282,21 @@
         // Custom Cursor
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
-        
+
         window.addEventListener('mousemove', (e) => {
             const posX = e.clientX;
             const posY = e.clientY;
-            
+
             cursorDot.style.left = `${posX}px`;
             cursorDot.style.top = `${posY}px`;
-            
+
             cursorOutline.animate({
                 left: `${posX}px`,
                 top: `${posY}px`
             }, { duration: 500, fill: "forwards" });
         });
 
-        const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-tag, input, textarea, .medium-card, .publication-card, .testimonial-card, .carousel-card, .faq-question, .certificate-card, .star-btn');
+        const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-tag, input, textarea, .medium-card, .publication-card, .testimonial-card, .carousel-card, .faq-question, .certificate-card, .star-btn, .testimonial-nav-btn, .testimonial-dot');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
@@ -2985,9 +3335,9 @@
             delay: 1.3
         });
 
-        // FIXED: Skill Bar Animation with Intersection Observer
+        // Skill Bar Animation with Intersection Observer
         const skillBars = document.querySelectorAll('.skill-bar-fill');
-        
+
         const skillObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -3035,7 +3385,7 @@
                 btn.classList.remove('border-white/30');
 
                 const filter = btn.getAttribute('data-filter');
-                
+
                 projectCards.forEach(card => {
                     const categories = card.getAttribute('data-category');
                     if (filter === 'all' || categories.includes(filter)) {
@@ -3094,13 +3444,13 @@
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             const currentScroll = window.pageYOffset;
-            
+
             if (currentScroll > 100) {
                 navbar.classList.add('bg-black/80', 'backdrop-blur-md');
             } else {
                 navbar.classList.remove('bg-black/80', 'backdrop-blur-md');
             }
-            
+
             lastScroll = currentScroll;
         });
 
@@ -3109,7 +3459,7 @@
             const html = document.documentElement;
             const sunIcon = document.getElementById('sun-icon');
             const moonIcon = document.getElementById('moon-icon');
-            
+
             if (html.classList.contains('light')) {
                 html.classList.remove('light');
                 sunIcon.classList.add('hidden');
@@ -3135,13 +3485,11 @@
         function toggleFaq(button) {
             const faqItem = button.parentElement;
             const isActive = faqItem.classList.contains('active');
-            
-            // Close all FAQ items
+
             document.querySelectorAll('.faq-item').forEach(item => {
                 item.classList.remove('active');
             });
-            
-            // Open clicked item if it wasn't active
+
             if (!isActive) {
                 faqItem.classList.add('active');
             }
@@ -3152,7 +3500,7 @@
             e.preventDefault();
             const form = this;
             const data = new FormData(form);
-            
+
             fetch(form.action, {
                 method: 'POST',
                 body: data,
@@ -3161,7 +3509,7 @@
                 }
             }).then(response => {
                 if (response.ok) {
-                    showToast('Message sent successfully! I\'ll get back to you soon.');
+                    showToast("Message sent successfully! I'll get back to you soon.");
                     form.reset();
                 } else {
                     showToast('Something went wrong. Please try again.');
@@ -3171,30 +3519,30 @@
             });
         });
 
-        // ==================== CERTIFICATES SYSTEM - NEW ====================
+        // ==================== CERTIFICATES SYSTEM ====================
         const certificatesData = [
             {
-                image: "data:image/jpeg;base64,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",
+                image: "https://api.itcentre.org/media/courses/NIELITniimg.jpeg",
                 title: "Summer Internship",
                 issuer: "NIELIT • Guwahati",
                 date: "Jul 2025",
-                link: "https://drive.google.com/file/d/1Vlze-vV3iMLNrJUGt8FkdDbwHE1tbZ1G/view?usp=sharing",
+                link: "https://drive.google.com/file/d/1Vlze-vV3iMLNrJUGt8FkdDbwHE1tbZ1G/view?usp=drive_link",
                 skills: ["Python", "Scikit-learn", "Neural Networks"],
                 badge: "Internship",
                 badgeIcon: "award"
             },
             {
-                image: "data:image/png;base64,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",
+                image: "https://www.nielit.gov.in/images/NIELIT_logo.jpg",
                 title: "Machine Learning Internship",
                 issuer: "NIELIT • Guwahati",
                 date: "Jul 2024",
-                link: "https://drive.google.com/file/d/YOUR_NIELIT_WEB_CERT_ID/view?usp=sharing",
+                link: "https://drive.google.com/file/d/154fFTeojncbrBoe7cgDNp_VUDlq9e5oe/view?usp=sharing",
                 skills: ["HTML/CSS", "JavaScript", "React"],
                 badge: "Internship",
                 badgeIcon: "award"
             },
             {
-                image: "data:image/png;base64,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",
+                image: "https://img-cdn.publive.online/fit-in/1200x675/filters:format(webp)/jobs-sentinalassam/media/post_attachments/jobs-sentinelassam/2024-11-22/me3qtret/download.png",
                 title: "Summer Internship",
                 issuer: "NIT Silchar",
                 date: "Jul 2024",
@@ -3204,11 +3552,11 @@
                 badgeIcon: "award"
             },
             {
-                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTydxIr0VTPKD5XwXdRrMvbuggignN_fo4P5I3Zevr0kg&s",
+                image: "https://sh1eldtech.com/images/icons/logo.jpg",
                 title: "Web Development Team",
                 issuer: "SH1ELD Tech • Gangtok",
                 date: "Sep 2024",
-                link: "https://drive.google.com/file/d/YOUR_SH1ELD_CERT_ID/view?usp=sharing",
+                link: "https://drive.google.com/file/d/1OCUe4bBOo9menJ8yy_nFo132CSeLhAA2/view?usp=drive_link",
                 skills: ["Bootstrap", "GitHub", "Jira"],
                 badge: "Professional",
                 badgeIcon: "briefcase"
@@ -3248,13 +3596,13 @@
                 title: "Full Stack Web-Development Bootcamp",
                 issuer: "Udemy",
                 date: "2024",
-                link: "https://drive.google.com/file/d/1-6c6jEQqAw2dXpUDI9EbRaobLCA9Bxiy/view?usp=drive_link",
+                link: "https://drive.google.com/file/d/1-6c6jEQqAw2dXpUDI9EbRaobLCA9Bxiy/view?usp=sharing",
                 skills: ["React", "Node.js", "Express", "MongoDB", "JavaScript", "HTML", "CSS", "Git", "REST APIs"],
                 badge: "Course",
                 badgeIcon: "graduation-cap"
             },
             {
-                image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80",
+                image: "data:image/png;base64,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",
                 title: "Full Stack Specialization",
                 issuer: "Coursera",
                 date: "2024",
@@ -3272,7 +3620,7 @@
                 <div class="certificate-card ${widthClass} rounded-2xl overflow-hidden border border-white/10" 
                      onclick="openCertificateModal('${cert.image}', '${cert.title}', '${cert.issuer}', '${cert.date}', '${cert.link}', '${cert.skills.join(',')}')">
                     <div class="certificate-image-container relative aspect-[4/3] overflow-hidden">
-                        <img src="${cert.image}" alt="${cert.title}" class="certificate-image w-full h-full object-cover transition-transform duration-500">
+                        <img src="${cert.image}" alt="${cert.title}" class="certificate-image w-full h-full object-cover transition-transform duration-500" loading="lazy">
                         <div class="certificate-verified absolute top-3 left-3 w-8 h-8 bg-green-500/90 backdrop-blur rounded-full flex items-center justify-center z-10">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
                         </div>
@@ -3310,11 +3658,8 @@
         function renderCertificates() {
             const scrollContainer = document.getElementById('certificatesScroll');
             const gridContainer = document.getElementById('certificatesGrid');
-            
-            // Horizontal scroll: first 4
+
             scrollContainer.innerHTML = certificatesData.slice(0, 4).map(cert => createCertificateCard(cert, true)).join('');
-            
-            // Grid: all
             gridContainer.innerHTML = certificatesData.map(cert => createCertificateCard(cert, false)).join('');
         }
 
@@ -3325,7 +3670,7 @@
             const collapsible = document.getElementById('certificatesCollapsible');
             const text = document.getElementById('certificatesToggleText');
             const icon = document.getElementById('certificatesToggleIcon');
-            
+
             if (collapsible.classList.contains('expanded')) {
                 collapsible.classList.remove('expanded');
                 text.textContent = 'View All';
@@ -3345,12 +3690,14 @@
 
         function openCertificateModal(image, title, issuer, date, link, skillsStr) {
             const modal = document.getElementById('certificateModal');
-            document.getElementById('modalCertificateImage').src = image;
+            const modalImage = document.getElementById('modalCertificateImage');
+            modalImage.src = image;
+            modalImage.alt = title;
             document.getElementById('modalCertificateTitle').textContent = title;
             document.getElementById('modalCertificateIssuer').textContent = issuer + ' • ' + date;
             document.getElementById('modalVerifyLink').href = link;
             currentCertificateLink = link;
-            
+
             const skillsContainer = document.getElementById('modalCertificateSkills');
             skillsContainer.innerHTML = '';
             if (skillsStr) {
@@ -3361,9 +3708,10 @@
                     skillsContainer.appendChild(tag);
                 });
             }
-            
+
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            lucide.createIcons();
         }
 
         function closeCertificateModal(event) {
@@ -3379,7 +3727,7 @@
             }
         }
 
-        // ==================== TESTIMONIALS SYSTEM - NEW ====================
+        // ==================== TESTIMONIALS CAROUSEL ====================
         const defaultTestimonials = [
             {
                 name: "Harsimran Singh",
@@ -3410,57 +3758,187 @@
                 rating: 5,
                 github: "samiulhoquechowdhury",
                 githubColor: "hover:text-purple-500"
+            },
+            {
+                name: "Rahul Sharma",
+                role: "Senior SDE @ Amazon | Mentor",
+                initials: "RS",
+                gradient: "from-green-500 to-emerald-600",
+                text: "I've mentored many students, but Sadique stands out for his relentless curiosity and execution speed. Within weeks of learning Spring Boot, he was building REST APIs with proper exception handling, JWT auth, and clean architecture. He has the mindset of a senior engineer.",
+                rating: 5,
+                github: "",
+                githubColor: ""
+            },
+            {
+                name: "Ananya Das",
+                role: "Product Manager | NIT Silchar Alumna",
+                initials: "AD",
+                gradient: "from-pink-500 to-rose-600",
+                text: "Sadique built our tourism platform from scratch with minimal supervision. He understood product requirements quickly, suggested better UX flows, and delivered ahead of schedule. His communication skills and technical depth make him an invaluable team member.",
+                rating: 5,
+                github: "",
+                githubColor: ""
+            },
+            {
+                name: "Vikram Patel",
+                role: "Tech Lead | SH1ELD Tech",
+                initials: "VP",
+                gradient: "from-yellow-500 to-orange-600",
+                text: "In a fast-paced startup environment, Sadique proved he could adapt quickly. He improved our code review process, reduced bug reports by 35%, and always brought fresh ideas to the table. His full-stack capabilities saved us significant development time.",
+                rating: 5,
+                github: "",
+                githubColor: ""
+            },
+            {
+                name: "Priya Menon",
+                role: "Research Fellow | AI Research Lab",
+                initials: "PM",
+                gradient: "from-indigo-500 to-purple-600",
+                text: "Sadique's work on the CNN-based animal classifier was outstanding. He achieved 92% accuracy on a challenging dataset and his documentation was so thorough that other researchers could easily reproduce his results. A rare combination of technical skill and scientific rigor.",
+                rating: 5,
+                github: "",
+                githubColor: ""
             }
         ];
 
-        function getAllTestimonials() {
+        let allTestimonials = [];
+        let currentTestimonialIndex = 0;
+        let testimonialInterval;
+        let testimonialProgressInterval;
+        const testimonialAutoPlayDelay = 6000;
+
+        function getStoredTestimonials() {
             const stored = localStorage.getItem('sadique_testimonials');
-            const custom = stored ? JSON.parse(stored) : [];
-            return [...defaultTestimonials, ...custom];
+            return stored ? JSON.parse(stored) : [];
         }
 
-        function renderTestimonials() {
-            const grid = document.getElementById('testimonials-grid');
-            const all = getAllTestimonials();
-            
-            grid.innerHTML = all.map(t => {
+        function initTestimonials() {
+            const stored = getStoredTestimonials();
+            allTestimonials = [...defaultTestimonials, ...stored];
+            renderTestimonialCarousel();
+            startTestimonialAutoPlay();
+        }
+
+        function renderTestimonialCarousel() {
+            const track = document.getElementById('testimonialsTrack');
+            const dotsContainer = document.getElementById('testimonialDots');
+
+            track.innerHTML = allTestimonials.map((t, i) => {
                 const stars = Array(5).fill(0).map((_, si) => {
                     const filled = si < t.rating;
                     return `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="${filled ? '#eab308' : 'none'}" stroke="${filled ? '#eab308' : '#4b5563'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
                 }).join('');
-                
-                const githubLink = t.github ? `
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                        <a href="https://github.com/${t.github}" target="_blank" class="text-xs text-gray-500 ${t.githubColor || 'hover:text-orange-500'} flex items-center gap-1 transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-                            github.com/${t.github}
-                        </a>
-                    </div>
-                ` : '';
-                
+
                 return `
-                    <div class="testimonial-card p-8 rounded-2xl relative">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="absolute top-6 right-6 text-orange-500/20"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></svg>
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-12 h-12 rounded-full bg-gradient-to-br ${t.gradient} flex items-center justify-center text-xl font-bold text-white">
-                                ${t.initials}
-                            </div>
-                            <div>
-                                <h4 class="font-bold">${t.name}</h4>
-                                <p class="text-sm text-gray-400">${t.role}</p>
-                            </div>
+                    <div class="testimonial-slide" data-index="${i}">
+                        <div class="testimonial-slide-inner">
+                            <svg class="testimonial-quote-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                            <div class="testimonial-avatar bg-gradient-to-br ${t.gradient}">${t.initials}</div>
+                            <p class="testimonial-text">"${t.text}"</p>
+                            <div class="testimonial-author">${t.name}</div>
+                            <div class="testimonial-role">${t.role}</div>
+                            <div class="testimonial-stars">${stars}</div>
                         </div>
-                        <p class="text-gray-300 leading-relaxed mb-4">"${t.text}"</p>
-                        <div class="flex gap-1">
-                            ${stars}
-                        </div>
-                        ${githubLink}
                     </div>
                 `;
             }).join('');
+
+            dotsContainer.innerHTML = allTestimonials.map((_, i) => 
+                `<button class="testimonial-dot ${i === 0 ? 'active' : ''}" onclick="goToTestimonial(${i})" aria-label="Go to testimonial ${i + 1}"></button>`
+            ).join('');
+
+            updateTestimonialPosition();
         }
 
-        renderTestimonials();
+        function updateTestimonialPosition() {
+            const track = document.getElementById('testimonialsTrack');
+            track.style.transform = `translateX(-${currentTestimonialIndex * 100}%)`;
+
+            document.querySelectorAll('.testimonial-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentTestimonialIndex);
+            });
+        }
+
+        function nextTestimonial() {
+            currentTestimonialIndex = (currentTestimonialIndex + 1) % allTestimonials.length;
+            updateTestimonialPosition();
+            resetTestimonialAutoPlay();
+        }
+
+        function prevTestimonial() {
+            currentTestimonialIndex = (currentTestimonialIndex - 1 + allTestimonials.length) % allTestimonials.length;
+            updateTestimonialPosition();
+            resetTestimonialAutoPlay();
+        }
+
+        function goToTestimonial(index) {
+            currentTestimonialIndex = index;
+            updateTestimonialPosition();
+            resetTestimonialAutoPlay();
+        }
+
+        function startTestimonialAutoPlay() {
+            stopTestimonialAutoPlay();
+            let progress = 0;
+            const progressBar = document.getElementById('testimonialProgressBar');
+            const step = 100 / (testimonialAutoPlayDelay / 100);
+
+            testimonialProgressInterval = setInterval(() => {
+                progress += step;
+                if (progressBar) progressBar.style.width = Math.min(progress, 100) + '%';
+            }, 100);
+
+            testimonialInterval = setInterval(() => {
+                nextTestimonial();
+                progress = 0;
+                if (progressBar) progressBar.style.width = '0%';
+            }, testimonialAutoPlayDelay);
+        }
+
+        function stopTestimonialAutoPlay() {
+            clearInterval(testimonialInterval);
+            clearInterval(testimonialProgressInterval);
+        }
+
+        function resetTestimonialAutoPlay() {
+            const progressBar = document.getElementById('testimonialProgressBar');
+            if (progressBar) progressBar.style.width = '0%';
+            startTestimonialAutoPlay();
+        }
+
+        // Pause on hover
+        const testimonialsContainer = document.querySelector('.testimonials-carousel-container');
+        if (testimonialsContainer) {
+            testimonialsContainer.addEventListener('mouseenter', stopTestimonialAutoPlay);
+            testimonialsContainer.addEventListener('mouseleave', startTestimonialAutoPlay);
+        }
+
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        if (testimonialsContainer) {
+            testimonialsContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            testimonialsContainer.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+        }
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextTestimonial();
+                } else {
+                    prevTestimonial();
+                }
+            }
+        }
 
         // Testimonial Modal Functions
         function openTestimonialModal() {
@@ -3477,7 +3955,7 @@
         // Star Rating
         let selectedRating = 5;
         const starBtns = document.querySelectorAll('.star-btn');
-        
+
         function updateStarDisplay() {
             starBtns.forEach(btn => {
                 const rating = parseInt(btn.getAttribute('data-rating'));
@@ -3505,14 +3983,14 @@
         // Testimonial Form Submission
         document.getElementById('testimonialForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             const name = document.getElementById('testimonialName').value;
             const role = document.getElementById('testimonialRole').value;
             const text = document.getElementById('testimonialMessage').value;
             const rating = parseInt(document.getElementById('testimonialRating').value);
-            
+
             const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
-            
+
             const newTestimonial = {
                 name,
                 role,
@@ -3523,18 +4001,23 @@
                 github: "",
                 githubColor: ""
             };
-            
-            const stored = JSON.parse(localStorage.getItem('sadique_testimonials') || '[]');
+
+            const stored = getStoredTestimonials();
             stored.push(newTestimonial);
             localStorage.setItem('sadique_testimonials', JSON.stringify(stored));
-            
-            renderTestimonials();
+
+            allTestimonials = [...defaultTestimonials, ...stored];
+            currentTestimonialIndex = allTestimonials.length - 1;
+            renderTestimonialCarousel();
             closeTestimonialModal();
             showToast('Thank you for your testimonial!');
             this.reset();
             selectedRating = 5;
             updateStarDisplay();
         });
+
+        // Initialize testimonials on load
+        initTestimonials();
 
         // Close modals on Escape key
         document.addEventListener('keydown', (e) => {
@@ -3543,6 +4026,11 @@
                 closeTestimonialModal();
             }
         });
+
+        // Re-initialize Lucide icons after dynamic content
+        setTimeout(() => {
+            lucide.createIcons();
+        }, 500);
     </script>
 </body>
 </html>
